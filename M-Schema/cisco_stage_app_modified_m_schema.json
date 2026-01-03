@@ -1,0 +1,669 @@
+{
+  "db_id": "cisco_stage_app",
+  "schema": "cisco_stage_app",
+  "tables": {
+    "cisco_stage_app.qtd_commit_upside": {
+      "fields": {
+        "year": {
+          "type": "String",
+          "primary_key": true,
+          "nullable": false,
+          "default": "' '",
+          "autoincrement": false,
+          "examples": [
+            "2023",
+            "2021",
+            "2019",
+            "2020",
+            "2022"
+          ],
+          "column_description": "Fiscal year for which the financial figures are reported."
+        },
+        "quarter": {
+          "type": "String",
+          "primary_key": false,
+          "nullable": false,
+          "default": "' '",
+          "autoincrement": false,
+          "examples": [
+            "Q2",
+            "Q1",
+            "Q3",
+            "Q4"
+          ],
+          "column_description": "Fiscal quarter (Q1‑Q4) within the reporting year."
+        },
+        "month": {
+          "type": "String",
+          "primary_key": true,
+          "nullable": false,
+          "default": "' '",
+          "autoincrement": false,
+          "examples": [
+            "August",
+            "April",
+            "December",
+            "February",
+            "January"
+          ],
+          "column_description": "Calendar month name that further granulates the data."
+        },
+        "week": {
+          "type": "String",
+          "primary_key": false,
+          "nullable": false,
+          "default": "' '",
+          "autoincrement": false,
+          "examples": [
+            "15",
+            "13",
+            "29",
+            "14",
+            "16"
+          ],
+          "column_description": "Week identifier (typically week‑of‑month) for the record."
+        },
+        "region": {
+          "type": "String",
+          "primary_key": false,
+          "nullable": false,
+          "default": "' '",
+          "autoincrement": false,
+          "examples": [
+            "APJC",
+            "Americas",
+            "EMEA"
+          ],
+          "column_description": "Geographic region (APJC, Americas, EMEA) where the revenue is tracked."
+        },
+        "segment": {
+          "type": "String",
+          "primary_key": false,
+          "nullable": false,
+          "default": "' '",
+          "autoincrement": false,
+          "examples": [
+            "Cloud & AI Infra",
+            "Security& Observability",
+            "Collab & Customer Eng",
+            "Networking",
+            "Internet Infra"
+          ],
+          "column_description": "Cisco business segment to which the figures belong."
+        },
+        "qtd": {
+          "type": "Decimal(32, 21)",
+          "primary_key": false,
+          "nullable": false,
+          "default": "0.",
+          "autoincrement": false,
+          "examples": [
+            "1030",
+            "1869",
+            "1276",
+            "1613",
+            "1342"
+          ],
+          "column_description": "Quarter‑to‑date revenue (or equivalent financial metric) for the segment and region."
+        },
+        "commit": {
+          "type": "Decimal(32, 21)",
+          "primary_key": false,
+          "nullable": false,
+          "default": "0.",
+          "autoincrement": false,
+          "examples": [
+            "3464",
+            "2727",
+            "4279",
+            "3967",
+            "4232"
+          ],
+          "column_description": "Committed revenue forecast for the period, representing sales that are expected to close."
+        },
+        "upside": {
+          "type": "Decimal(32, 21)",
+          "primary_key": false,
+          "nullable": false,
+          "default": "0.",
+          "autoincrement": false,
+          "examples": [
+            "5416",
+            "5647",
+            "4163",
+            "4418",
+            "4706"
+          ],
+          "column_description": "Potential upside revenue that could be realized beyond the committed amount."
+        }
+      },
+      "examples": [],
+      "table_description": "This table stores quarterly, monthly and weekly financial metrics (QTD, committed forecast and upside potential) broken down by geographic region and Cisco business segment. It is used for tracking revenue performance and forecasting at a granular time level."
+    },
+    "cisco_stage_app.funnel_metrics": {
+      "fields": {
+        "year": {
+          "type": "String",
+          "primary_key": false,
+          "nullable": false,
+          "default": "' '",
+          "autoincrement": false,
+          "examples": [
+            "2023",
+            "2021",
+            "2024",
+            "2020",
+            "2022"
+          ],
+          "column_description": "Fiscal year of the funnel measurement."
+        },
+        "quarter": {
+          "type": "String",
+          "primary_key": false,
+          "nullable": false,
+          "default": "' '",
+          "autoincrement": false,
+          "examples": [
+            "Q2",
+            "Q1",
+            "Q3",
+            "Q4"
+          ],
+          "column_description": "Fiscal quarter (Q1‑Q4) for the record."
+        },
+        "month": {
+          "type": "String",
+          "primary_key": false,
+          "nullable": false,
+          "default": "' '",
+          "autoincrement": false,
+          "examples": [
+            "March",
+            "February",
+            "April",
+            "January",
+            "May"
+          ],
+          "column_description": "Calendar month name providing additional time granularity."
+        },
+        "week": {
+          "type": "String",
+          "primary_key": false,
+          "nullable": false,
+          "default": "' '",
+          "autoincrement": false,
+          "examples": [
+            "5",
+            "3",
+            "1",
+            "2",
+            "4"
+          ],
+          "column_description": "Week number within the month for the metric snapshot."
+        },
+        "region": {
+          "type": "String",
+          "primary_key": true,
+          "nullable": false,
+          "default": "' '",
+          "autoincrement": false,
+          "examples": [
+            "APJC",
+            "Americas",
+            "EMEA"
+          ],
+          "column_description": "Geographic region that serves as the primary key for this table."
+        },
+        "segment": {
+          "type": "String",
+          "primary_key": false,
+          "nullable": false,
+          "default": "' '",
+          "autoincrement": false,
+          "examples": [
+            "Cloud & AI Infra",
+            "Security& Observability",
+            "Collab & Customer Eng",
+            "Networking",
+            "Internet Infra"
+          ],
+          "column_description": "Cisco business segment associated with the funnel data."
+        },
+        "cc_percent": {
+          "type": "Decimal(32, 21)",
+          "primary_key": false,
+          "nullable": false,
+          "default": "0.",
+          "autoincrement": false,
+          "examples": [
+            "61",
+            "80",
+            "64",
+            "88",
+            "74"
+          ],
+          "column_description": "Percentage of opportunities that progressed from initial contact to a qualified stage (conversion‑to‑commit)."
+        },
+        "cr_percent": {
+          "type": "Decimal(32, 21)",
+          "primary_key": false,
+          "nullable": false,
+          "default": "0.",
+          "autoincrement": false,
+          "examples": [
+            "62",
+            "70",
+            "86",
+            "80",
+            "78"
+          ],
+          "column_description": "Overall close‑rate percentage representing opportunities that resulted in a win."
+        }
+      },
+      "examples": [],
+      "table_description": "The funnel_metrics table captures conversion percentages for sales opportunities, broken down by region and segment over time. It helps analysts understand the health of the sales pipeline and identify regional or segment‑specific performance trends."
+    },
+    "cisco_stage_app.metrics": {
+      "fields": {
+        "year": {
+          "type": "String",
+          "primary_key": true,
+          "nullable": false,
+          "default": "' '",
+          "autoincrement": false,
+          "examples": [
+            "2020"
+          ],
+          "column_description": "Fiscal year for the metric record."
+        },
+        "quarter": {
+          "type": "String",
+          "primary_key": false,
+          "nullable": false,
+          "default": "' '",
+          "autoincrement": false,
+          "examples": [
+            "Q4"
+          ],
+          "column_description": "Fiscal quarter (Q1‑Q4) within the year."
+        },
+        "month": {
+          "type": "String",
+          "primary_key": true,
+          "nullable": false,
+          "default": "' '",
+          "autoincrement": false,
+          "examples": [
+            "December"
+          ],
+          "column_description": "Calendar month name; together with year forms a primary key."
+        },
+        "week": {
+          "type": "Decimal(32, 21)",
+          "primary_key": false,
+          "nullable": false,
+          "default": "0.",
+          "autoincrement": false,
+          "examples": [
+            "47"
+          ],
+          "column_description": "Week number (typically week‑of‑year) for the measurement."
+        },
+        "region": {
+          "type": "String",
+          "primary_key": false,
+          "nullable": false,
+          "default": "' '",
+          "autoincrement": false,
+          "examples": [
+            "EMEA"
+          ],
+          "column_description": "Geographic region (e.g., EMEA, Americas, APJC)."
+        },
+        "segment": {
+          "type": "String",
+          "primary_key": false,
+          "nullable": false,
+          "default": "' '",
+          "autoincrement": false,
+          "examples": [
+            "IRELAND_SCOTLAND",
+            "COMMERCIAL",
+            "SMB"
+          ],
+          "column_description": "Business segment or market category."
+        },
+        "bu": {
+          "type": "String",
+          "primary_key": false,
+          "nullable": false,
+          "default": "' '",
+          "autoincrement": false,
+          "examples": [
+            "SC"
+          ],
+          "column_description": "Business unit identifier (e.g., SC)."
+        },
+        "tech_bu": {
+          "type": "String",
+          "primary_key": false,
+          "nullable": false,
+          "default": "' '",
+          "autoincrement": false,
+          "examples": [
+            "Cloud & AI Infra",
+            "Svcs & SW Buying Programs",
+            "Security& Observability",
+            "Internet Infra",
+            "Networking"
+          ],
+          "column_description": "Technical business unit or solution area."
+        },
+        "won_amount": {
+          "type": "Decimal(32, 21)",
+          "primary_key": false,
+          "nullable": false,
+          "default": "0.",
+          "autoincrement": false,
+          "examples": [
+            "74575",
+            "55270",
+            "62256",
+            "54193",
+            "61035"
+          ],
+          "column_description": "Revenue amount from deals that have been closed‑won."
+        },
+        "qtd": {
+          "type": "Decimal(32, 21)",
+          "primary_key": false,
+          "nullable": false,
+          "default": "0.",
+          "autoincrement": false,
+          "examples": [
+            "12402",
+            "12126",
+            "10882",
+            "13068",
+            "15650"
+          ],
+          "column_description": "Quarter‑to‑date revenue for the given segment, region and BU."
+        },
+        "commit": {
+          "type": "Decimal(32, 21)",
+          "primary_key": false,
+          "nullable": false,
+          "default": "0.",
+          "autoincrement": false,
+          "examples": [
+            "20769",
+            "24742",
+            "18391",
+            "24888",
+            "15393"
+          ],
+          "column_description": "Committed forecast revenue that is expected to be realized."
+        },
+        "upside": {
+          "type": "Decimal(32, 21)",
+          "primary_key": false,
+          "nullable": false,
+          "default": "0.",
+          "autoincrement": false,
+          "examples": [
+            "35523",
+            "33527",
+            "37381",
+            "21385",
+            "23602"
+          ],
+          "column_description": "Potential upside revenue beyond the committed amount."
+        },
+        "cc_percent": {
+          "type": "Decimal(32, 21)",
+          "primary_key": false,
+          "nullable": false,
+          "default": "0.",
+          "autoincrement": false,
+          "examples": [
+            "78",
+            "75",
+            "76",
+            "89",
+            "72"
+          ],
+          "column_description": "Conversion‑to‑commit percentage for the period."
+        },
+        "cr_percent": {
+          "type": "Decimal(32, 21)",
+          "primary_key": false,
+          "nullable": false,
+          "default": "0.",
+          "autoincrement": false,
+          "examples": [
+            "70",
+            "82",
+            "90",
+            "88",
+            "79"
+          ],
+          "column_description": "Overall close‑rate percentage (won vs. total opportunities)."
+        }
+      },
+      "examples": [],
+      "table_description": "The metrics table provides detailed financial performance data—including won revenue, QTD, commit and upside—by year, month, region, segment, business unit and technical business unit. It supports deep‑dive analysis of sales outcomes and forecasting accuracy."
+    },
+    "cisco_stage_app.linearity_metrics": {
+      "fields": {
+        "year": {
+          "type": "String",
+          "primary_key": true,
+          "nullable": false,
+          "default": "' '",
+          "autoincrement": false,
+          "examples": [
+            "2023",
+            "2021",
+            "2019",
+            "2020",
+            "2022"
+          ],
+          "column_description": "Fiscal year for the linearity measurement."
+        },
+        "quarter": {
+          "type": "String",
+          "primary_key": false,
+          "nullable": false,
+          "default": "' '",
+          "autoincrement": false,
+          "examples": [
+            "Q2",
+            "Q1",
+            "Q3",
+            "Q4"
+          ],
+          "column_description": "Fiscal quarter within the year."
+        },
+        "month": {
+          "type": "String",
+          "primary_key": true,
+          "nullable": false,
+          "default": "' '",
+          "autoincrement": false,
+          "examples": [
+            "August",
+            "April",
+            "December",
+            "February",
+            "January"
+          ],
+          "column_description": "Calendar month name; combined with year forms part of the primary key."
+        },
+        "week": {
+          "type": "Decimal(32, 21)",
+          "primary_key": false,
+          "nullable": false,
+          "default": "0.",
+          "autoincrement": false,
+          "examples": [
+            "14",
+            "13",
+            "29",
+            "15",
+            "16"
+          ],
+          "column_description": "Week number (numeric) for the record."
+        },
+        "segment": {
+          "type": "String",
+          "primary_key": false,
+          "nullable": false,
+          "default": "' '",
+          "autoincrement": false,
+          "examples": [
+            "SMB",
+            "PUBLIC SECTOR",
+            "IRELAND_SCOTLAND",
+            "COMMERCIAL",
+            "ENTERPRISE"
+          ],
+          "column_description": "Business segment or market category."
+        },
+        "region": {
+          "type": "String",
+          "primary_key": false,
+          "nullable": false,
+          "default": "' '",
+          "autoincrement": false,
+          "examples": [
+            "APJC",
+            "Americas",
+            "EMEA"
+          ],
+          "column_description": "Geographic region for the metric."
+        },
+        "won_amount": {
+          "type": "Decimal(32, 21)",
+          "primary_key": false,
+          "nullable": false,
+          "default": "0.",
+          "autoincrement": false,
+          "examples": [
+            "98849",
+            "88032",
+            "53145",
+            "98910",
+            "69456"
+          ],
+          "column_description": "Revenue from deals that have been closed‑won."
+        },
+        "qtd": {
+          "type": "Decimal(32, 21)",
+          "primary_key": false,
+          "nullable": false,
+          "default": "0.",
+          "autoincrement": false,
+          "examples": [
+            "1815",
+            "1848",
+            "1816",
+            "1660",
+            "1061"
+          ],
+          "column_description": "Quarter‑to‑date revenue for the segment and region."
+        },
+        "commit": {
+          "type": "Decimal(32, 21)",
+          "primary_key": false,
+          "nullable": false,
+          "default": "0.",
+          "autoincrement": false,
+          "examples": [
+            "3020",
+            "2586",
+            "3616",
+            "3239",
+            "2683"
+          ],
+          "column_description": "Committed forecast revenue expected to be realized."
+        },
+        "upside": {
+          "type": "Decimal(32, 21)",
+          "primary_key": false,
+          "nullable": false,
+          "default": "0.",
+          "autoincrement": false,
+          "examples": [
+            "5519",
+            "5741",
+            "4444",
+            "5889",
+            "5375"
+          ],
+          "column_description": "Potential upside revenue beyond the committed forecast."
+        },
+        "cc_percent": {
+          "type": "Decimal(32, 21)",
+          "primary_key": false,
+          "nullable": false,
+          "default": "0.",
+          "autoincrement": false,
+          "examples": [
+            "66",
+            "82",
+            "76",
+            "89",
+            "74"
+          ],
+          "column_description": "Conversion‑to‑commit percentage for the period."
+        },
+        "cr_percent": {
+          "type": "Decimal(32, 21)",
+          "primary_key": false,
+          "nullable": false,
+          "default": "0.",
+          "autoincrement": false,
+          "examples": [
+            "67",
+            "63",
+            "80",
+            "66",
+            "78"
+          ],
+          "column_description": "Close‑rate percentage indicating the proportion of opportunities that resulted in a win."
+        },
+        "bu": {
+          "type": "String",
+          "primary_key": false,
+          "nullable": false,
+          "default": "' '",
+          "autoincrement": false,
+          "examples": [
+            "SC",
+            "Splunk",
+            "Cisco"
+          ],
+          "column_description": "Business unit code associated with the record."
+        },
+        "tech_bu": {
+          "type": "String",
+          "primary_key": false,
+          "nullable": false,
+          "default": "' '",
+          "autoincrement": false,
+          "examples": [
+            "Cloud & AI Infra",
+            "Security& Observability",
+            "Collab & Customer Eng",
+            "Networking",
+            "Internet Infra"
+          ],
+          "column_description": "Technical business unit or solution area."
+        }
+      },
+      "examples": [],
+      "table_description": "Linearity_metrics captures revenue and pipeline performance (won, QTD, commit, upside) along with conversion percentages, segmented by year, month, region, segment and business unit. It is used to assess the linearity of sales forecasts and identify gaps between forecasted and actual revenue."
+    }
+  },
+  "foreign_keys": []
+}

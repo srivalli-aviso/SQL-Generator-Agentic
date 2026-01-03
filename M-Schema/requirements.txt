@@ -1,0 +1,5 @@
+llama-index
+numpy
+sqlalchemy
+clickhouse-sqlalchemy
+groq
