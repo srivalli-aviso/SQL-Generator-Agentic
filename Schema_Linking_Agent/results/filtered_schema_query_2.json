@@ -1,0 +1,94 @@
+{
+  "db_id": "cisco_stage_app",
+  "schema": "cisco_stage_app",
+  "tables": {
+    "cisco_stage_app.linearity_metrics": {
+      "fields": {
+        "cr_percent": {
+          "type": "Decimal(32, 21)",
+          "primary_key": false,
+          "nullable": false,
+          "default": "0.",
+          "autoincrement": false,
+          "examples": [
+            "67",
+            "63",
+            "80",
+            "66",
+            "78"
+          ],
+          "column_description": "Close‑rate percentage indicating the proportion of opportunities that resulted in a win."
+        },
+        "cc_percent": {
+          "type": "Decimal(32, 21)",
+          "primary_key": false,
+          "nullable": false,
+          "default": "0.",
+          "autoincrement": false,
+          "examples": [
+            "66",
+            "82",
+            "76",
+            "89",
+            "74"
+          ],
+          "column_description": "Conversion‑to‑commit percentage for the period."
+        },
+        "won_amount": {
+          "type": "Decimal(32, 21)",
+          "primary_key": false,
+          "nullable": false,
+          "default": "0.",
+          "autoincrement": false,
+          "examples": [
+            "98849",
+            "88032",
+            "53145",
+            "98910",
+            "69456"
+          ],
+          "column_description": "Revenue from deals that have been closed‑won."
+        }
+      },
+      "examples": [],
+      "table_description": "Linearity_metrics captures revenue and pipeline performance (won, QTD, commit, upside) along with conversion percentages, segmented by year, month, region, segment and business unit. It is used to assess the linearity of sales forecasts and identify gaps between forecasted and actual revenue."
+    },
+    "cisco_stage_app.funnel_metrics": {
+      "fields": {
+        "cr_percent": {
+          "type": "Decimal(32, 21)",
+          "primary_key": false,
+          "nullable": false,
+          "default": "0.",
+          "autoincrement": false,
+          "examples": [
+            "62",
+            "70",
+            "86",
+            "80",
+            "78"
+          ],
+          "column_description": "Overall close‑rate percentage representing opportunities that resulted in a win."
+        },
+        "cc_percent": {
+          "type": "Decimal(32, 21)",
+          "primary_key": false,
+          "nullable": false,
+          "default": "0.",
+          "autoincrement": false,
+          "examples": [
+            "61",
+            "80",
+            "64",
+            "88",
+            "74"
+          ],
+          "column_description": "Percentage of opportunities that progressed from initial contact to a qualified stage (conversion‑to‑commit)."
+        }
+      },
+      "examples": [],
+      "table_description": "The funnel_metrics table captures conversion percentages for sales opportunities, broken down by region and segment over time. It helps analysts understand the health of the sales pipeline and identify regional or segment‑specific performance trends."
+    }
+  },
+  "foreign_keys": []
+}

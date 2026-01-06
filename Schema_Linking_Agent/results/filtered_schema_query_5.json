@@ -1,0 +1,175 @@
+{
+  "db_id": "cisco_stage_app",
+  "schema": "cisco_stage_app",
+  "tables": {
+    "cisco_stage_app.metrics": {
+      "fields": {
+        "qtd": {
+          "type": "Decimal(32, 21)",
+          "primary_key": false,
+          "nullable": false,
+          "default": "0.",
+          "autoincrement": false,
+          "examples": [
+            "12402",
+            "12126",
+            "10882",
+            "13068",
+            "15650"
+          ],
+          "column_description": "Quarter‑to‑date revenue for the given segment, region and BU."
+        },
+        "won_amount": {
+          "type": "Decimal(32, 21)",
+          "primary_key": false,
+          "nullable": false,
+          "default": "0.",
+          "autoincrement": false,
+          "examples": [
+            "74575",
+            "55270",
+            "62256",
+            "54193",
+            "61035"
+          ],
+          "column_description": "Revenue amount from deals that have been closed‑won."
+        },
+        "quarter": {
+          "type": "String",
+          "primary_key": false,
+          "nullable": false,
+          "default": "' '",
+          "autoincrement": false,
+          "examples": [
+            "Q4"
+          ],
+          "column_description": "Fiscal quarter (Q1‑Q4) within the year."
+        },
+        "year": {
+          "type": "String",
+          "primary_key": true,
+          "nullable": false,
+          "default": "' '",
+          "autoincrement": false,
+          "examples": [
+            "2020"
+          ],
+          "column_description": "Fiscal year for the metric record."
+        },
+        "commit": {
+          "type": "Decimal(32, 21)",
+          "primary_key": false,
+          "nullable": false,
+          "default": "0.",
+          "autoincrement": false,
+          "examples": [
+            "20769",
+            "24742",
+            "18391",
+            "24888",
+            "15393"
+          ],
+          "column_description": "Committed forecast revenue that is expected to be realized."
+        }
+      },
+      "examples": [],
+      "table_description": "The metrics table provides detailed financial performance data—including won revenue, QTD, commit and upside—by year, month, region, segment, business unit and technical business unit. It supports deep‑dive analysis of sales outcomes and forecasting accuracy."
+    },
+    "cisco_stage_app.qtd_commit_upside": {
+      "fields": {
+        "quarter": {
+          "type": "String",
+          "primary_key": false,
+          "nullable": false,
+          "default": "' '",
+          "autoincrement": false,
+          "examples": [
+            "Q2",
+            "Q1",
+            "Q3",
+            "Q4"
+          ],
+          "column_description": "Fiscal quarter (Q1‑Q4) within the reporting year."
+        },
+        "qtd": {
+          "type": "Decimal(32, 21)",
+          "primary_key": false,
+          "nullable": false,
+          "default": "0.",
+          "autoincrement": false,
+          "examples": [
+            "1030",
+            "1869",
+            "1276",
+            "1613",
+            "1342"
+          ],
+          "column_description": "Quarter‑to‑date revenue (or equivalent financial metric) for the segment and region."
+        },
+        "year": {
+          "type": "String",
+          "primary_key": true,
+          "nullable": false,
+          "default": "' '",
+          "autoincrement": false,
+          "examples": [
+            "2023",
+            "2021",
+            "2019",
+            "2020",
+            "2022"
+          ],
+          "column_description": "Fiscal year for which the financial figures are reported."
+        },
+        "upside": {
+          "type": "Decimal(32, 21)",
+          "primary_key": false,
+          "nullable": false,
+          "default": "0.",
+          "autoincrement": false,
+          "examples": [
+            "5416",
+            "5647",
+            "4163",
+            "4418",
+            "4706"
+          ],
+          "column_description": "Potential upside revenue that could be realized beyond the committed amount."
+        },
+        "month": {
+          "type": "String",
+          "primary_key": true,
+          "nullable": false,
+          "default": "' '",
+          "autoincrement": false,
+          "examples": [
+            "August",
+            "April",
+            "December",
+            "February",
+            "January"
+          ],
+          "column_description": "Calendar month name that further granulates the data."
+        },
+        "commit": {
+          "type": "Decimal(32, 21)",
+          "primary_key": false,
+          "nullable": false,
+          "default": "0.",
+          "autoincrement": false,
+          "examples": [
+            "3464",
+            "2727",
+            "4279",
+            "3967",
+            "4232"
+          ],
+          "column_description": "Committed revenue forecast for the period, representing sales that are expected to close."
+        }
+      },
+      "examples": [],
+      "table_description": "This table stores quarterly, monthly and weekly financial metrics (QTD, committed forecast and upside potential) broken down by geographic region and Cisco business segment. It is used for tracking revenue performance and forecasting at a granular time level."
+    }
+  },
+  "foreign_keys": []
+}
