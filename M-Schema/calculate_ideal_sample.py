@@ -1,50 +1,44 @@
-import os
 import warnings
-from urllib.parse import quote_plus
 from sqlalchemy import create_engine, text
+from config import MSchemaConfig
 import urllib3
 
 # Suppress SSL warnings
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 warnings.filterwarnings('ignore', message='Unverified HTTPS request')
 
-# ClickHouse Database Configuration
-# All database credentials must be set as environment variables for security
-CH_DB_HOST = os.getenv('CH_DB_HOST')
-CH_DB_USER = os.getenv('CH_DB_USER')
-CH_DB_PORT = os.getenv('CH_DB_PORT', '8443')  # Default port for ClickHouse Cloud HTTPS
-CH_DB_PASSWORD = os.getenv('CH_DB_PASSWORD')
-CH_DB_NAME = os.getenv('CH_DB_NAME')
+# Validate required configuration
+MSchemaConfig.validate_required()
 
-# Validate required environment variables
-if not CH_DB_HOST:
-    raise ValueError("CH_DB_HOST environment variable is not set. Please set it using: export CH_DB_HOST='your-host'")
-if not CH_DB_USER:
-    raise ValueError("CH_DB_USER environment variable is not set. Please set it using: export CH_DB_USER='your-username'")
-if not CH_DB_PASSWORD:
-    raise ValueError("CH_DB_PASSWORD environment variable is not set. Please set it using: export CH_DB_PASSWORD='your-password'")
-if not CH_DB_NAME:
-    raise ValueError("CH_DB_NAME environment variable is not set. Please set it using: export CH_DB_NAME='your-database-name'")
+# Get configuration values
+CH_DB_NAME = MSchemaConfig.CH_DB_NAME
+INCLUDE_TABLES = MSchemaConfig.get_include_tables()
 
-# URL encode the password
-encoded_password = quote_plus(CH_DB_PASSWORD)
-
-# Connect to ClickHouse
-clickhouse_url = f'clickhouse+http://{CH_DB_USER}:{encoded_password}@{CH_DB_HOST}:{CH_DB_PORT}/{CH_DB_NAME}?protocol=https&verify=false'
+# Get ClickHouse connection URL from config
+clickhouse_url = MSchemaConfig.get_clickhouse_url()
 db_engine = create_engine(clickhouse_url)
 
-# Get granule and row information
-query = f"""
+# Build query with optional table filtering
+base_query = """
 SELECT 
     table,
     sum(rows) as total_rows,
     sum(marks) as total_marks
 FROM system.parts
-WHERE database = '{CH_DB_NAME}'
+WHERE database = :db_name
   AND active = 1
-GROUP BY table
-ORDER BY total_rows DESC
 """
+
+# Add table filtering if INCLUDE_TABLES is specified
+if INCLUDE_TABLES:
+    # Create placeholders for table names
+    table_placeholders = ', '.join([f"'{table}'" for table in INCLUDE_TABLES])
+    query = f"{base_query}  AND table IN ({table_placeholders})\nGROUP BY table\nORDER BY total_rows DESC"
+else:
+    query = f"{base_query}\nGROUP BY table\nORDER BY total_rows DESC"
+
+# Use parameterized query for database name to prevent SQL injection
+query = query.replace(':db_name', f"'{CH_DB_NAME}'")
 
 with db_engine.connect() as connection:
     result = connection.execute(text(query))
@@ -72,16 +66,16 @@ with db_engine.connect() as connection:
 avg_rows_per_granule = max_rows / max_marks if max_marks > 0 else 8192
 
 # Option 1: Sample by coefficient (percentage)
-# 10% is a good balance between accuracy and performance
-sample_coefficient = 0.1  # 10%
+# Use default from config
+sample_coefficient = MSchemaConfig.SAMPLE_COEFFICIENT_DEFAULT
 
 # Option 2: Sample by number of rows
-# Sample at least 3-5 granules worth of data for accuracy
-min_granules_to_sample = 5
+# Sample at least configured granules worth of data for accuracy
+min_granules_to_sample = MSchemaConfig.MIN_GRANULES_TO_SAMPLE
 sample_rows = int(avg_rows_per_granule * min_granules_to_sample)
 
 # Ensure minimum sample size for statistical significance
-min_sample_rows = 10000
+min_sample_rows = MSchemaConfig.MIN_SAMPLE_ROWS
 sample_rows = max(sample_rows, min_sample_rows)
 
 # For the largest table, calculate what percentage this represents

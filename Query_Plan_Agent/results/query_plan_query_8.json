@@ -1,0 +1,140 @@
+{
+  "execution_steps": [
+    {
+      "step_number": 1,
+      "operation": "identify_base_table",
+      "table": "cisco_stage_app.funnel_metrics",
+      "columns": [
+        "funnel_id",
+        "stage_name",
+        "stage_count"
+      ]
+    },
+    {
+      "step_number": 2,
+      "operation": "join_table",
+      "join_type": "LEFT JOIN",
+      "table": "cisco_stage_app.linearity_metrics",
+      "join_condition": {
+        "left_column": "cisco_stage_app.funnel_metrics.metric_id",
+        "right_column": "cisco_stage_app.linearity_metrics.metric_id",
+        "operator": "="
+      },
+      "columns": [
+        "conversion_percentage"
+      ]
+    },
+    {
+      "step_number": 3,
+      "operation": "join_table",
+      "join_type": "LEFT JOIN",
+      "table": "cisco_stage_app.metrics",
+      "join_condition": {
+        "left_column": "cisco_stage_app.funnel_metrics.metric_id",
+        "right_column": "cisco_stage_app.metrics.metric_id",
+        "operator": "="
+      },
+      "columns": [
+        "metric_name",
+        "metric_value"
+      ]
+    },
+    {
+      "step_number": 4,
+      "operation": "join_table",
+      "join_type": "LEFT JOIN",
+      "table": "cisco_stage_app.qtd_commit_upside",
+      "join_condition": {
+        "left_column": "cisco_stage_app.funnel_metrics.metric_id",
+        "right_column": "cisco_stage_app.qtd_commit_upside.metric_id",
+        "operator": "="
+      },
+      "columns": [
+        "qtd_commit",
+        "upside"
+      ]
+    }
+  ],
+  "select_columns": [
+    {
+      "column": "cisco_stage_app.funnel_metrics.stage_name",
+      "alias": "stage_name",
+      "source_table": "cisco_stage_app.funnel_metrics"
+    },
+    {
+      "column": "cisco_stage_app.funnel_metrics.stage_count",
+      "alias": "stage_count",
+      "source_table": "cisco_stage_app.funnel_metrics"
+    },
+    {
+      "column": "cisco_stage_app.linearity_metrics.conversion_percentage",
+      "alias": "conversion_percentage",
+      "source_table": "cisco_stage_app.linearity_metrics"
+    },
+    {
+      "column": "cisco_stage_app.metrics.metric_name",
+      "alias": "metric_name",
+      "source_table": "cisco_stage_app.metrics"
+    },
+    {
+      "column": "cisco_stage_app.metrics.metric_value",
+      "alias": "metric_value",
+      "source_table": "cisco_stage_app.metrics"
+    },
+    {
+      "column": "cisco_stage_app.qtd_commit_upside.qtd_commit",
+      "alias": "qtd_commit",
+      "source_table": "cisco_stage_app.qtd_commit_upside"
+    },
+    {
+      "column": "cisco_stage_app.qtd_commit_upside.upside",
+      "alias": "upside",
+      "source_table": "cisco_stage_app.qtd_commit_upside"
+    }
+  ],
+  "from_table": "cisco_stage_app.funnel_metrics",
+  "joins": [
+    {
+      "step": 2,
+      "type": "LEFT JOIN",
+      "table": "cisco_stage_app.linearity_metrics",
+      "condition": {
+        "left": "cisco_stage_app.funnel_metrics.metric_id",
+        "operator": "=",
+        "right": "cisco_stage_app.linearity_metrics.metric_id"
+      }
+    },
+    {
+      "step": 3,
+      "type": "LEFT JOIN",
+      "table": "cisco_stage_app.metrics",
+      "condition": {
+        "left": "cisco_stage_app.funnel_metrics.metric_id",
+        "operator": "=",
+        "right": "cisco_stage_app.metrics.metric_id"
+      }
+    },
+    {
+      "step": 4,
+      "type": "LEFT JOIN",
+      "table": "cisco_stage_app.qtd_commit_upside",
+      "condition": {
+        "left": "cisco_stage_app.funnel_metrics.metric_id",
+        "operator": "=",
+        "right": "cisco_stage_app.qtd_commit_upside.metric_id"
+      }
+    }
+  ],
+  "where_conditions": null,
+  "group_by": null,
+  "having_conditions": null,
+  "order_by": null,
+  "subqueries": [],
+  "complexity_indicators": {
+    "requires_join": true,
+    "requires_aggregation": false,
+    "join_count": 3,
+    "aggregation_count": 0
+  },
+  "query": "Display funnel metrics with conversion percentages"
+}

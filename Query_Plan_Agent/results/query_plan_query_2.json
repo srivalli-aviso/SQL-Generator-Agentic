@@ -1,0 +1,64 @@
+{
+  "execution_steps": [
+    {
+      "step_number": 1,
+      "operation": "identify_base_table",
+      "table": "cisco_stage_app.linearity_metrics",
+      "columns": [
+        "metric_id",
+        "conversion_rate"
+      ]
+    },
+    {
+      "step_number": 2,
+      "operation": "join_table",
+      "join_type": "INNER JOIN",
+      "table": "cisco_stage_app.funnel_metrics",
+      "join_condition": {
+        "left_column": "cisco_stage_app.linearity_metrics.metric_id",
+        "right_column": "cisco_stage_app.funnel_metrics.metric_id",
+        "operator": "="
+      },
+      "columns": [
+        "close_rate"
+      ]
+    }
+  ],
+  "select_columns": [
+    {
+      "column": "conversion_rate",
+      "alias": null,
+      "source_table": "cisco_stage_app.linearity_metrics"
+    },
+    {
+      "column": "close_rate",
+      "alias": null,
+      "source_table": "cisco_stage_app.funnel_metrics"
+    }
+  ],
+  "from_table": "cisco_stage_app.linearity_metrics",
+  "joins": [
+    {
+      "step": 2,
+      "type": "INNER JOIN",
+      "table": "cisco_stage_app.funnel_metrics",
+      "condition": {
+        "left": "cisco_stage_app.linearity_metrics.metric_id",
+        "operator": "=",
+        "right": "cisco_stage_app.funnel_metrics.metric_id"
+      }
+    }
+  ],
+  "where_conditions": null,
+  "group_by": null,
+  "having_conditions": null,
+  "order_by": null,
+  "subqueries": [],
+  "complexity_indicators": {
+    "requires_join": true,
+    "requires_aggregation": false,
+    "join_count": 1,
+    "aggregation_count": 0
+  },
+  "query": "What are the conversion rates and close rates?"
+}

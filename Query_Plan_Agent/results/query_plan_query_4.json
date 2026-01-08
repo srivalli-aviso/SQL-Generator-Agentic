@@ -1,0 +1,133 @@
+{
+  "execution_steps": [
+    {
+      "step_number": 1,
+      "operation": "identify_base_table",
+      "table": "cisco_stage_app.metrics",
+      "columns": [
+        "business_unit_id",
+        "segment_id",
+        "metric_value"
+      ]
+    },
+    {
+      "step_number": 2,
+      "operation": "join_table",
+      "join_type": "INNER JOIN",
+      "table": "cisco_stage_app.linearity_metrics",
+      "join_condition": {
+        "left_column": "cisco_stage_app.metrics.business_unit_id",
+        "right_column": "cisco_stage_app.linearity_metrics.business_unit_id",
+        "operator": "="
+      },
+      "columns": [
+        "linearity_score"
+      ]
+    },
+    {
+      "step_number": 3,
+      "operation": "join_table",
+      "join_type": "INNER JOIN",
+      "table": "cisco_stage_app.qtd_commit_upside",
+      "join_condition": {
+        "left_column": "cisco_stage_app.metrics.segment_id",
+        "right_column": "cisco_stage_app.qtd_commit_upside.segment_id",
+        "operator": "="
+      },
+      "columns": [
+        "qtd_commit"
+      ]
+    },
+    {
+      "step_number": 4,
+      "operation": "join_table",
+      "join_type": "INNER JOIN",
+      "table": "cisco_stage_app.funnel_metrics",
+      "join_condition": {
+        "left_column": "cisco_stage_app.metrics.business_unit_id",
+        "right_column": "cisco_stage_app.funnel_metrics.business_unit_id",
+        "operator": "="
+      },
+      "columns": [
+        "funnel_stage"
+      ]
+    }
+  ],
+  "select_columns": [
+    {
+      "column": "business_unit_id",
+      "alias": null,
+      "source_table": "cisco_stage_app.metrics"
+    },
+    {
+      "column": "segment_id",
+      "alias": null,
+      "source_table": "cisco_stage_app.metrics"
+    },
+    {
+      "column": "metric_value",
+      "alias": null,
+      "source_table": "cisco_stage_app.metrics"
+    },
+    {
+      "column": "linearity_score",
+      "alias": null,
+      "source_table": "cisco_stage_app.linearity_metrics"
+    },
+    {
+      "column": "qtd_commit",
+      "alias": null,
+      "source_table": "cisco_stage_app.qtd_commit_upside"
+    },
+    {
+      "column": "funnel_stage",
+      "alias": null,
+      "source_table": "cisco_stage_app.funnel_metrics"
+    }
+  ],
+  "from_table": "cisco_stage_app.metrics",
+  "joins": [
+    {
+      "step": 2,
+      "type": "INNER JOIN",
+      "table": "cisco_stage_app.linearity_metrics",
+      "condition": {
+        "left": "cisco_stage_app.metrics.business_unit_id",
+        "operator": "=",
+        "right": "cisco_stage_app.linearity_metrics.business_unit_id"
+      }
+    },
+    {
+      "step": 3,
+      "type": "INNER JOIN",
+      "table": "cisco_stage_app.qtd_commit_upside",
+      "condition": {
+        "left": "cisco_stage_app.metrics.segment_id",
+        "operator": "=",
+        "right": "cisco_stage_app.qtd_commit_upside.segment_id"
+      }
+    },
+    {
+      "step": 4,
+      "type": "INNER JOIN",
+      "table": "cisco_stage_app.funnel_metrics",
+      "condition": {
+        "left": "cisco_stage_app.metrics.business_unit_id",
+        "operator": "=",
+        "right": "cisco_stage_app.funnel_metrics.business_unit_id"
+      }
+    }
+  ],
+  "where_conditions": null,
+  "group_by": null,
+  "having_conditions": null,
+  "order_by": null,
+  "subqueries": [],
+  "complexity_indicators": {
+    "requires_join": true,
+    "requires_aggregation": false,
+    "join_count": 3,
+    "aggregation_count": 0
+  },
+  "query": "Show me data about business units and segments"
+}

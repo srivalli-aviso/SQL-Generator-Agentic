@@ -1,0 +1,19 @@
+{
+  "query": "Find won amount and QTD by year and quarter",
+  "sql": "SELECT\n    SUM(m.won_amount) AS won_amount, SUM(q.qtd_amount) AS qtd, m.year, m.quarter\nFROM cisco_stage_app.metrics AS m\n    INNER\n    JOIN cisco_stage_app.qtd_commit_upside AS q\n    ON m.year = q.year\n    AND m.quarter = q.quarter\nGROUP BY m.year, m.quarter",
+  "sql_formatted": "SELECT\n    SUM(m.won_amount) AS won_amount, SUM(q.qtd_amount) AS qtd, m.year, m.quarter\nFROM cisco_stage_app.metrics AS m\n    INNER\n    JOIN cisco_stage_app.qtd_commit_upside AS q\n    ON m.year = q.year\n    AND m.quarter = q.quarter\nGROUP BY m.year, m.quarter",
+  "generation_method": "llm",
+  "validation": {
+    "enabled": false,
+    "is_valid": null,
+    "error": null
+  },
+  "execution": {
+    "success": false,
+    "error": "Orig exception: Code: 47. DB::Exception: There's no column 'q.qtd_amount' in table 'q': While processing q.qtd_amount. (UNKNOWN_IDENTIFIER) (version 25.8.1.8909 (official build))\n",
+    "row_count": null,
+    "execution_time": 1.4875152111053467,
+    "sample_rows": null
+  },
+  "query_plan_source": "query_plan_query_5.json"
+}

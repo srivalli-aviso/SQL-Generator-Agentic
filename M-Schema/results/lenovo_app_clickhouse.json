@@ -1,0 +1,3523 @@
+{
+  "db_id": "default",
+  "schema": "default",
+  "tables": {
+    "default.interactions": {
+      "fields": {
+        "interaction_id": {
+          "type": "String",
+          "primary_key": true,
+          "nullable": false,
+          "default": null,
+          "autoincrement": false,
+          "examples": [
+            "60d32aeaf35507b5ac3c29ea",
+            "60d32aeaf35507b5ac3c29e8",
+            "60d32aeaf35507b5ac3c29e9",
+            "60d32aeaf35507b5ac3c29e7",
+            "60d32aeaf35507b5ac3c29eb"
+          ]
+        },
+        "from_id": {
+          "type": "Nullable(String)",
+          "primary_key": false,
+          "nullable": true,
+          "default": null,
+          "autoincrement": false,
+          "examples": []
+        },
+        "to_list": {
+          "type": "Nullable(String)",
+          "primary_key": false,
+          "nullable": true,
+          "default": null,
+          "autoincrement": false,
+          "examples": []
+        },
+        "cc_list": {
+          "type": "Nullable(String)",
+          "primary_key": false,
+          "nullable": true,
+          "default": null,
+          "autoincrement": false,
+          "examples": []
+        },
+        "bcc_list": {
+          "type": "Nullable(String)",
+          "primary_key": false,
+          "nullable": true,
+          "default": null,
+          "autoincrement": false,
+          "examples": []
+        },
+        "attachments_list": {
+          "type": "Nullable(String)",
+          "primary_key": false,
+          "nullable": true,
+          "default": null,
+          "autoincrement": false,
+          "examples": [
+            "{image001.jpg@01D43870.67E68440,image002.png@01D43870.67E68440,image003.jpg@01D43870.67E68440}",
+            "{image001.png@01D43879.B5412250}",
+            "{image001.jpg@01D432DA.1BB67A30,image002.png@01D432DA.1BB67A30,image003.jpg@01D432DA.1BB67A30}",
+            "{}",
+            "{image001.png@01D4387D.2CB90F20}"
+          ]
+        },
+        "subject": {
+          "type": "Nullable(String)",
+          "primary_key": false,
+          "nullable": true,
+          "default": null,
+          "autoincrement": false,
+          "examples": [
+            "RE: Welcome to RingCentral",
+            "Case 06700020",
+            "New messages for Ayub Mohammed x 3936, Gabe Edgerly, Ivan Johnston",
+            "New message for SIA Sales Reps",
+            "Try Premium FREE for 60 days"
+          ]
+        },
+        "direction": {
+          "type": "Nullable(String)",
+          "primary_key": false,
+          "nullable": true,
+          "default": null,
+          "autoincrement": false,
+          "examples": [
+            "In",
+            "Out"
+          ]
+        },
+        "interaction_type": {
+          "type": "Nullable(String)",
+          "primary_key": false,
+          "nullable": true,
+          "default": null,
+          "autoincrement": false,
+          "examples": [
+            "email",
+            "calendar"
+          ]
+        },
+        "ts": {
+          "type": "Nullable(DateTime)",
+          "primary_key": false,
+          "nullable": true,
+          "default": null,
+          "autoincrement": false,
+          "examples": [
+            "2017-12-14 05:36:31",
+            "2017-12-14 01:17:35",
+            "2018-01-24 00:42:57",
+            "2018-01-24 17:57:41",
+            "2018-03-12 18:38:02"
+          ]
+        },
+        "meeting_end_ts": {
+          "type": "Nullable(DateTime)",
+          "primary_key": false,
+          "nullable": true,
+          "default": null,
+          "autoincrement": false,
+          "examples": [
+            "2018-08-20 06:03:31",
+            "2018-08-17 21:02:46",
+            "2018-08-17 22:12:26",
+            "2018-08-18 01:32:32",
+            "2018-08-21 00:18:51"
+          ]
+        },
+        "meeting_status": {
+          "type": "Nullable(String)",
+          "primary_key": false,
+          "nullable": true,
+          "default": null,
+          "autoincrement": false,
+          "examples": [
+            "CONFIRMED",
+            "CANCELLED"
+          ]
+        },
+        "eid": {
+          "type": "Nullable(String)",
+          "primary_key": false,
+          "nullable": true,
+          "default": null,
+          "autoincrement": false,
+          "examples": [
+            "AAMkADMyNWMyOWRiLTU5OGQtNDVlMi1iNjAwLTA3M2JjMjU1MmVlZQBGAAAAAAB2kVxQ9eAhRoL_xKG7DcVGBwDGli4L5u8cS4w7XVLmarxGAAAAAAEMAADGli4L5u8cS4w7XVLmarxGAAAyOd16AAA=",
+            "AAMkADMyNWMyOWRiLTU5OGQtNDVlMi1iNjAwLTA3M2JjMjU1MmVlZQBGAAAAAAB2kVxQ9eAhRoL_xKG7DcVGBwDGli4L5u8cS4w7XVLmarxGAAAAAAEMAADGli4L5u8cS4w7XVLmarxGAABNgsaWAAA=",
+            "AAMkADMyNWMyOWRiLTU5OGQtNDVlMi1iNjAwLTA3M2JjMjU1MmVlZQBGAAAAAAB2kVxQ9eAhRoL_xKG7DcVGBwDGli4L5u8cS4w7XVLmarxGAAAAAAEMAADGli4L5u8cS4w7XVLmarxGAAAyObu-AAA=",
+            "AAMkADMyNWMyOWRiLTU5OGQtNDVlMi1iNjAwLTA3M2JjMjU1MmVlZQBGAAAAAAB2kVxQ9eAhRoL_xKG7DcVGBwDGli4L5u8cS4w7XVLmarxGAAAAAAEMAADGli4L5u8cS4w7XVLmarxGAABNggexAAA=",
+            "AAMkADMyNWMyOWRiLTU5OGQtNDVlMi1iNjAwLTA3M2JjMjU1MmVlZQBGAAAAAAB2kVxQ9eAhRoL_xKG7DcVGBwDGli4L5u8cS4w7XVLmarxGAAAAAAEMAADGli4L5u8cS4w7XVLmarxGAABvE_KmAAA="
+          ]
+        }
+      },
+      "examples": []
+    },
+    "default.deals_drilldowns_mapping": {
+      "fields": {
+        "opp_id": {
+          "type": "String",
+          "primary_key": true,
+          "nullable": false,
+          "default": null,
+          "autoincrement": false,
+          "examples": [
+            "0062H00001CfnSO",
+            "0062H00001CfnUU",
+            "0062H00001CfnU0",
+            "0062H00001DgBES",
+            "0062H00001CfmvP"
+          ]
+        },
+        "node": {
+          "type": "String",
+          "primary_key": true,
+          "nullable": false,
+          "default": null,
+          "autoincrement": false,
+          "examples": [
+            "Segment#Segment_00580000004Jbnt",
+            "Team#00580000004Jbnt",
+            "Team#0053400000CQMaG",
+            "Segment#Segment_0053400000CQMaG",
+            "Segment#not_in_hier"
+          ]
+        },
+        "as_of_date": {
+          "type": "Date",
+          "primary_key": false,
+          "nullable": false,
+          "default": null,
+          "autoincrement": false,
+          "examples": [
+            "2022-09-03",
+            "2022-09-01",
+            "2022-09-02",
+            "2022-09-05",
+            "2022-09-04"
+          ]
+        }
+      },
+      "examples": []
+    },
+    "default.testopt_dev03": {
+      "fields": {
+        "ManagerForecastCategory": {
+          "type": "String",
+          "primary_key": false,
+          "nullable": false,
+          "default": null,
+          "autoincrement": false,
+          "examples": []
+        },
+        "RecordType": {
+          "type": "String",
+          "primary_key": false,
+          "nullable": false,
+          "default": null,
+          "autoincrement": false,
+          "examples": []
+        },
+        "Type": {
+          "type": "String",
+          "primary_key": false,
+          "nullable": false,
+          "default": null,
+          "autoincrement": false,
+          "examples": []
+        },
+        "id": {
+          "type": "String",
+          "primary_key": false,
+          "nullable": false,
+          "default": null,
+          "autoincrement": false,
+          "examples": []
+        },
+        "actv": {
+          "type": "UInt8",
+          "primary_key": false,
+          "nullable": false,
+          "default": null,
+          "autoincrement": false,
+          "examples": []
+        },
+        "amt": {
+          "type": "Float64",
+          "primary_key": false,
+          "nullable": false,
+          "default": null,
+          "autoincrement": false,
+          "examples": []
+        },
+        "as_of": {
+          "type": "String",
+          "primary_key": true,
+          "nullable": false,
+          "default": null,
+          "autoincrement": false,
+          "examples": []
+        },
+        "as_of_Account": {
+          "type": "String",
+          "primary_key": false,
+          "nullable": false,
+          "default": null,
+          "autoincrement": false,
+          "examples": []
+        },
+        "as_of_Amount_USD": {
+          "type": "Float64",
+          "primary_key": false,
+          "nullable": false,
+          "default": null,
+          "autoincrement": false,
+          "examples": []
+        },
+        "as_of_CloseDate_adj": {
+          "type": "Float64",
+          "primary_key": false,
+          "nullable": false,
+          "default": null,
+          "autoincrement": false,
+          "examples": []
+        },
+        "as_of_Owner": {
+          "type": "String",
+          "primary_key": false,
+          "nullable": false,
+          "default": null,
+          "autoincrement": false,
+          "examples": []
+        },
+        "as_of_OwnerID": {
+          "type": "String",
+          "primary_key": false,
+          "nullable": false,
+          "default": null,
+          "autoincrement": false,
+          "examples": []
+        },
+        "as_of_Stage": {
+          "type": "String",
+          "primary_key": false,
+          "nullable": false,
+          "default": null,
+          "autoincrement": false,
+          "examples": []
+        },
+        "as_of_StageTrans": {
+          "type": "String",
+          "primary_key": false,
+          "nullable": false,
+          "default": null,
+          "autoincrement": false,
+          "examples": []
+        },
+        "close_date_changed": {
+          "type": "UInt8",
+          "primary_key": false,
+          "nullable": false,
+          "default": null,
+          "autoincrement": false,
+          "examples": []
+        },
+        "close_period": {
+          "type": "String",
+          "primary_key": false,
+          "nullable": false,
+          "default": null,
+          "autoincrement": false,
+          "examples": []
+        },
+        "comm": {
+          "type": "UInt8",
+          "primary_key": false,
+          "nullable": false,
+          "default": null,
+          "autoincrement": false,
+          "examples": []
+        },
+        "created_date_adj": {
+          "type": "Float64",
+          "primary_key": false,
+          "nullable": false,
+          "default": null,
+          "autoincrement": false,
+          "examples": []
+        },
+        "decomm": {
+          "type": "UInt8",
+          "primary_key": false,
+          "nullable": false,
+          "default": null,
+          "autoincrement": false,
+          "examples": []
+        },
+        "fcst_cat_changed": {
+          "type": "UInt8",
+          "primary_key": false,
+          "nullable": false,
+          "default": null,
+          "autoincrement": false,
+          "examples": []
+        },
+        "hierarchy_list_hash": {
+          "type": "UInt64",
+          "primary_key": false,
+          "nullable": false,
+          "default": null,
+          "autoincrement": false,
+          "examples": []
+        },
+        "inperiod": {
+          "type": "UInt8",
+          "primary_key": false,
+          "nullable": false,
+          "default": null,
+          "autoincrement": false,
+          "examples": []
+        },
+        "is_deleted": {
+          "type": "UInt8",
+          "primary_key": false,
+          "nullable": false,
+          "default": null,
+          "autoincrement": false,
+          "examples": []
+        },
+        "latest_Opportunity": {
+          "type": "String",
+          "primary_key": false,
+          "nullable": false,
+          "default": null,
+          "autoincrement": false,
+          "examples": []
+        },
+        "lost": {
+          "type": "UInt8",
+          "primary_key": false,
+          "nullable": false,
+          "default": null,
+          "autoincrement": false,
+          "examples": []
+        },
+        "lost_amount_diff": {
+          "type": "Float64",
+          "primary_key": false,
+          "nullable": false,
+          "default": null,
+          "autoincrement": false,
+          "examples": []
+        },
+        "lost_since_as_of": {
+          "type": "UInt8",
+          "primary_key": false,
+          "nullable": false,
+          "default": null,
+          "autoincrement": false,
+          "examples": []
+        },
+        "new": {
+          "type": "UInt8",
+          "primary_key": false,
+          "nullable": false,
+          "default": null,
+          "autoincrement": false,
+          "examples": []
+        },
+        "new_since_as_of": {
+          "type": "UInt8",
+          "primary_key": false,
+          "nullable": false,
+          "default": null,
+          "autoincrement": false,
+          "examples": []
+        },
+        "opp_id": {
+          "type": "String",
+          "primary_key": true,
+          "nullable": false,
+          "default": null,
+          "autoincrement": false,
+          "examples": []
+        },
+        "opp_rank": {
+          "type": "Int32",
+          "primary_key": false,
+          "nullable": false,
+          "default": null,
+          "autoincrement": false,
+          "examples": []
+        },
+        "orig_win_prob": {
+          "type": "Float64",
+          "primary_key": false,
+          "nullable": false,
+          "default": null,
+          "autoincrement": false,
+          "examples": []
+        },
+        "period": {
+          "type": "String",
+          "primary_key": false,
+          "nullable": false,
+          "default": null,
+          "autoincrement": false,
+          "examples": []
+        },
+        "prev_ManagerForecastCategory": {
+          "type": "String",
+          "primary_key": false,
+          "nullable": false,
+          "default": null,
+          "autoincrement": false,
+          "examples": []
+        },
+        "prev_as_of_Amount_USD": {
+          "type": "Float64",
+          "primary_key": false,
+          "nullable": false,
+          "default": null,
+          "autoincrement": false,
+          "examples": []
+        },
+        "prev_as_of_CloseDate_adj": {
+          "type": "Float64",
+          "primary_key": false,
+          "nullable": false,
+          "default": null,
+          "autoincrement": false,
+          "examples": []
+        },
+        "prev_as_of_Stage": {
+          "type": "String",
+          "primary_key": false,
+          "nullable": false,
+          "default": null,
+          "autoincrement": false,
+          "examples": []
+        },
+        "pulledin": {
+          "type": "UInt8",
+          "primary_key": false,
+          "nullable": false,
+          "default": null,
+          "autoincrement": false,
+          "examples": []
+        },
+        "pushedout": {
+          "type": "UInt8",
+          "primary_key": false,
+          "nullable": false,
+          "default": null,
+          "autoincrement": false,
+          "examples": []
+        },
+        "stg": {
+          "type": "Float64",
+          "primary_key": false,
+          "nullable": false,
+          "default": null,
+          "autoincrement": false,
+          "examples": []
+        },
+        "terminal_fate": {
+          "type": "String",
+          "primary_key": false,
+          "nullable": false,
+          "default": null,
+          "autoincrement": false,
+          "examples": []
+        },
+        "update_date": {
+          "type": "UInt64",
+          "primary_key": false,
+          "nullable": false,
+          "default": null,
+          "autoincrement": false,
+          "examples": []
+        },
+        "win_prob": {
+          "type": "Float64",
+          "primary_key": false,
+          "nullable": false,
+          "default": null,
+          "autoincrement": false,
+          "examples": []
+        },
+        "won": {
+          "type": "UInt8",
+          "primary_key": false,
+          "nullable": false,
+          "default": null,
+          "autoincrement": false,
+          "examples": []
+        },
+        "won_amount_diff": {
+          "type": "Float64",
+          "primary_key": false,
+          "nullable": false,
+          "default": null,
+          "autoincrement": false,
+          "examples": []
+        },
+        "won_since_as_of": {
+          "type": "String",
+          "primary_key": false,
+          "nullable": false,
+          "default": null,
+          "autoincrement": false,
+          "examples": []
+        },
+        "dlf": {
+          "type": "String",
+          "primary_key": false,
+          "nullable": false,
+          "default": null,
+          "autoincrement": false,
+          "examples": []
+        },
+        "fcst": {
+          "type": "String",
+          "primary_key": false,
+          "nullable": false,
+          "default": null,
+          "autoincrement": false,
+          "examples": []
+        },
+        "forecast": {
+          "type": "String",
+          "primary_key": false,
+          "nullable": false,
+          "default": null,
+          "autoincrement": false,
+          "examples": []
+        },
+        "lost_amount": {
+          "type": "String",
+          "primary_key": false,
+          "nullable": false,
+          "default": null,
+          "autoincrement": false,
+          "examples": []
+        },
+        "drilldown_list": {
+          "type": "String",
+          "primary_key": false,
+          "nullable": false,
+          "default": null,
+          "autoincrement": false,
+          "examples": []
+        },
+        "hierarchy_list": {
+          "type": "String",
+          "primary_key": false,
+          "nullable": false,
+          "default": null,
+          "autoincrement": false,
+          "examples": []
+        },
+        "in_fcst": {
+          "type": "String",
+          "primary_key": false,
+          "nullable": false,
+          "default": null,
+          "autoincrement": false,
+          "examples": []
+        }
+      },
+      "examples": []
+    },
+    "default.accounts": {
+      "fields": {
+        "account_id": {
+          "type": "String",
+          "primary_key": true,
+          "nullable": false,
+          "default": null,
+          "autoincrement": false,
+          "examples": [
+            "0012H00001X3zBt",
+            "0012H00001X3zEd",
+            "0012H00001WxVkC",
+            "0012H00001X3zFb"
+          ]
+        },
+        "account_name": {
+          "type": "Nullable(String)",
+          "primary_key": false,
+          "nullable": true,
+          "default": null,
+          "autoincrement": false,
+          "examples": [
+            "WH Smith Australia Pty Ltd",
+            "Kunoa Cattle Company",
+            "121 Credit Union",
+            "Lauren Franks, PsyD",
+            "Victory Barber Shop"
+          ]
+        },
+        "owner_id": {
+          "type": "Nullable(String)",
+          "primary_key": false,
+          "nullable": true,
+          "default": null,
+          "autoincrement": false,
+          "examples": []
+        },
+        "owner_name": {
+          "type": "Nullable(String)",
+          "primary_key": false,
+          "nullable": true,
+          "default": null,
+          "autoincrement": false,
+          "examples": []
+        },
+        "account_type": {
+          "type": "Nullable(String)",
+          "primary_key": false,
+          "nullable": true,
+          "default": null,
+          "autoincrement": false,
+          "examples": []
+        }
+      },
+      "examples": []
+    },
+    "default.deals_history": {
+      "fields": {
+        "opp_id": {
+          "type": "String",
+          "primary_key": true,
+          "nullable": false,
+          "default": null,
+          "autoincrement": false,
+          "examples": [
+            "0062H00001CfnSO",
+            "0062H00001CfnUU",
+            "0062H00001DgJuE",
+            "0062H00001CfnU0",
+            "0062H00001CfmvP"
+          ]
+        },
+        "as_of_date": {
+          "type": "Date",
+          "primary_key": false,
+          "nullable": false,
+          "default": null,
+          "autoincrement": false,
+          "examples": [
+            "2022-09-03",
+            "2022-09-01",
+            "2023-01-02",
+            "2022-10-26",
+            "2022-10-27"
+          ]
+        },
+        "amount": {
+          "type": "Nullable(Decimal(18, 9))",
+          "primary_key": false,
+          "nullable": true,
+          "default": null,
+          "autoincrement": false,
+          "examples": [
+            "25794",
+            "56074.11",
+            "0",
+            "23994.86",
+            "712.87"
+          ]
+        },
+        "stage": {
+          "type": "Nullable(String)",
+          "primary_key": false,
+          "nullable": true,
+          "default": null,
+          "autoincrement": false,
+          "examples": [
+            "4. Proof",
+            "1. Qualify",
+            "3. Solution",
+            "0. Downgraded",
+            "2. Problem"
+          ]
+        },
+        "forecastcategory": {
+          "type": "Nullable(String)",
+          "primary_key": false,
+          "nullable": true,
+          "default": null,
+          "autoincrement": false,
+          "examples": [
+            "Pipeline",
+            "Commit",
+            "Best Case",
+            "Omitted",
+            "Closed"
+          ]
+        },
+        "close_date": {
+          "type": "Nullable(Date)",
+          "primary_key": false,
+          "nullable": true,
+          "default": null,
+          "autoincrement": false,
+          "examples": [
+            "2023-04-05",
+            "2022-11-28",
+            "2022-09-30",
+            "2023-05-17",
+            "2023-06-14"
+          ]
+        },
+        "owner": {
+          "type": "Nullable(String)",
+          "primary_key": false,
+          "nullable": true,
+          "default": null,
+          "autoincrement": false,
+          "examples": [
+            "Nathan Davis",
+            "Michael Larcher",
+            "Rean Fernandez",
+            "Chris Goryn",
+            "Steve Davidson"
+          ]
+        },
+        "name": {
+          "type": "Nullable(String)",
+          "primary_key": false,
+          "nullable": true,
+          "default": null,
+          "autoincrement": false,
+          "examples": [
+            "Rothman Institute",
+            "Hardie Grant",
+            "Sheike and Co",
+            "Nick Barbieri Trucking LLC",
+            "Rojone"
+          ]
+        },
+        "terminal_fate": {
+          "type": "String",
+          "primary_key": true,
+          "nullable": false,
+          "default": null,
+          "autoincrement": false,
+          "examples": [
+            "W",
+            "L",
+            "N/A"
+          ]
+        },
+        "created_date": {
+          "type": "Nullable(Date)",
+          "primary_key": false,
+          "nullable": true,
+          "default": null,
+          "autoincrement": false,
+          "examples": [
+            "2019-07-10",
+            "2019-07-11",
+            "2019-07-15",
+            "2019-04-25",
+            "2019-07-17"
+          ]
+        },
+        "opportunity_type": {
+          "type": "Nullable(String)",
+          "primary_key": false,
+          "nullable": true,
+          "default": null,
+          "autoincrement": false,
+          "examples": [
+            "Renewal",
+            "New Business",
+            "Existing Business",
+            "N/A",
+            "Upsell"
+          ]
+        },
+        "last_updated_date": {
+          "type": "Nullable(Date)",
+          "primary_key": false,
+          "nullable": true,
+          "default": null,
+          "autoincrement": false,
+          "examples": [
+            "2022-09-03",
+            "2022-09-01",
+            "2023-01-02",
+            "2022-10-26",
+            "2022-10-27"
+          ]
+        },
+        "closedate_total_pushes": {
+          "type": "Nullable(String)",
+          "primary_key": false,
+          "nullable": true,
+          "default": null,
+          "autoincrement": false,
+          "examples": [
+            "3",
+            "21",
+            "7",
+            "8",
+            "6"
+          ]
+        },
+        "stage_prev": {
+          "type": "Nullable(String)",
+          "primary_key": false,
+          "nullable": true,
+          "default": null,
+          "autoincrement": false,
+          "examples": [
+            "N/A",
+            "1. Qualify",
+            "3. Solution",
+            "2. Problem",
+            "6. Order"
+          ]
+        },
+        "account_id": {
+          "type": "Nullable(String)",
+          "primary_key": false,
+          "nullable": true,
+          "default": null,
+          "autoincrement": false,
+          "examples": [
+            "0013400001VBB7c",
+            "0012H00001X44p4",
+            "0012H00001X44Tm",
+            "0012H00001X44ql",
+            "0012H00001X44tk"
+          ]
+        },
+        "win_probability": {
+          "type": "Nullable(Decimal(38, 15))",
+          "primary_key": false,
+          "nullable": true,
+          "default": null,
+          "autoincrement": false,
+          "examples": [
+            "0.0222797851081",
+            "0.022163121325668",
+            "0.021727672599477",
+            "0.028348827548783",
+            "0.024092895708944"
+          ]
+        },
+        "close_date_prev": {
+          "type": "Nullable(Date)",
+          "primary_key": false,
+          "nullable": true,
+          "default": null,
+          "autoincrement": false,
+          "examples": []
+        },
+        "close_date_adj_lud": {
+          "type": "Nullable(Date)",
+          "primary_key": false,
+          "nullable": true,
+          "default": null,
+          "autoincrement": false,
+          "examples": []
+        }
+      },
+      "examples": []
+    },
+    "default.drilldown_levels_new": {
+      "fields": {
+        "node": {
+          "type": "String",
+          "primary_key": true,
+          "nullable": false,
+          "default": null,
+          "autoincrement": false,
+          "examples": []
+        },
+        "as_of_date": {
+          "type": "Date",
+          "primary_key": true,
+          "nullable": false,
+          "default": null,
+          "autoincrement": false,
+          "examples": []
+        },
+        "level_1": {
+          "type": "Nullable(String)",
+          "primary_key": false,
+          "nullable": true,
+          "default": null,
+          "autoincrement": false,
+          "examples": []
+        },
+        "level_2": {
+          "type": "Nullable(String)",
+          "primary_key": false,
+          "nullable": true,
+          "default": null,
+          "autoincrement": false,
+          "examples": []
+        },
+        "level_3": {
+          "type": "Nullable(String)",
+          "primary_key": false,
+          "nullable": true,
+          "default": null,
+          "autoincrement": false,
+          "examples": []
+        },
+        "level_4": {
+          "type": "Nullable(String)",
+          "primary_key": false,
+          "nullable": true,
+          "default": null,
+          "autoincrement": false,
+          "examples": []
+        },
+        "level_5": {
+          "type": "Nullable(String)",
+          "primary_key": false,
+          "nullable": true,
+          "default": null,
+          "autoincrement": false,
+          "examples": []
+        },
+        "level_6": {
+          "type": "Nullable(String)",
+          "primary_key": false,
+          "nullable": true,
+          "default": null,
+          "autoincrement": false,
+          "examples": []
+        },
+        "level_7": {
+          "type": "Nullable(String)",
+          "primary_key": false,
+          "nullable": true,
+          "default": null,
+          "autoincrement": false,
+          "examples": []
+        },
+        "level_8": {
+          "type": "Nullable(String)",
+          "primary_key": false,
+          "nullable": true,
+          "default": null,
+          "autoincrement": false,
+          "examples": []
+        },
+        "level_9": {
+          "type": "Nullable(String)",
+          "primary_key": false,
+          "nullable": true,
+          "default": null,
+          "autoincrement": false,
+          "examples": []
+        },
+        "is_leaf_node": {
+          "type": "Nullable(Bool)",
+          "primary_key": false,
+          "nullable": true,
+          "default": null,
+          "autoincrement": false,
+          "examples": []
+        },
+        "parent_node": {
+          "type": "Nullable(String)",
+          "primary_key": false,
+          "nullable": true,
+          "default": null,
+          "autoincrement": false,
+          "examples": []
+        },
+        "label": {
+          "type": "Nullable(String)",
+          "primary_key": false,
+          "nullable": true,
+          "default": null,
+          "autoincrement": false,
+          "examples": []
+        }
+      },
+      "examples": []
+    },
+    "default.tenant_duplicated": {
+      "fields": {
+        "_id": {
+          "type": "UInt64",
+          "primary_key": true,
+          "nullable": false,
+          "default": null,
+          "autoincrement": false,
+          "examples": [
+            "6",
+            "5"
+          ]
+        },
+        "name": {
+          "type": "String",
+          "primary_key": false,
+          "nullable": false,
+          "default": null,
+          "autoincrement": false,
+          "examples": [
+            "abc"
+          ]
+        },
+        "updated_name": {
+          "type": "String",
+          "primary_key": false,
+          "nullable": false,
+          "default": null,
+          "autoincrement": false,
+          "examples": [
+            "def"
+          ]
+        }
+      },
+      "examples": []
+    },
+    "default.date_dim": {
+      "fields": {
+        "date_key": {
+          "type": "Nullable(Decimal(38, 0))",
+          "primary_key": false,
+          "nullable": true,
+          "default": null,
+          "autoincrement": false,
+          "examples": []
+        },
+        "date_value": {
+          "type": "Date",
+          "primary_key": true,
+          "nullable": false,
+          "default": null,
+          "autoincrement": false,
+          "examples": [
+            "2019-07-02",
+            "2019-07-01",
+            "2019-07-04",
+            "2019-07-03",
+            "2019-07-05"
+          ]
+        },
+        "calendar_day_of_month": {
+          "type": "Nullable(Decimal(2, 0))",
+          "primary_key": false,
+          "nullable": true,
+          "default": null,
+          "autoincrement": false,
+          "examples": [
+            "3",
+            "4",
+            "1",
+            "2",
+            "5"
+          ]
+        },
+        "calendar_month_of_year": {
+          "type": "Nullable(Decimal(2, 0))",
+          "primary_key": false,
+          "nullable": true,
+          "default": null,
+          "autoincrement": false,
+          "examples": [
+            "7",
+            "9",
+            "11",
+            "8",
+            "10"
+          ]
+        },
+        "calendar_year": {
+          "type": "Nullable(Decimal(4, 0))",
+          "primary_key": false,
+          "nullable": true,
+          "default": null,
+          "autoincrement": false,
+          "examples": [
+            "2023",
+            "2021",
+            "2020",
+            "2022",
+            "2019"
+          ]
+        },
+        "calendar_quarter": {
+          "type": "Nullable(Decimal(6, 0))",
+          "primary_key": false,
+          "nullable": true,
+          "default": null,
+          "autoincrement": false,
+          "examples": [
+            "3",
+            "2",
+            "4",
+            "1"
+          ]
+        },
+        "calendar_day_of_quarter": {
+          "type": "Nullable(Decimal(6, 0))",
+          "primary_key": false,
+          "nullable": true,
+          "default": null,
+          "autoincrement": false,
+          "examples": [
+            "3",
+            "4",
+            "1",
+            "2",
+            "5"
+          ]
+        },
+        "calendar_week_of_quarter": {
+          "type": "Nullable(Decimal(6, 0))",
+          "primary_key": false,
+          "nullable": true,
+          "default": null,
+          "autoincrement": false,
+          "examples": [
+            "3",
+            "4",
+            "1",
+            "2",
+            "5"
+          ]
+        },
+        "calendar_year_start_date": {
+          "type": "Nullable(Date)",
+          "primary_key": false,
+          "nullable": true,
+          "default": null,
+          "autoincrement": false,
+          "examples": [
+            "2023-01-01",
+            "2021-01-01",
+            "2020-01-01",
+            "2022-01-01",
+            "2019-01-01"
+          ]
+        },
+        "calendar_year_end_date": {
+          "type": "Nullable(Date)",
+          "primary_key": false,
+          "nullable": true,
+          "default": null,
+          "autoincrement": false,
+          "examples": [
+            "2021-12-31",
+            "2020-12-31",
+            "2022-12-31",
+            "2023-12-31",
+            "2019-12-31"
+          ]
+        },
+        "calendar_quarter_start_date": {
+          "type": "Nullable(Date)",
+          "primary_key": false,
+          "nullable": true,
+          "default": null,
+          "autoincrement": false,
+          "examples": [
+            "2020-07-01",
+            "2019-10-01",
+            "2019-07-01",
+            "2020-01-01",
+            "2020-04-01"
+          ]
+        },
+        "calendar_quarter_end_date": {
+          "type": "Nullable(Date)",
+          "primary_key": false,
+          "nullable": true,
+          "default": null,
+          "autoincrement": false,
+          "examples": [
+            "2019-09-30",
+            "2020-03-31",
+            "2020-06-30",
+            "2020-09-30",
+            "2019-12-31"
+          ]
+        },
+        "calendar_month_start_date": {
+          "type": "Nullable(Date)",
+          "primary_key": false,
+          "nullable": true,
+          "default": null,
+          "autoincrement": false,
+          "examples": [
+            "2019-09-01",
+            "2019-10-01",
+            "2019-07-01",
+            "2019-08-01",
+            "2019-11-01"
+          ]
+        },
+        "calendar_month_end_date": {
+          "type": "Nullable(Date)",
+          "primary_key": false,
+          "nullable": true,
+          "default": null,
+          "autoincrement": false,
+          "examples": [
+            "2019-10-31",
+            "2019-09-30",
+            "2019-08-31",
+            "2019-07-31",
+            "2019-11-30"
+          ]
+        },
+        "calendar_week_start_date": {
+          "type": "Nullable(Date)",
+          "primary_key": false,
+          "nullable": true,
+          "default": null,
+          "autoincrement": false,
+          "examples": [
+            "2019-07-29",
+            "2019-07-22",
+            "2019-07-08",
+            "2019-07-15",
+            "2019-07-01"
+          ]
+        },
+        "calendar_week_end_date": {
+          "type": "Nullable(Date)",
+          "primary_key": false,
+          "nullable": true,
+          "default": null,
+          "autoincrement": false,
+          "examples": [
+            "2019-07-14",
+            "2019-07-21",
+            "2019-07-28",
+            "2019-07-07",
+            "2019-08-04"
+          ]
+        },
+        "fiscal_year": {
+          "type": "Nullable(String)",
+          "primary_key": false,
+          "nullable": true,
+          "default": null,
+          "autoincrement": false,
+          "examples": [
+            "2023",
+            "2021",
+            "2019",
+            "2020",
+            "2022"
+          ]
+        },
+        "fiscal_quarter": {
+          "type": "Nullable(String)",
+          "primary_key": false,
+          "nullable": true,
+          "default": null,
+          "autoincrement": false,
+          "examples": [
+            "2019Q3",
+            "2020Q2",
+            "2019Q4",
+            "2020Q3",
+            "2020Q1"
+          ]
+        },
+        "fiscal_month": {
+          "type": "Nullable(String)",
+          "primary_key": false,
+          "nullable": true,
+          "default": null,
+          "autoincrement": false,
+          "examples": [
+            "10",
+            "7",
+            "8",
+            "11",
+            "9"
+          ]
+        },
+        "fiscal_day_of_quarter": {
+          "type": "Nullable(Decimal(6, 0))",
+          "primary_key": false,
+          "nullable": true,
+          "default": null,
+          "autoincrement": false,
+          "examples": [
+            "3",
+            "4",
+            "1",
+            "2",
+            "5"
+          ]
+        },
+        "fiscal_week_of_quarter": {
+          "type": "Nullable(Decimal(6, 0))",
+          "primary_key": false,
+          "nullable": true,
+          "default": null,
+          "autoincrement": false,
+          "examples": [
+            "3",
+            "4",
+            "1",
+            "2",
+            "5"
+          ]
+        },
+        "fiscal_year_start_date": {
+          "type": "Nullable(Date)",
+          "primary_key": false,
+          "nullable": true,
+          "default": null,
+          "autoincrement": false,
+          "examples": [
+            "2023-01-01",
+            "2021-01-01",
+            "2020-01-01",
+            "2022-01-01",
+            "2019-01-01"
+          ]
+        },
+        "fiscal_year_end_date": {
+          "type": "Nullable(Date)",
+          "primary_key": false,
+          "nullable": true,
+          "default": null,
+          "autoincrement": false,
+          "examples": [
+            "2021-12-31",
+            "2020-12-31",
+            "2022-12-31",
+            "2023-12-31",
+            "2019-12-31"
+          ]
+        },
+        "fiscal_quarter_start_date": {
+          "type": "Nullable(Date)",
+          "primary_key": false,
+          "nullable": true,
+          "default": null,
+          "autoincrement": false,
+          "examples": [
+            "2020-07-01",
+            "2019-10-01",
+            "2019-07-01",
+            "2020-01-01",
+            "2020-04-01"
+          ]
+        },
+        "fiscal_quarter_end_date": {
+          "type": "Nullable(Date)",
+          "primary_key": false,
+          "nullable": true,
+          "default": null,
+          "autoincrement": false,
+          "examples": [
+            "2019-09-30",
+            "2020-03-31",
+            "2020-06-30",
+            "2020-09-30",
+            "2019-12-31"
+          ]
+        },
+        "fiscal_month_start_date": {
+          "type": "Nullable(Date)",
+          "primary_key": false,
+          "nullable": true,
+          "default": null,
+          "autoincrement": false,
+          "examples": [
+            "2019-09-01",
+            "2019-10-01",
+            "2019-07-01",
+            "2019-08-01",
+            "2019-11-01"
+          ]
+        },
+        "fiscal_month_end_date": {
+          "type": "Nullable(Date)",
+          "primary_key": false,
+          "nullable": true,
+          "default": null,
+          "autoincrement": false,
+          "examples": [
+            "2019-10-31",
+            "2019-09-30",
+            "2019-08-31",
+            "2019-07-31",
+            "2019-11-30"
+          ]
+        },
+        "is_calendar_year_start": {
+          "type": "Nullable(Bool)",
+          "primary_key": false,
+          "nullable": true,
+          "default": null,
+          "autoincrement": false,
+          "examples": [
+            "False",
+            "True"
+          ]
+        },
+        "is_calendar_year_end": {
+          "type": "Nullable(Bool)",
+          "primary_key": false,
+          "nullable": true,
+          "default": null,
+          "autoincrement": false,
+          "examples": [
+            "False",
+            "True"
+          ]
+        },
+        "is_calendar_quarter_start": {
+          "type": "Nullable(Bool)",
+          "primary_key": false,
+          "nullable": true,
+          "default": null,
+          "autoincrement": false,
+          "examples": [
+            "False",
+            "True"
+          ]
+        },
+        "is_calendar_quarter_end": {
+          "type": "Nullable(Bool)",
+          "primary_key": false,
+          "nullable": true,
+          "default": null,
+          "autoincrement": false,
+          "examples": [
+            "False",
+            "True"
+          ]
+        },
+        "is_calendar_month_start": {
+          "type": "Nullable(Bool)",
+          "primary_key": false,
+          "nullable": true,
+          "default": null,
+          "autoincrement": false,
+          "examples": [
+            "False",
+            "True"
+          ]
+        },
+        "is_calendar_month_end": {
+          "type": "Nullable(Bool)",
+          "primary_key": false,
+          "nullable": true,
+          "default": null,
+          "autoincrement": false,
+          "examples": [
+            "False",
+            "True"
+          ]
+        },
+        "is_calendar_week_start": {
+          "type": "Nullable(Bool)",
+          "primary_key": false,
+          "nullable": true,
+          "default": null,
+          "autoincrement": false,
+          "examples": [
+            "False",
+            "True"
+          ]
+        },
+        "is_calendar_week_end": {
+          "type": "Nullable(Bool)",
+          "primary_key": false,
+          "nullable": true,
+          "default": null,
+          "autoincrement": false,
+          "examples": [
+            "False",
+            "True"
+          ]
+        },
+        "is_fiscal_year_start": {
+          "type": "Nullable(Bool)",
+          "primary_key": false,
+          "nullable": true,
+          "default": null,
+          "autoincrement": false,
+          "examples": [
+            "False",
+            "True"
+          ]
+        },
+        "is_fiscal_year_end": {
+          "type": "Nullable(Bool)",
+          "primary_key": false,
+          "nullable": true,
+          "default": null,
+          "autoincrement": false,
+          "examples": [
+            "False",
+            "True"
+          ]
+        },
+        "is_fiscal_quarter_start": {
+          "type": "Nullable(Bool)",
+          "primary_key": false,
+          "nullable": true,
+          "default": null,
+          "autoincrement": false,
+          "examples": [
+            "False",
+            "True"
+          ]
+        },
+        "is_fiscal_quarter_end": {
+          "type": "Nullable(Bool)",
+          "primary_key": false,
+          "nullable": true,
+          "default": null,
+          "autoincrement": false,
+          "examples": [
+            "False",
+            "True"
+          ]
+        },
+        "is_fiscal_month_start": {
+          "type": "Nullable(Bool)",
+          "primary_key": false,
+          "nullable": true,
+          "default": null,
+          "autoincrement": false,
+          "examples": [
+            "False",
+            "True"
+          ]
+        },
+        "is_fiscal_month_end": {
+          "type": "Nullable(Bool)",
+          "primary_key": false,
+          "nullable": true,
+          "default": null,
+          "autoincrement": false,
+          "examples": [
+            "False",
+            "True"
+          ]
+        }
+      },
+      "examples": []
+    },
+    "default.sellers1": {
+      "fields": {
+        "email": {
+          "type": "String",
+          "primary_key": true,
+          "nullable": false,
+          "default": null,
+          "autoincrement": false,
+          "examples": []
+        },
+        "name": {
+          "type": "Nullable(String)",
+          "primary_key": false,
+          "nullable": true,
+          "default": null,
+          "autoincrement": false,
+          "examples": [
+            "Aanchal Kataria",
+            "Aamir Ilyas",
+            "Aaliyah Gan",
+            "Alexandra Vorobeva",
+            "Alexey Alyoshin"
+          ]
+        },
+        "crm_id": {
+          "type": "Nullable(String)",
+          "primary_key": false,
+          "nullable": true,
+          "default": null,
+          "autoincrement": false,
+          "examples": [
+            "0052H00000CSeSp",
+            "0052H00000Dkt1f",
+            "00580000008Xa16",
+            "0052H00000DQsYG",
+            "0052H00000CSzkh"
+          ]
+        },
+        "title": {
+          "type": "Nullable(String)",
+          "primary_key": false,
+          "nullable": true,
+          "default": null,
+          "autoincrement": false,
+          "examples": [
+            "Salesforce Developer",
+            "Technical Support Representative",
+            "Deals Desk Analyst",
+            "Business Systems Analyst",
+            "Tier 2"
+          ]
+        },
+        "managerid": {
+          "type": "Nullable(String)",
+          "primary_key": false,
+          "nullable": true,
+          "default": null,
+          "autoincrement": false,
+          "examples": []
+        },
+        "department": {
+          "type": "Nullable(String)",
+          "primary_key": false,
+          "nullable": true,
+          "default": null,
+          "autoincrement": false,
+          "examples": [
+            "470 - SDR",
+            "300 - MKTG",
+            "550 - Business Services",
+            "521 - Finance Operations",
+            "220 - Product Management"
+          ]
+        }
+      },
+      "examples": []
+    },
+    "default.platinum_drilldown_levels": {
+      "fields": {
+        "node": {
+          "type": "String",
+          "primary_key": true,
+          "nullable": false,
+          "default": null,
+          "autoincrement": false,
+          "examples": [
+            "Group#0052J000007p14z",
+            "Group#!",
+            "Group#0052J000007p9nY",
+            "Group#0052J000007p14B",
+            "Group#0052J000007p9n9"
+          ]
+        },
+        "as_of_date": {
+          "type": "Date",
+          "primary_key": true,
+          "nullable": false,
+          "default": null,
+          "autoincrement": false,
+          "examples": [
+            "2019-10-03",
+            "2019-10-01",
+            "2019-10-02",
+            "2019-10-04",
+            "2019-10-05"
+          ]
+        },
+        "level_1": {
+          "type": "Nullable(String)",
+          "primary_key": false,
+          "nullable": true,
+          "default": null,
+          "autoincrement": false,
+          "examples": [
+            "Group Root"
+          ]
+        },
+        "level_2": {
+          "type": "Nullable(String)",
+          "primary_key": false,
+          "nullable": true,
+          "default": null,
+          "autoincrement": false,
+          "examples": [
+            "Group",
+            "Not in Hierarchy"
+          ]
+        },
+        "level_3": {
+          "type": "Nullable(String)",
+          "primary_key": false,
+          "nullable": true,
+          "default": null,
+          "autoincrement": false,
+          "examples": [
+            "US - Field Sales West",
+            "Ken Berryman",
+            "US - Field Sales East",
+            "US Client Sales",
+            "International"
+          ]
+        },
+        "level_4": {
+          "type": "Nullable(String)",
+          "primary_key": false,
+          "nullable": true,
+          "default": null,
+          "autoincrement": false,
+          "examples": [
+            "Joy Altman",
+            "Carl Rio",
+            "Max Mari",
+            "John Brown",
+            "EMEA"
+          ]
+        },
+        "level_5": {
+          "type": "Nullable(String)",
+          "primary_key": false,
+          "nullable": true,
+          "default": null,
+          "autoincrement": false,
+          "examples": [
+            "Carl Rio",
+            "Timothy Taylor",
+            "UK - Enterprise",
+            "UK - Public Sector",
+            "UK - Mid Market"
+          ]
+        },
+        "level_6": {
+          "type": "Nullable(String)",
+          "primary_key": false,
+          "nullable": true,
+          "default": null,
+          "autoincrement": false,
+          "examples": [
+            "James Connors",
+            "Mark Taylor",
+            "Peter Mullins",
+            "John Bacon",
+            "Chris Bayliss"
+          ]
+        },
+        "level_7": {
+          "type": "Nullable(String)",
+          "primary_key": false,
+          "nullable": true,
+          "default": null,
+          "autoincrement": false,
+          "examples": [
+            "James Connors",
+            "Ryan Coney",
+            "Ben Deadman",
+            "Adil Khaloufi",
+            "Ben Smith"
+          ]
+        },
+        "level_8": {
+          "type": "Nullable(String)",
+          "primary_key": false,
+          "nullable": true,
+          "default": null,
+          "autoincrement": false,
+          "examples": [
+            "Ritchie Butters",
+            "Kevin Ellis",
+            "James Vernon",
+            "Daniel Wardell (Inactive UK MM)",
+            "Ben Lorimer"
+          ]
+        },
+        "level_9": {
+          "type": "Nullable(String)",
+          "primary_key": false,
+          "nullable": true,
+          "default": null,
+          "autoincrement": false,
+          "examples": []
+        },
+        "is_leaf_node": {
+          "type": "Nullable(Bool)",
+          "primary_key": false,
+          "nullable": true,
+          "default": null,
+          "autoincrement": false,
+          "examples": [
+            "False",
+            "True"
+          ]
+        },
+        "parent_node": {
+          "type": "Nullable(String)",
+          "primary_key": false,
+          "nullable": true,
+          "default": null,
+          "autoincrement": false,
+          "examples": [
+            "Group#Carl Rio",
+            "Group#International*EMEA*UK_-_Mid_Market",
+            "Group#US_-_Client_Sales",
+            "Group#International*EMEA*UK_-_Enterprise",
+            "Group#International*EMEA*UK_-_Public_Sector"
+          ]
+        },
+        "label": {
+          "type": "Nullable(String)",
+          "primary_key": false,
+          "nullable": true,
+          "default": null,
+          "autoincrement": false,
+          "examples": [
+            "Joy Altman",
+            "Carl Rio",
+            "Mark Taylor",
+            "Peter Mullins",
+            "Group Root"
+          ]
+        }
+      },
+      "examples": []
+    },
+    "default.platinum_deals_history": {
+      "fields": {
+        "opp_id": {
+          "type": "String",
+          "primary_key": true,
+          "nullable": false,
+          "default": null,
+          "autoincrement": false,
+          "examples": [
+            "0062J00000mhpwH",
+            "0062J00000mPcaS",
+            "0062J00000mPfOZ",
+            "0062J00000mPeV0",
+            "0062J00000miKZs"
+          ]
+        },
+        "as_of_date": {
+          "type": "Date",
+          "primary_key": false,
+          "nullable": false,
+          "default": null,
+          "autoincrement": false,
+          "examples": [
+            "2022-03-14",
+            "2022-03-12",
+            "2022-03-15",
+            "2022-03-19",
+            "2022-03-17"
+          ]
+        },
+        "amount": {
+          "type": "Nullable(Decimal(18, 9))",
+          "primary_key": false,
+          "nullable": true,
+          "default": null,
+          "autoincrement": false,
+          "examples": []
+        },
+        "stage": {
+          "type": "Nullable(String)",
+          "primary_key": false,
+          "nullable": true,
+          "default": null,
+          "autoincrement": false,
+          "examples": [
+            "Closed Lost",
+            "Sales Qualified Lead",
+            "Evaluation",
+            "Defined",
+            "Developed"
+          ]
+        },
+        "forecastcategory": {
+          "type": "Nullable(String)",
+          "primary_key": false,
+          "nullable": true,
+          "default": null,
+          "autoincrement": false,
+          "examples": [
+            "Pipeline",
+            "Commit",
+            "Best Case",
+            "Omitted",
+            "Closed"
+          ]
+        },
+        "close_date": {
+          "type": "Nullable(Date)",
+          "primary_key": false,
+          "nullable": true,
+          "default": null,
+          "autoincrement": false,
+          "examples": [
+            "2022-03-31",
+            "2022-06-27",
+            "2022-08-31",
+            "2026-10-29",
+            "2022-09-30"
+          ]
+        },
+        "owner": {
+          "type": "Nullable(String)",
+          "primary_key": false,
+          "nullable": true,
+          "default": null,
+          "autoincrement": false,
+          "examples": [
+            "__Ryan Hamm",
+            "__Godfred Ahianyo",
+            "__My Huynh",
+            "__Paula Gill",
+            "__Michael Stangroom"
+          ]
+        },
+        "name": {
+          "type": "Nullable(String)",
+          "primary_key": false,
+          "nullable": true,
+          "default": null,
+          "autoincrement": false,
+          "examples": [
+            "Wave Life Sciences- Editions",
+            "NVIDIA CORPORATION VO 0 Agents 15000 Extensions",
+            "ScopeLogic BGC Residential VO 0 Agents 0 Extensions",
+            "Think Flywheel-",
+            "Rothbury Insurance Brokers - VO - 10 Agents + 150 Extensions"
+          ]
+        },
+        "terminal_fate": {
+          "type": "String",
+          "primary_key": true,
+          "nullable": false,
+          "default": null,
+          "autoincrement": false,
+          "examples": [
+            "W",
+            "L",
+            "N/A"
+          ]
+        },
+        "created_date": {
+          "type": "Nullable(Date)",
+          "primary_key": false,
+          "nullable": true,
+          "default": null,
+          "autoincrement": false,
+          "examples": [
+            "2019-04-02",
+            "2018-11-28",
+            "2019-03-29",
+            "2019-01-07",
+            "2019-04-01"
+          ]
+        },
+        "opportunity_type": {
+          "type": "Nullable(String)",
+          "primary_key": false,
+          "nullable": true,
+          "default": null,
+          "autoincrement": false,
+          "examples": [
+            "New Business",
+            "Upgrade",
+            "Existing Business",
+            "Add-On Business",
+            "Migration Order"
+          ]
+        },
+        "last_updated_date": {
+          "type": "Nullable(Date)",
+          "primary_key": false,
+          "nullable": true,
+          "default": null,
+          "autoincrement": false,
+          "examples": [
+            "2022-03-14",
+            "2022-03-12",
+            "2022-03-15",
+            "2022-03-19",
+            "2022-03-17"
+          ]
+        },
+        "closedate_total_pushes": {
+          "type": "Nullable(String)",
+          "primary_key": false,
+          "nullable": true,
+          "default": null,
+          "autoincrement": false,
+          "examples": [
+            "21",
+            "13",
+            "1",
+            "2",
+            "9"
+          ]
+        },
+        "stage_prev": {
+          "type": "Nullable(String)",
+          "primary_key": false,
+          "nullable": true,
+          "default": null,
+          "autoincrement": false,
+          "examples": []
+        },
+        "account_id": {
+          "type": "Nullable(String)",
+          "primary_key": false,
+          "nullable": true,
+          "default": null,
+          "autoincrement": false,
+          "examples": [
+            "0012J00002LROdz",
+            "0015000002J4IEs",
+            "0012J00002LRNPS",
+            "0012J00002LRJXa",
+            "0012J00002IZ5YB"
+          ]
+        },
+        "win_probability": {
+          "type": "Nullable(Decimal(38, 15))",
+          "primary_key": false,
+          "nullable": true,
+          "default": null,
+          "autoincrement": false,
+          "examples": [
+            "0.020451779072",
+            "0.063924076028215",
+            "0.020623416128",
+            "0.020352324608",
+            "0.020466316832"
+          ]
+        },
+        "close_date_prev": {
+          "type": "Nullable(Date)",
+          "primary_key": false,
+          "nullable": true,
+          "default": null,
+          "autoincrement": false,
+          "examples": [
+            "2020-10-30",
+            "2021-12-31",
+            "2019-06-30",
+            "2022-02-25",
+            "2022-02-10"
+          ]
+        },
+        "close_date_adj_lud": {
+          "type": "Nullable(Date)",
+          "primary_key": false,
+          "nullable": true,
+          "default": null,
+          "autoincrement": false,
+          "examples": [
+            "2022-02-23",
+            "2021-12-03",
+            "2019-06-27",
+            "2021-12-07",
+            "2021-06-29"
+          ]
+        }
+      },
+      "examples": []
+    },
+    "default.Rule": {
+      "fields": {
+        "Id": {
+          "type": "UUID",
+          "primary_key": false,
+          "nullable": false,
+          "default": null,
+          "autoincrement": false,
+          "examples": [
+            "0d2ae853-8b0d-4a64-8578-6eceb6323077",
+            "66babbd5-dd79-4b1f-8540-2eda252bffb7",
+            "e4043de8-e747-45c8-835a-a7be6ea5b242",
+            "d5808f9d-c56e-47bb-b21c-e7ef3e166408",
+            "556200f4-26fa-4edb-9ec4-a0723dd6c365"
+          ]
+        },
+        "ComponentId": {
+          "type": "String",
+          "primary_key": true,
+          "nullable": false,
+          "default": null,
+          "autoincrement": false,
+          "examples": [
+            "25fb2e24-fb1a-471e-a8d8-9c5204341d0f",
+            "657eec2d-532a-4737-a7eb-8cee8c1b1720",
+            "ab70e264-8930-4ffa-bcb2-ad86bd7c09f3",
+            "8a051b8b-438c-4013-8a08-e86904cc484b"
+          ]
+        },
+        "Weightage": {
+          "type": "Int32",
+          "primary_key": false,
+          "nullable": false,
+          "default": null,
+          "autoincrement": false,
+          "examples": [
+            "20",
+            "10"
+          ]
+        },
+        "Vorder": {
+          "type": "Int32",
+          "primary_key": false,
+          "nullable": false,
+          "default": null,
+          "autoincrement": false,
+          "examples": [
+            "0",
+            "1"
+          ]
+        },
+        "IsRange": {
+          "type": "Bool",
+          "primary_key": false,
+          "nullable": false,
+          "default": null,
+          "autoincrement": false,
+          "examples": [
+            "False"
+          ]
+        },
+        "RangeFrom": {
+          "type": "Int32",
+          "primary_key": false,
+          "nullable": false,
+          "default": null,
+          "autoincrement": false,
+          "examples": [
+            "0",
+            "5",
+            "72"
+          ]
+        },
+        "RangeTo": {
+          "type": "Int32",
+          "primary_key": false,
+          "nullable": false,
+          "default": null,
+          "autoincrement": false,
+          "examples": [
+            "5",
+            "72"
+          ]
+        },
+        "Comparison": {
+          "type": "String",
+          "primary_key": false,
+          "nullable": false,
+          "default": null,
+          "autoincrement": false,
+          "examples": [
+            "Is less than",
+            "Is greater than",
+            "Is equal to or greater than",
+            "Is equal to or less than"
+          ]
+        },
+        "CreatedAt": {
+          "type": "DateTime",
+          "primary_key": true,
+          "nullable": false,
+          "default": "now()",
+          "autoincrement": false,
+          "examples": [
+            "2025-09-19 07:02:32"
+          ]
+        },
+        "UpdatedAt": {
+          "type": "DateTime",
+          "primary_key": false,
+          "nullable": false,
+          "default": "now()",
+          "autoincrement": false,
+          "examples": [
+            "2025-09-19 07:02:32"
+          ]
+        }
+      },
+      "examples": []
+    },
+    "default.test_drilldown_levels": {
+      "fields": {
+        "node": {
+          "type": "String",
+          "primary_key": true,
+          "nullable": false,
+          "default": null,
+          "autoincrement": false,
+          "examples": []
+        },
+        "as_of_date": {
+          "type": "Date",
+          "primary_key": true,
+          "nullable": false,
+          "default": null,
+          "autoincrement": false,
+          "examples": []
+        },
+        "level_1": {
+          "type": "Nullable(String)",
+          "primary_key": false,
+          "nullable": true,
+          "default": null,
+          "autoincrement": false,
+          "examples": []
+        },
+        "level_2": {
+          "type": "Nullable(String)",
+          "primary_key": false,
+          "nullable": true,
+          "default": null,
+          "autoincrement": false,
+          "examples": []
+        },
+        "level_3": {
+          "type": "Nullable(String)",
+          "primary_key": false,
+          "nullable": true,
+          "default": null,
+          "autoincrement": false,
+          "examples": []
+        },
+        "level_4": {
+          "type": "Nullable(String)",
+          "primary_key": false,
+          "nullable": true,
+          "default": null,
+          "autoincrement": false,
+          "examples": []
+        },
+        "level_5": {
+          "type": "Nullable(String)",
+          "primary_key": false,
+          "nullable": true,
+          "default": null,
+          "autoincrement": false,
+          "examples": []
+        },
+        "level_6": {
+          "type": "Nullable(String)",
+          "primary_key": false,
+          "nullable": true,
+          "default": null,
+          "autoincrement": false,
+          "examples": []
+        },
+        "level_7": {
+          "type": "Nullable(String)",
+          "primary_key": false,
+          "nullable": true,
+          "default": null,
+          "autoincrement": false,
+          "examples": []
+        },
+        "level_8": {
+          "type": "Nullable(String)",
+          "primary_key": false,
+          "nullable": true,
+          "default": null,
+          "autoincrement": false,
+          "examples": []
+        },
+        "level_9": {
+          "type": "Nullable(String)",
+          "primary_key": false,
+          "nullable": true,
+          "default": null,
+          "autoincrement": false,
+          "examples": []
+        },
+        "is_leaf_node": {
+          "type": "Nullable(Bool)",
+          "primary_key": false,
+          "nullable": true,
+          "default": null,
+          "autoincrement": false,
+          "examples": []
+        },
+        "parent_node": {
+          "type": "Nullable(String)",
+          "primary_key": false,
+          "nullable": true,
+          "default": null,
+          "autoincrement": false,
+          "examples": []
+        },
+        "label": {
+          "type": "Nullable(String)",
+          "primary_key": false,
+          "nullable": true,
+          "default": null,
+          "autoincrement": false,
+          "examples": []
+        }
+      },
+      "examples": []
+    },
+    "default.conversation_logs": {
+      "fields": {
+        "conversation_id": {
+          "type": "String",
+          "primary_key": true,
+          "nullable": false,
+          "default": null,
+          "autoincrement": false,
+          "examples": [
+            "029c19c4-baa1-48b9-9c05-83bc544331b0",
+            "000f9bf8-9830-443d-8eb4-9f0bc259b882",
+            "0082008d-0a75-4594-bf09-a9120bd6b8e6",
+            "00dd6c05-56f6-4cdf-ad25-451144701b6d",
+            "03c5b721-61e4-4e38-af5c-87c24ca9aa4f"
+          ]
+        },
+        "room_id": {
+          "type": "String",
+          "primary_key": false,
+          "nullable": false,
+          "default": null,
+          "autoincrement": false,
+          "examples": [
+            "02a274ed-2168-41b8-8ed8-89806da45ebf",
+            "5b2d4cfc-8fcf-42ba-b605-d6c40e14e132",
+            "42f48dcd-3a19-4094-a013-a68a84fb8e1a",
+            "9c7e2946-bb52-46de-9680-c6afbbf290b5",
+            "3b11ac03-7f35-498c-9f14-d49b02bbb85a"
+          ]
+        },
+        "agent_name": {
+          "type": "String",
+          "primary_key": false,
+          "nullable": false,
+          "default": null,
+          "autoincrement": false,
+          "examples": [
+            "Norman",
+            "Kelly H.",
+            "Kelly"
+          ]
+        },
+        "agent_type": {
+          "type": "String",
+          "primary_key": false,
+          "nullable": false,
+          "default": null,
+          "autoincrement": false,
+          "examples": [
+            "reviewer",
+            "Buyer",
+            "Reviewer"
+          ]
+        },
+        "persona": {
+          "type": "String",
+          "primary_key": false,
+          "nullable": false,
+          "default": null,
+          "autoincrement": false,
+          "examples": [
+            "Unknown"
+          ]
+        },
+        "transcript": {
+          "type": "NULL",
+          "primary_key": false,
+          "nullable": false,
+          "default": null,
+          "autoincrement": false,
+          "examples": [
+            "['{\"items\":[{\"content\":[\"Hola Avinish, soy Kelly. ¿Cómo estás?\"],\"id\":\"item_f249e4bef5c3\",\"interrupted\":false,\"role\":\"assistant\",\"type\":\"message\"},{\"content\":[\"Hola Kelly, ¿pudiste repasar las discusiones pasadas y tienes más preguntas al respecto?\"],\"id\":\"item_000ac009919e\",\"interrupted\":false,\"role\":\"user\",\"type\":\"message\"},{\"content\":[\"Ah, bueno, he revisado algunas cosas, pero tengo algunas dudas. ¿Podrías aclarar cómo exactamente se justificaría el precio de este producto respecto a su retorno de inversión? No estoy del todo segura de si las características son realmente necesarias para mi situación.\"],\"id\":\"item_c34aeb56445a\",\"interrupted\":false,\"role\":\"assistant\",\"type\":\"message\"},{\"content\":[\"¿QUIERES SABER ALGO SOBRE LA INTELIGENCIA CONVERSACIONAL?\"],\"id\":\"item_09cc151f66b8\",\"interrupted\":false,\"role\":\"user\",\"type\":\"message\"},{\"content\":[\"Hmm, estoy curiosa... pero primero, ¿podrías decirme cómo se relaciona eso con lo que estamos hablando? ¿Me ayudaría a entender mejor el producto o su aplicación?\"],\"id\":\"item_49acec4c8205\",\"interrupted\":false,\"role\":\"assistant\",\"type\":\"message\"},{\"content\":[\"What would you like to know about revenue intlligence\"],\"id\":\"item_bc2a8d37436f\",\"interrupted\":false,\"role\":\"user\",\"type\":\"message\"},{\"content\":[\"Ah, eso suena interesante, pero tengo algunas dudas. ¿Cómo se traduce esa inteligencia de ingresos en beneficios concretos para mi negocio? ¿Realmente hay un ROI claro que pueda ver al usar esta herramienta?\"],\"id\":\"item_6650f8a4034e\",\"interrupted\":false,\"role\":\"assistant\",\"type\":\"message\"}]}','{\"items\":[{\"content\":[\"Hi Muhammad! How's it going?\"],\"id\":\"item_b91225cd4399\",\"interrupted\":false,\"role\":\"assistant\",\"type\":\"message\"},{\"content\":[\"hi kelly\"],\"id\":\"item_21c7eecd0afc\",\"interrupted\":false,\"role\":\"user\",\"type\":\"message\"},{\"content\":[\"Ah, okay! So, what are we discussing today?\"],\"id\":\"item_d64e38152e57\",\"interrupted\":false,\"role\":\"assistant\",\"type\":\"message\"},{\"content\":[\"bye\"],\"id\":\"item_22ff5207a1fa\",\"interrupted\":false,\"role\":\"user\",\"type\":\"message\"},{\"arguments\":\"{}\",\"call_id\":\"call_0L6fICGjuOMemg6E6NlgmtbR\",\"id\":\"item_9e542f8c0391\\/fnc_0\",\"name\":\"end_call\",\"type\":\"function_call\"},{\"call_id\":\"call_0L6fICGjuOMemg6E6NlgmtbR\",\"id\":\"item_7bd079234cf2\",\"is_error\":false,\"name\":\"end_call\",\"output\":\"\",\"type\":\"function_call_output\"},{\"content\":[\"Thank you for your time, have a wonderful day.\"],\"id\":\"item_c2cbe9758e15\",\"interrupted\":false,\"role\":\"assistant\",\"type\":\"message\"}]}','{\"items\":[{\"content\":[\"And then Norman,\"],\"id\":\"item_b52f52805863\",\"interrupted\":false,\"role\":\"user\",\"transcript_confidence\":0.39941406,\"type\":\"message\"},{\"content\":[\"Hello! Would you like to review your recent practice call with Kelly, the AI buyer? I'm here to help you analyze your performance and identify areas for improvement.\"],\"id\":\"item_96bf7a038e86\",\"interrupted\":false,\"role\":\"assistant\",\"type\":\"message\"},{\"content\":[\"Yes.\"],\"id\":\"item_27513ae65ea4\",\"interrupted\":false,\"role\":\"user\",\"transcript_confidence\":0.97875977,\"type\":\"message\"},{\"content\":[\"Great! Let’s dive into your call. \\n\\n1. **Value Proposition**: How clearly do you think you communicated your value proposition to Kelly? Did you outline the benefits of your product or service effectively?\\n\\n2. **Addressing Questions and Concerns**: How well do you feel you addressed the questions and concerns raised by Kelly? Were there any moments where you think you could have elaborated more?\\n\\n3. **Buyer’s Interest**: What do you think Kelly seemed most\"],\"id\":\"item_84083d2484ec\",\"interrupted\":true,\"role\":\"assistant\",\"type\":\"message\"}]}','{\"items\":[{\"content\":[\"Hi Muhammad! How's it going?\"],\"id\":\"item_ce4c77a2e166\",\"interrupted\":false,\"role\":\"assistant\",\"type\":\"message\"}]}','{\"items\":[{\"content\":[\"Hi Usman! How's it going?\"],\"id\":\"item_a8fe656d3278\",\"interrupted\":false,\"role\":\"assistant\",\"type\":\"message\"}]}']"
+          ]
+        },
+        "timestamp": {
+          "type": "DateTime",
+          "primary_key": true,
+          "nullable": false,
+          "default": null,
+          "autoincrement": false,
+          "examples": [
+            "2025-11-14 10:30:59",
+            "2025-10-17 06:17:27",
+            "2025-10-11 13:27:52",
+            "2025-10-20 20:55:01",
+            "2025-09-16 03:19:24"
+          ]
+        }
+      },
+      "examples": []
+    },
+    "default.usage_metrics": {
+      "fields": {
+        "conversation_id": {
+          "type": "String",
+          "primary_key": true,
+          "nullable": false,
+          "default": null,
+          "autoincrement": false,
+          "examples": [
+            "029c19c4-baa1-48b9-9c05-83bc544331b0",
+            "000f9bf8-9830-443d-8eb4-9f0bc259b882",
+            "0082008d-0a75-4594-bf09-a9120bd6b8e6",
+            "00dd6c05-56f6-4cdf-ad25-451144701b6d",
+            "03c5b721-61e4-4e38-af5c-87c24ca9aa4f"
+          ]
+        },
+        "room_id": {
+          "type": "String",
+          "primary_key": false,
+          "nullable": false,
+          "default": null,
+          "autoincrement": false,
+          "examples": [
+            "02a274ed-2168-41b8-8ed8-89806da45ebf",
+            "5b2d4cfc-8fcf-42ba-b605-d6c40e14e132",
+            "42f48dcd-3a19-4094-a013-a68a84fb8e1a",
+            "9c7e2946-bb52-46de-9680-c6afbbf290b5",
+            "3b11ac03-7f35-498c-9f14-d49b02bbb85a"
+          ]
+        },
+        "agent_name": {
+          "type": "String",
+          "primary_key": false,
+          "nullable": false,
+          "default": null,
+          "autoincrement": false,
+          "examples": [
+            "Norman",
+            "Kelly H.",
+            "Kelly"
+          ]
+        },
+        "agent_type": {
+          "type": "String",
+          "primary_key": false,
+          "nullable": false,
+          "default": null,
+          "autoincrement": false,
+          "examples": [
+            "reviewer",
+            "Buyer",
+            "Reviewer"
+          ]
+        },
+        "llm_prompt_tokens": {
+          "type": "UInt64",
+          "primary_key": false,
+          "nullable": false,
+          "default": null,
+          "autoincrement": false,
+          "examples": [
+            "658",
+            "1257",
+            "758",
+            "288",
+            "287"
+          ]
+        },
+        "llm_completion_tokens": {
+          "type": "UInt64",
+          "primary_key": false,
+          "nullable": false,
+          "default": null,
+          "autoincrement": false,
+          "examples": [
+            "152",
+            "9",
+            "32",
+            "224",
+            "10"
+          ]
+        },
+        "tts_characters_count": {
+          "type": "UInt64",
+          "primary_key": false,
+          "nullable": false,
+          "default": null,
+          "autoincrement": false,
+          "examples": [
+            "28",
+            "117",
+            "677",
+            "25",
+            "165"
+          ]
+        },
+        "stt_audio_duration": {
+          "type": "Float64",
+          "primary_key": false,
+          "nullable": false,
+          "default": null,
+          "autoincrement": false,
+          "examples": [
+            "0",
+            "40.14999999999993",
+            "15.09999999999997",
+            "35.19999999999993",
+            "50.4499999999999"
+          ]
+        },
+        "avatar_duration": {
+          "type": "Float64",
+          "primary_key": false,
+          "nullable": false,
+          "default": null,
+          "autoincrement": false,
+          "examples": [
+            "483.2339916229248",
+            "75.62515425682068",
+            "191.47754883766174",
+            "61.793599367141724",
+            "23.395493030548096"
+          ]
+        },
+        "session_duration": {
+          "type": "Float64",
+          "primary_key": false,
+          "nullable": false,
+          "default": null,
+          "autoincrement": false,
+          "examples": [
+            "483.2339916229248",
+            "75.62515425682068",
+            "191.47754883766174",
+            "61.793599367141724",
+            "23.395493030548096"
+          ]
+        },
+        "llm_cost": {
+          "type": "Float64",
+          "primary_key": false,
+          "nullable": false,
+          "default": null,
+          "autoincrement": false,
+          "examples": [
+            "0.000592",
+            "0.0028179999999999998",
+            "0.00023309999999999997",
+            "0.00158",
+            "0.0005960000000000001"
+          ]
+        },
+        "stt_cost": {
+          "type": "Float64",
+          "primary_key": false,
+          "nullable": false,
+          "default": null,
+          "autoincrement": false,
+          "examples": [
+            "0",
+            "0.0053973333333333234",
+            "0.006156333333333322",
+            "0.0023153333333333285",
+            "0.007735666666666652"
+          ]
+        },
+        "tts_cost": {
+          "type": "Float64",
+          "primary_key": false,
+          "nullable": false,
+          "default": null,
+          "autoincrement": false,
+          "examples": [
+            "0.00084",
+            "0.00351",
+            "0.00075",
+            "0.02031",
+            "0.002475"
+          ]
+        },
+        "avatar_cost": {
+          "type": "Float64",
+          "primary_key": false,
+          "nullable": false,
+          "default": null,
+          "autoincrement": false,
+          "examples": [
+            "0.11697746515274048",
+            "0.3604626629749934",
+            "0.3781257712841034",
+            "2.4161699581146237",
+            "0.9573877441883086"
+          ]
+        },
+        "total_cost": {
+          "type": "Float64",
+          "primary_key": false,
+          "nullable": false,
+          "default": null,
+          "autoincrement": false,
+          "examples": [
+            "0.3693270963083267",
+            "0.3832157712841034",
+            "0.9588197441883086",
+            "2.4392979581146235",
+            "0.11832346515274048"
+          ]
+        },
+        "timestamp": {
+          "type": "DateTime",
+          "primary_key": true,
+          "nullable": false,
+          "default": null,
+          "autoincrement": false,
+          "examples": [
+            "2025-11-14 10:30:59",
+            "2025-10-17 06:17:27",
+            "2025-10-11 13:27:52",
+            "2025-10-20 20:55:01",
+            "2025-09-16 03:19:24"
+          ]
+        }
+      },
+      "examples": []
+    },
+    "default.tenant": {
+      "fields": {
+        "as_of_date": {
+          "type": "Date",
+          "primary_key": true,
+          "nullable": false,
+          "default": null,
+          "autoincrement": false,
+          "examples": []
+        },
+        "value": {
+          "type": "String",
+          "primary_key": false,
+          "nullable": false,
+          "default": null,
+          "autoincrement": false,
+          "examples": []
+        }
+      },
+      "examples": []
+    },
+    "default.drilldown_levels": {
+      "fields": {
+        "node": {
+          "type": "String",
+          "primary_key": true,
+          "nullable": false,
+          "default": null,
+          "autoincrement": false,
+          "examples": [
+            "Segment#0052H000003jTPC",
+            "Segment#0052H000003ihqo",
+            "Segment#0052H000003judk",
+            "Segment#0052H000003jrRl",
+            "Segment#!"
+          ]
+        },
+        "as_of_date": {
+          "type": "Date",
+          "primary_key": true,
+          "nullable": false,
+          "default": null,
+          "autoincrement": false,
+          "examples": [
+            "2022-09-03",
+            "2022-09-01",
+            "2022-09-02",
+            "2022-09-05",
+            "2022-09-04"
+          ]
+        },
+        "level_1": {
+          "type": "Nullable(String)",
+          "primary_key": false,
+          "nullable": true,
+          "default": null,
+          "autoincrement": false,
+          "examples": [
+            "Team Root",
+            "Segment Root"
+          ]
+        },
+        "level_2": {
+          "type": "Nullable(String)",
+          "primary_key": false,
+          "nullable": true,
+          "default": null,
+          "autoincrement": false,
+          "examples": [
+            "Not in Hierarchy",
+            "Segment",
+            "Team"
+          ]
+        },
+        "level_3": {
+          "type": "Nullable(String)",
+          "primary_key": false,
+          "nullable": true,
+          "default": null,
+          "autoincrement": false,
+          "examples": [
+            "Inactive",
+            "UK Expansion",
+            "Sandra Krief",
+            "Kyle Green",
+            "Douglas Renner"
+          ]
+        },
+        "level_4": {
+          "type": "Nullable(String)",
+          "primary_key": false,
+          "nullable": true,
+          "default": null,
+          "autoincrement": false,
+          "examples": [
+            "Inactive",
+            "Jeff Soyangco",
+            "Jeff King",
+            "Jasmin Seno",
+            "Slo Umicevic"
+          ]
+        },
+        "level_5": {
+          "type": "Nullable(String)",
+          "primary_key": false,
+          "nullable": true,
+          "default": null,
+          "autoincrement": false,
+          "examples": [
+            "Mary Ann Donesa",
+            "Emerson Muhallin",
+            "Jacqueline Naga",
+            "__Matthew Manoni",
+            "Gary Humphrey"
+          ]
+        },
+        "level_6": {
+          "type": "Nullable(String)",
+          "primary_key": false,
+          "nullable": true,
+          "default": null,
+          "autoincrement": false,
+          "examples": [
+            "Shiela Valledor",
+            "Sheryl Batocabe",
+            "Arnold Guevarra Jr",
+            "Laura Fontanilla",
+            "Ella Nazareta"
+          ]
+        },
+        "level_7": {
+          "type": "Nullable(String)",
+          "primary_key": false,
+          "nullable": true,
+          "default": null,
+          "autoincrement": false,
+          "examples": [
+            "Kai Rocker",
+            "Jose Bueno",
+            "Harold De Mesa",
+            "Jason Uslan-UK",
+            "Keaton Woodliff"
+          ]
+        },
+        "level_8": {
+          "type": "Nullable(String)",
+          "primary_key": false,
+          "nullable": true,
+          "default": null,
+          "autoincrement": false,
+          "examples": [
+            "Angela Ocampo",
+            "Kai Rocker",
+            "Adam Cray",
+            "Chessie Mchugh",
+            "James Finn"
+          ]
+        },
+        "level_9": {
+          "type": "Nullable(String)",
+          "primary_key": false,
+          "nullable": true,
+          "default": null,
+          "autoincrement": false,
+          "examples": [
+            "Rex Noel De Leon",
+            "Ana Silvestre",
+            "Maria Theresa Mae Borbe",
+            "Ashley Chua",
+            "Nestar Jane Bayron"
+          ]
+        },
+        "is_leaf_node": {
+          "type": "Nullable(Bool)",
+          "primary_key": false,
+          "nullable": true,
+          "default": null,
+          "autoincrement": false,
+          "examples": [
+            "False",
+            "True"
+          ]
+        },
+        "parent_node": {
+          "type": "Nullable(String)",
+          "primary_key": false,
+          "nullable": true,
+          "default": null,
+          "autoincrement": false,
+          "examples": [
+            "Segment#Inactive*Inactive",
+            "Segment#Lisa_Del_Real*Douglas_Renner*Jeff_King",
+            "Segment#Faiza_Hughell*Ayub_Mohammed*Kyle_Green*Jeff_Soyangco*Jesley_Mae_Capistrano",
+            "Segment#Faiza_Hughell*Ayub_Mohammed*Kyle_Green*Jeff_Soyangco*Irene_Cruz",
+            "Segment#Sandra_Krief*Jasmin_Seno"
+          ]
+        },
+        "label": {
+          "type": "Nullable(String)",
+          "primary_key": false,
+          "nullable": true,
+          "default": null,
+          "autoincrement": false,
+          "examples": [
+            "Mary Ann Donesa",
+            "Emerson Muhallin",
+            "__Matthew Manoni",
+            "Gary Humphrey",
+            "Segment Root"
+          ]
+        }
+      },
+      "examples": []
+    },
+    "default.buyers": {
+      "fields": {
+        "email": {
+          "type": "String",
+          "primary_key": true,
+          "nullable": false,
+          "default": null,
+          "autoincrement": false,
+          "examples": []
+        },
+        "name": {
+          "type": "Nullable(String)",
+          "primary_key": false,
+          "nullable": true,
+          "default": null,
+          "autoincrement": false,
+          "examples": [
+            "F_WG_Top_LDVS+WDVS [none]",
+            "F_WG_Top_LDVS+HQ [none]",
+            "00Valentin00 00Palade00",
+            "F_WG_Longest_HQ+LDVS [none]"
+          ]
+        },
+        "title": {
+          "type": "Nullable(String)",
+          "primary_key": false,
+          "nullable": true,
+          "default": null,
+          "autoincrement": false,
+          "examples": [
+            "Chief Information Officer",
+            "CFO",
+            "Director of IT",
+            "VP Application Development"
+          ]
+        },
+        "account_id": {
+          "type": "String",
+          "primary_key": true,
+          "nullable": false,
+          "default": null,
+          "autoincrement": false,
+          "examples": [
+            "0012H00001Wvv3x",
+            "0012H00001WxVkC",
+            "0012H00001X3zAH",
+            "0012H00001X3zAb"
+          ]
+        },
+        "crm_id": {
+          "type": "Nullable(String)",
+          "primary_key": false,
+          "nullable": true,
+          "default": null,
+          "autoincrement": false,
+          "examples": [
+            "0032H00002OfO0b",
+            "0032H00002Ocacm",
+            "0032H00002OckWE",
+            "0032H00002OckWD"
+          ]
+        },
+        "account_site": {
+          "type": "Nullable(String)",
+          "primary_key": false,
+          "nullable": true,
+          "default": null,
+          "autoincrement": false,
+          "examples": [
+            "aaa4bvyi8iuy2008.irwjqpesynh750e5.8-aruxea2.na97.wrkfl.salesforce.com",
+            "mx0b-002b2c01.pphosted.com",
+            "qyx0i3di8aubznja.0h0tlxfzj6lelkrh.8-aruxea2.na97.wrkfl.salesforce.com",
+            "bzhb10vkxvvxmy1h.wthmhb9ynnir1nbe.8-aruxea2.na97.wrkfl.salesforce.com",
+            "y4gr2hiifun5bsgk.30un6mrwsah7qigq.8-aruxea2.na97.chatter.salesforce.com"
+          ]
+        },
+        "seniority": {
+          "type": "Nullable(String)",
+          "primary_key": false,
+          "nullable": true,
+          "default": null,
+          "autoincrement": false,
+          "examples": [
+            "Manager",
+            "Mid Senior",
+            "Executive",
+            "Other"
+          ]
+        },
+        "grade": {
+          "type": "Nullable(String)",
+          "primary_key": false,
+          "nullable": true,
+          "default": null,
+          "autoincrement": false,
+          "examples": []
+        },
+        "abs_score": {
+          "type": "Nullable(Float32)",
+          "primary_key": false,
+          "nullable": true,
+          "default": null,
+          "autoincrement": false,
+          "examples": [
+            "0"
+          ]
+        },
+        "hml": {
+          "type": "Nullable(String)",
+          "primary_key": false,
+          "nullable": true,
+          "default": null,
+          "autoincrement": false,
+          "examples": []
+        }
+      },
+      "examples": []
+    },
+    "default.platinum_deals_drilldowns_mapping": {
+      "fields": {
+        "opp_id": {
+          "type": "String",
+          "primary_key": true,
+          "nullable": false,
+          "default": null,
+          "autoincrement": false,
+          "examples": [
+            "0062J00000mPad5",
+            "0062J00000mPbvA",
+            "0062J00000mPb4G",
+            "0062J00000mPcLh",
+            "0062J00000mPb7A"
+          ]
+        },
+        "node": {
+          "type": "String",
+          "primary_key": true,
+          "nullable": false,
+          "default": null,
+          "autoincrement": false,
+          "examples": [
+            "Group#Commercial",
+            "Group#!",
+            "Group#not_in_hier",
+            "Group#005500000068oal",
+            "Group#Commercial*America"
+          ]
+        },
+        "as_of_date": {
+          "type": "Date",
+          "primary_key": false,
+          "nullable": false,
+          "default": null,
+          "autoincrement": false,
+          "examples": [
+            "2022-03-31",
+            "2022-03-30",
+            "2022-03-28",
+            "2022-03-27",
+            "2022-03-29"
+          ]
+        }
+      },
+      "examples": []
+    },
+    "default.all_deals_ever_2": {
+      "fields": {
+        "opp_id": {
+          "type": "String",
+          "primary_key": false,
+          "nullable": false,
+          "default": null,
+          "autoincrement": false,
+          "examples": []
+        },
+        "fiscal_quarter": {
+          "type": "String",
+          "primary_key": true,
+          "nullable": false,
+          "default": null,
+          "autoincrement": false,
+          "examples": []
+        },
+        "fiscal_year": {
+          "type": "UInt16",
+          "primary_key": true,
+          "nullable": false,
+          "default": null,
+          "autoincrement": false,
+          "examples": []
+        },
+        "as_of_date": {
+          "type": "Date",
+          "primary_key": true,
+          "nullable": false,
+          "default": null,
+          "autoincrement": false,
+          "examples": []
+        },
+        "as_of_date_period": {
+          "type": "Int32",
+          "primary_key": false,
+          "nullable": false,
+          "default": null,
+          "autoincrement": false,
+          "examples": []
+        },
+        "amount": {
+          "type": "String",
+          "primary_key": false,
+          "nullable": false,
+          "default": null,
+          "autoincrement": false,
+          "examples": []
+        },
+        "forecastcategory": {
+          "type": "String",
+          "primary_key": false,
+          "nullable": false,
+          "default": null,
+          "autoincrement": false,
+          "examples": []
+        },
+        "fiscal_quarter_end_date": {
+          "type": "Date",
+          "primary_key": false,
+          "nullable": false,
+          "default": null,
+          "autoincrement": false,
+          "examples": []
+        }
+      },
+      "examples": []
+    },
+    "default.HealthStatus": {
+      "fields": {
+        "Id": {
+          "type": "UUID",
+          "primary_key": false,
+          "nullable": false,
+          "default": null,
+          "autoincrement": false,
+          "examples": [
+            "af78b66e-3092-4771-a857-d9dad6a12d5e",
+            "ed97d40d-cec3-49ad-8bc8-868081911aac",
+            "179840ab-8a35-41d3-9708-eedba7bdd779"
+          ]
+        },
+        "Status": {
+          "type": "String",
+          "primary_key": false,
+          "nullable": false,
+          "default": null,
+          "autoincrement": false,
+          "examples": [
+            "At Risk",
+            "Healthy",
+            "Neutral"
+          ]
+        },
+        "Color": {
+          "type": "Nullable(String)",
+          "primary_key": false,
+          "nullable": true,
+          "default": null,
+          "autoincrement": false,
+          "examples": [
+            "#f04e45",
+            "#f4b415",
+            "#22a16e"
+          ]
+        },
+        "Min": {
+          "type": "Int32",
+          "primary_key": true,
+          "nullable": false,
+          "default": null,
+          "autoincrement": false,
+          "examples": [
+            "0",
+            "75",
+            "50"
+          ]
+        },
+        "Max": {
+          "type": "Int32",
+          "primary_key": false,
+          "nullable": false,
+          "default": null,
+          "autoincrement": false,
+          "examples": [
+            "49",
+            "74",
+            "100"
+          ]
+        },
+        "CreatedAt": {
+          "type": "DateTime",
+          "primary_key": true,
+          "nullable": false,
+          "default": "now()",
+          "autoincrement": false,
+          "examples": [
+            "2025-09-19 07:02:32"
+          ]
+        },
+        "UpdatedAt": {
+          "type": "DateTime",
+          "primary_key": false,
+          "nullable": false,
+          "default": "now()",
+          "autoincrement": false,
+          "examples": [
+            "2025-09-19 07:02:32"
+          ]
+        },
+        "IsDeleted": {
+          "type": "Bool",
+          "primary_key": false,
+          "nullable": false,
+          "default": "false",
+          "autoincrement": false,
+          "examples": [
+            "False"
+          ]
+        }
+      },
+      "examples": []
+    },
+    "default.room_sessions": {
+      "fields": {
+        "room_id": {
+          "type": "String",
+          "primary_key": true,
+          "nullable": false,
+          "default": null,
+          "autoincrement": false,
+          "examples": [
+            "003e3017-7993-4503-bf7d-0e86e8581c05",
+            "009d479f-78d8-461b-add0-e029b14dde28",
+            "00994b1e-b7ab-4251-b78e-51ada8a30a70",
+            "00298dce-fa9b-409b-8c59-0bb5bef9257c",
+            "0034ce6a-2531-4de5-a9cd-e8e717e4a780"
+          ]
+        },
+        "room_name": {
+          "type": "String",
+          "primary_key": false,
+          "nullable": false,
+          "default": null,
+          "autoincrement": false,
+          "examples": [
+            "Sales_Coaching_00298dce-fa9b-409b-8c59-0bb5bef9257c",
+            "Sales_Coaching_00994b1e-b7ab-4251-b78e-51ada8a30a70",
+            "Sales_Coaching_009d479f-78d8-461b-add0-e029b14dde28",
+            "Sales_Coaching_003e3017-7993-4503-bf7d-0e86e8581c05",
+            "Sales_Coaching_0034ce6a-2531-4de5-a9cd-e8e717e4a780"
+          ]
+        },
+        "room_type": {
+          "type": "String",
+          "primary_key": false,
+          "nullable": false,
+          "default": null,
+          "autoincrement": false,
+          "examples": [
+            "Sales"
+          ]
+        },
+        "created_by": {
+          "type": "String",
+          "primary_key": false,
+          "nullable": false,
+          "default": null,
+          "autoincrement": false,
+          "examples": [
+            "Mehran Goraya",
+            "Shrikant Krishnan Iyer",
+            "Pratush Tiwari",
+            "Gareth Sullivan",
+            "Rajat Tyagi"
+          ]
+        },
+        "timestamp": {
+          "type": "DateTime",
+          "primary_key": false,
+          "nullable": false,
+          "default": null,
+          "autoincrement": false,
+          "examples": [
+            "2025-08-21 12:48:12",
+            "2025-10-08 21:42:30",
+            "2025-11-12 09:03:54",
+            "2025-11-10 19:57:01",
+            "2025-12-31 04:11:15"
+          ]
+        }
+      },
+      "examples": []
+    },
+    "default.platinum_drilldown_stage1": {
+      "fields": {
+        "node": {
+          "type": "String",
+          "primary_key": true,
+          "nullable": false,
+          "default": null,
+          "autoincrement": false,
+          "examples": [
+            "Group#0052J000008EoAl",
+            "Group#0052J00000837Sw",
+            "Group#0052J000008EgpC",
+            "Group#!",
+            "Group#0052J000007p9nY"
+          ]
+        },
+        "parent": {
+          "type": "Nullable(String)",
+          "primary_key": false,
+          "nullable": true,
+          "default": null,
+          "autoincrement": false,
+          "examples": [
+            "Group#International*EMEA*AM_1",
+            "Group#International*EMEA*UK_SB",
+            "Group#International*ANZ",
+            "Group#US_-_Client_Sales",
+            "Group#International*EMEA*UK_-_Enterprise"
+          ]
+        },
+        "label": {
+          "type": "Nullable(String)",
+          "primary_key": false,
+          "nullable": true,
+          "default": null,
+          "autoincrement": false,
+          "examples": [
+            "Joy Altman",
+            "Dan Abbazov ",
+            "Adil Khaloufi",
+            "Ben Smith",
+            "Group Root"
+          ]
+        }
+      },
+      "examples": []
+    },
+    "default.Component": {
+      "fields": {
+        "Id": {
+          "type": "UUID",
+          "primary_key": false,
+          "nullable": false,
+          "default": null,
+          "autoincrement": false,
+          "examples": [
+            "25fb2e24-fb1a-471e-a8d8-9c5204341d0f",
+            "ab70e264-8930-4ffa-bcb2-ad86bd7c09f3",
+            "9cebdea5-50b8-47c2-b7d6-916c108a8dbc",
+            "61d9c40b-3cee-45e8-8ee7-476934c7545a",
+            "8a051b8b-438c-4013-8a08-e86904cc484b"
+          ]
+        },
+        "Name": {
+          "type": "String",
+          "primary_key": true,
+          "nullable": false,
+          "default": null,
+          "autoincrement": false,
+          "examples": [
+            "Inbound email",
+            "Engagement",
+            "Outbound email",
+            "Meetings",
+            "Count of meetings"
+          ]
+        },
+        "Metric": {
+          "type": "Nullable(String)",
+          "primary_key": false,
+          "nullable": true,
+          "default": null,
+          "autoincrement": false,
+          "examples": [
+            "Win Score",
+            "Outbound Emails",
+            "Meetings",
+            "Inbound Emails"
+          ]
+        },
+        "ParentId": {
+          "type": "Nullable(String)",
+          "primary_key": false,
+          "nullable": true,
+          "default": null,
+          "autoincrement": false,
+          "examples": [
+            "5d1bb9f3-eeda-405a-b3de-f7ed19e590a4",
+            "61d9c40b-3cee-45e8-8ee7-476934c7545a",
+            "9cebdea5-50b8-47c2-b7d6-916c108a8dbc"
+          ]
+        },
+        "Format": {
+          "type": "Nullable(String)",
+          "primary_key": false,
+          "nullable": true,
+          "default": null,
+          "autoincrement": false,
+          "examples": [
+            "SubGroup",
+            "Group"
+          ]
+        },
+        "Weightage": {
+          "type": "Int32",
+          "primary_key": false,
+          "nullable": false,
+          "default": null,
+          "autoincrement": false,
+          "examples": [
+            "0",
+            "30",
+            "35"
+          ]
+        },
+        "CreatedAt": {
+          "type": "DateTime",
+          "primary_key": true,
+          "nullable": false,
+          "default": "now()",
+          "autoincrement": false,
+          "examples": [
+            "2025-09-19 07:02:31"
+          ]
+        },
+        "UpdatedAt": {
+          "type": "DateTime",
+          "primary_key": false,
+          "nullable": false,
+          "default": "now()",
+          "autoincrement": false,
+          "examples": [
+            "2025-09-19 07:02:31"
+          ]
+        },
+        "Period": {
+          "type": "Int32",
+          "primary_key": false,
+          "nullable": false,
+          "default": null,
+          "autoincrement": false,
+          "examples": [
+            "14"
+          ]
+        }
+      },
+      "examples": []
+    },
+    "default.conversation_configs": {
+      "fields": {
+        "parent_conversation_id": {
+          "type": "String",
+          "primary_key": false,
+          "nullable": false,
+          "default": null,
+          "autoincrement": false,
+          "examples": [
+            "79ea00ce-e6d6-4c1e-ac96-8b1cdbfaa7bd",
+            "468c0bca-7e9d-4b52-a82f-6494d4a5e8a0",
+            "7b280a1c-6bf7-4c09-82c3-951ea77e238d",
+            "512d5b4a-f6d6-4614-ac96-967890a26edf"
+          ]
+        },
+        "conversation_id": {
+          "type": "String",
+          "primary_key": true,
+          "nullable": false,
+          "default": null,
+          "autoincrement": false,
+          "examples": [
+            "029c19c4-baa1-48b9-9c05-83bc544331b0",
+            "000f9bf8-9830-443d-8eb4-9f0bc259b882",
+            "0082008d-0a75-4594-bf09-a9120bd6b8e6",
+            "00dd6c05-56f6-4cdf-ad25-451144701b6d",
+            "00ea0a42-fb36-461f-859f-d767882a91ba"
+          ]
+        },
+        "room_id": {
+          "type": "String",
+          "primary_key": false,
+          "nullable": false,
+          "default": null,
+          "autoincrement": false,
+          "examples": [
+            "8b6dc1aa-6198-43ae-86c0-a224e736d8e3",
+            "02a274ed-2168-41b8-8ed8-89806da45ebf",
+            "5b2d4cfc-8fcf-42ba-b605-d6c40e14e132",
+            "42f48dcd-3a19-4094-a013-a68a84fb8e1a",
+            "3b11ac03-7f35-498c-9f14-d49b02bbb85a"
+          ]
+        },
+        "config": {
+          "type": "NULL",
+          "primary_key": false,
+          "nullable": false,
+          "default": null,
+          "autoincrement": false,
+          "examples": [
+            "{\"avatar\":{\"avatar_participant_name\":\"Norman\",\"persona_id\":\"p7fb0be3\",\"replica_id\":\"rf4703150052\"},\"llm\":{\"model\":\"gpt-4o-mini\",\"provider\":\"openai\"},\"stt\":{\"language\":\"multi\",\"model\":\"nova-3\",\"provider\":\"deepgram\"},\"tts\":{\"model\":\"aura-2-hermes-en\",\"provider\":\"deepgram\"}}",
+            "{\"avatar\":{\"avatar_participant_name\":\"kelly H.\",\"persona_id\":\"pdced222244b\",\"replica_id\":\"rc2146c13e81\"},\"llm\":{\"model\":\"gpt-4o-mini\",\"provider\":\"openai\"},\"stt\":{\"language\":\"multi\",\"model\":\"nova-3\",\"provider\":\"deepgram\"},\"tts\":{\"model\":\"aura-asteria-en\",\"provider\":\"deepgram\"}}",
+            "{\"avatar\":{\"avatar_participant_name\":\"norman\",\"persona_id\":\"p7fb0be3\",\"replica_id\":\"r880666f8c89\"},\"llm\":{\"model\":\"gpt-4o-mini\",\"provider\":\"openai\"},\"stt\":{\"language\":\"multi\",\"model\":\"nova-3\",\"provider\":\"deepgram\"},\"tts\":{\"model\":\"aura-2-hermes-en\",\"provider\":\"deepgram\"}}",
+            "{\"llm\":{\"model\":\"gpt-4o-mini\",\"provider\":\"openai\"},\"stt\":{\"language\":\"multi\",\"model\":\"nova-3\",\"provider\":\"deepgram\"},\"tts\":{\"model\":\"aura-2-hermes-en\",\"provider\":\"deepgram\"}}",
+            "{\"avatar\":{\"avatar_participant_name\":\"kelly\",\"persona_id\":\"pdced222244b\",\"replica_id\":\"rc2146c13e81\"},\"llm\":{\"model\":\"gpt-4o-mini\",\"provider\":\"openai\"},\"stt\":{\"language\":\"multi\",\"model\":\"nova-3\",\"provider\":\"deepgram\"},\"tts\":{\"model\":\"aura-asteria-en\",\"provider\":\"deepgram\"}}"
+          ]
+        },
+        "timestamp": {
+          "type": "DateTime",
+          "primary_key": false,
+          "nullable": false,
+          "default": null,
+          "autoincrement": false,
+          "examples": [
+            "2025-11-14 10:30:59",
+            "2025-10-17 06:17:27",
+            "2025-10-11 13:27:52",
+            "2025-10-20 20:55:01",
+            "2025-09-16 07:53:47"
+          ]
+        }
+      },
+      "examples": []
+    }
+  },
+  "foreign_keys": []
+}

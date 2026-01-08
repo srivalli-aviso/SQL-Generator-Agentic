@@ -1,0 +1,146 @@
+{
+  "db_id": "cisco_stage_app",
+  "schema": "cisco_stage_app",
+  "tables": {
+    "cisco_stage_app.qtd_commit_upside": {
+      "fields": {
+        "year": {
+          "type": "String",
+          "primary_key": true,
+          "nullable": false,
+          "default": "' '",
+          "autoincrement": false,
+          "column_description": "4-digit year value (e.g., '2023', '2024'). Part of primary key. Used for year-over-year comparisons and annual reporting.",
+          "examples": [
+            "2023",
+            "2021",
+            "2019",
+            "2020",
+            "2022"
+          ]
+        },
+        "quarter": {
+          "type": "String",
+          "primary_key": false,
+          "nullable": false,
+          "default": "' '",
+          "autoincrement": false,
+          "column_description": "Quarter identifier: 'Q1', 'Q2', 'Q3', or 'Q4'. Represents the fiscal quarter. Used for quarterly analysis and forecasting.",
+          "examples": [
+            "Q2",
+            "Q1",
+            "Q3",
+            "Q4"
+          ]
+        },
+        "month": {
+          "type": "String",
+          "primary_key": true,
+          "nullable": false,
+          "default": "' '",
+          "autoincrement": false,
+          "column_description": "Full month name (e.g., 'January', 'February', 'March'). Part of primary key. Used for monthly trend analysis and period comparisons.",
+          "examples": [
+            "August",
+            "April",
+            "December",
+            "February",
+            "January"
+          ]
+        },
+        "week": {
+          "type": "String",
+          "primary_key": false,
+          "nullable": false,
+          "default": "' '",
+          "autoincrement": false,
+          "column_description": "Week number within the period. String value representing week of quarter/month. Used for weekly granularity in forecasting and linearity analysis.",
+          "examples": [
+            "15",
+            "13",
+            "29",
+            "14",
+            "16"
+          ]
+        },
+        "region": {
+          "type": "String",
+          "primary_key": false,
+          "nullable": false,
+          "default": "' '",
+          "autoincrement": false,
+          "column_description": "Geographic region code. Valid values: 'APJC' (Asia Pacific, Japan, China), 'Americas' (North and South America), 'EMEA' (Europe, Middle East, Africa). Used for geographic segmentation and regional performance analysis.",
+          "examples": [
+            "APJC",
+            "Americas",
+            "EMEA"
+          ]
+        },
+        "segment": {
+          "type": "String",
+          "primary_key": false,
+          "nullable": false,
+          "default": "' '",
+          "autoincrement": false,
+          "column_description": "Business segment classification. Examples: 'Cloud & AI Infra', 'Security & Observability', 'Networking', 'Internet Infra', 'Collab & Customer Eng'. Used to categorize revenue by product/service line.",
+          "examples": [
+            "Cloud & AI Infra",
+            "Security& Observability",
+            "Collab & Customer Eng",
+            "Networking",
+            "Internet Infra"
+          ]
+        },
+        "qtd": {
+          "type": "Decimal(32, 21)",
+          "primary_key": false,
+          "nullable": false,
+          "default": "0.",
+          "autoincrement": false,
+          "column_description": "QTD (Quarter-to-Date) revenue - cumulative revenue from the start of the current quarter through the specified week. Decimal value in currency units. Represents actual revenue booked, not forecast.",
+          "examples": [
+            "1030",
+            "1869",
+            "1276",
+            "1613",
+            "1342"
+          ]
+        },
+        "commit": {
+          "type": "Decimal(32, 21)",
+          "primary_key": false,
+          "nullable": false,
+          "default": "0.",
+          "autoincrement": false,
+          "column_description": "Committed forecast revenue - high-confidence revenue expected to close. Decimal value in currency units. Typically represents 80-90% confidence level in sales forecasting. Used for revenue planning.",
+          "examples": [
+            "3464",
+            "2727",
+            "4279",
+            "3967",
+            "4232"
+          ]
+        },
+        "upside": {
+          "type": "Decimal(32, 21)",
+          "primary_key": false,
+          "nullable": false,
+          "default": "0.",
+          "autoincrement": false,
+          "column_description": "Upside revenue - potential additional revenue beyond committed forecast. Decimal value in currency units. Represents lower-confidence opportunities that could materialize. Used for scenario planning.",
+          "examples": [
+            "5416",
+            "5647",
+            "4163",
+            "4418",
+            "4706"
+          ]
+        }
+      },
+      "examples": [],
+      "comment": "Tracks quarterly forecasting metrics including QTD (Quarter-to-Date revenue), committed forecast revenue, and potential upside revenue. Contains weekly aggregated data by region and business segment. Used for sales forecasting, revenue planning, and forecast accuracy analysis. Updated weekly."
+    }
+  },
+  "foreign_keys": []
+}
+

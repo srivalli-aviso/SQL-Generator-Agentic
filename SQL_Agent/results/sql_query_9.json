@@ -1,0 +1,19 @@
+{
+  "query": "Show revenue performance by technical business unit",
+  "sql": "SELECT\n    SUM(cisco_stage_app.metrics.revenue) AS total_revenue, cisco_stage_app.metrics.technical_business_unit\nFROM cisco_stage_app.metrics\n    LEFT\n    JOIN cisco_stage_app.linearity_metrics\n    ON cisco_stage_app.metrics.metric_id = cisco_stage_app.linearity_metrics.metric_id\n    LEFT\n    JOIN cisco_stage_app.qtd_commit_upside\n    ON cisco_stage_app.metrics.metric_id = cisco_stage_app.qtd_commit_upside.metric_id\n    LEFT\n    JOIN cisco_stage_app.funnel_metrics\n    ON cisco_stage_app.metrics.metric_id = cisco_stage_app.funnel_metrics.metric_id\nGROUP BY cisco_stage_app.metrics.technical_business_unit",
+  "sql_formatted": "SELECT\n    SUM(cisco_stage_app.metrics.revenue) AS total_revenue, cisco_stage_app.metrics.technical_business_unit\nFROM cisco_stage_app.metrics\n    LEFT\n    JOIN cisco_stage_app.linearity_metrics\n    ON cisco_stage_app.metrics.metric_id = cisco_stage_app.linearity_metrics.metric_id\n    LEFT\n    JOIN cisco_stage_app.qtd_commit_upside\n    ON cisco_stage_app.metrics.metric_id = cisco_stage_app.qtd_commit_upside.metric_id\n    LEFT\n    JOIN cisco_stage_app.funnel_metrics\n    ON cisco_stage_app.metrics.metric_id = cisco_stage_app.funnel_metrics.metric_id\nGROUP BY cisco_stage_app.metrics.technical_business_unit",
+  "generation_method": "llm",
+  "validation": {
+    "enabled": false,
+    "is_valid": null,
+    "error": null
+  },
+  "execution": {
+    "success": false,
+    "error": "Orig exception: Code: 47. DB::Exception: There's no column 'cisco_stage_app.metrics.revenue' in table 'metrics': While processing SELECT SUM(cisco_stage_app.metrics.revenue) AS total_revenue, cisco_stage_app.metrics.technical_business_unit FROM cisco_stage_app.metrics LEFT JOIN cisco_stage_app.linearity_metrics ON cisco_stage_app.metrics.metric_id = cisco_stage_app.linearity_metrics.metric_id LEFT JOIN cisco_stage_app.qtd_commit_upside ON cisco_stage_app.metrics.metric_id = cisco_stage_app.qtd_commit_upside.metric_id LEFT JOIN cisco_stage_app.funnel_metrics ON cisco_stage_app.metrics.metric_id = cisco_stage_app.funnel_metrics.metric_id GROUP BY cisco_stage_app.metrics.technical_business_unit. (UNKNOWN_IDENTIFIER) (version 25.8.1.8909 (official build))\n",
+    "row_count": null,
+    "execution_time": 1.4303088188171387,
+    "sample_rows": null
+  },
+  "query_plan_source": "query_plan_query_9.json"
+}

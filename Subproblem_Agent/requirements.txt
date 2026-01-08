@@ -1,0 +1,8 @@
+# Requirements for Subproblem Agent
+
+# Groq API client
+groq>=0.4.0
+
+# Utilities
+python-dotenv>=1.0.0  # For environment variable management (optional)
+

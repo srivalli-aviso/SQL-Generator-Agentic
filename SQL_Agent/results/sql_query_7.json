@@ -1,0 +1,19 @@
+{
+  "query": "What are the linearity metrics for different segments?",
+  "sql": "SELECT\n    lm.segment_id, lm.linearity_score, fm.funnel_stage, m.metric_name, q.upside_value\nFROM cisco_stage_app.linearity_metrics AS lm\n    INNER\n    JOIN cisco_stage_app.funnel_metrics AS fm\n    ON lm.segment_id = fm.segment_id\n    INNER\n    JOIN cisco_stage_app.metrics AS m\n    ON lm.metric_id = m.metric_id\n    LEFT\n    JOIN cisco_stage_app.qtd_commit_upside AS q\n    ON lm.segment_id = q.segment_id",
+  "sql_formatted": "SELECT\n    lm.segment_id, lm.linearity_score, fm.funnel_stage, m.metric_name, q.upside_value\nFROM cisco_stage_app.linearity_metrics AS lm\n    INNER\n    JOIN cisco_stage_app.funnel_metrics AS fm\n    ON lm.segment_id = fm.segment_id\n    INNER\n    JOIN cisco_stage_app.metrics AS m\n    ON lm.metric_id = m.metric_id\n    LEFT\n    JOIN cisco_stage_app.qtd_commit_upside AS q\n    ON lm.segment_id = q.segment_id",
+  "generation_method": "llm",
+  "validation": {
+    "enabled": false,
+    "is_valid": null,
+    "error": null
+  },
+  "execution": {
+    "success": false,
+    "error": "Orig exception: Code: 47. DB::Exception: There's no column 'lm.segment_id' in table 'lm': While processing SELECT lm.segment_id, lm.linearity_score, fm.funnel_stage, m.metric_name, q.upside_value FROM cisco_stage_app.linearity_metrics AS lm INNER JOIN cisco_stage_app.funnel_metrics AS fm ON lm.segment_id = fm.segment_id INNER JOIN cisco_stage_app.metrics AS m ON lm.metric_id = m.metric_id LEFT JOIN cisco_stage_app.qtd_commit_upside AS q ON lm.segment_id = q.segment_id. (UNKNOWN_IDENTIFIER) (version 25.8.1.8909 (official build))\n",
+    "row_count": null,
+    "execution_time": 1.7770779132843018,
+    "sample_rows": null
+  },
+  "query_plan_source": "query_plan_query_7.json"
+}

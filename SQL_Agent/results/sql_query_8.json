@@ -1,0 +1,19 @@
+{
+  "query": "Display funnel metrics with conversion percentages",
+  "sql": "SELECT\n    cisco_stage_app.funnel_metrics.stage_name AS stage_name, cisco_stage_app.funnel_metrics.stage_count AS stage_count, cisco_stage_app.linearity_metrics.conversion_percentage AS conversion_percentage, cisco_stage_app.metrics.metric_name AS metric_name, cisco_stage_app.metrics.metric_value AS metric_value, cisco_stage_app.qtd_commit_upside.qtd_commit AS qtd_commit, cisco_stage_app.qtd_commit_upside.upside AS upside\nFROM cisco_stage_app.funnel_metrics\n    LEFT\n    JOIN cisco_stage_app.linearity_metrics\n    ON cisco_stage_app.funnel_metrics.metric_id = cisco_stage_app.linearity_metrics.metric_id\n    LEFT\n    JOIN cisco_stage_app.metrics\n    ON cisco_stage_app.funnel_metrics.metric_id = cisco_stage_app.metrics.metric_id\n    LEFT\n    JOIN cisco_stage_app.qtd_commit_upside\n    ON cisco_stage_app.funnel_metrics.metric_id = cisco_stage_app.qtd_commit_upside.metric_id",
+  "sql_formatted": "SELECT\n    cisco_stage_app.funnel_metrics.stage_name AS stage_name, cisco_stage_app.funnel_metrics.stage_count AS stage_count, cisco_stage_app.linearity_metrics.conversion_percentage AS conversion_percentage, cisco_stage_app.metrics.metric_name AS metric_name, cisco_stage_app.metrics.metric_value AS metric_value, cisco_stage_app.qtd_commit_upside.qtd_commit AS qtd_commit, cisco_stage_app.qtd_commit_upside.upside AS upside\nFROM cisco_stage_app.funnel_metrics\n    LEFT\n    JOIN cisco_stage_app.linearity_metrics\n    ON cisco_stage_app.funnel_metrics.metric_id = cisco_stage_app.linearity_metrics.metric_id\n    LEFT\n    JOIN cisco_stage_app.metrics\n    ON cisco_stage_app.funnel_metrics.metric_id = cisco_stage_app.metrics.metric_id\n    LEFT\n    JOIN cisco_stage_app.qtd_commit_upside\n    ON cisco_stage_app.funnel_metrics.metric_id = cisco_stage_app.qtd_commit_upside.metric_id",
+  "generation_method": "llm",
+  "validation": {
+    "enabled": false,
+    "is_valid": null,
+    "error": null
+  },
+  "execution": {
+    "success": false,
+    "error": "Orig exception: Code: 47. DB::Exception: There's no column 'cisco_stage_app.funnel_metrics.metric_id' in table 'funnel_metrics': While processing SELECT `_--funnel_metrics.stage_name` AS stage_name, `_--funnel_metrics.stage_count` AS stage_count, `_--linearity_metrics.conversion_percentage` AS conversion_percentage, `_--metrics.metric_name` AS metric_name, `_--metrics.metric_value` AS metric_value, `_--qtd_commit_upside.qtd_commit` AS qtd_commit, `_--qtd_commit_upside.upside` AS upside FROM cisco_stage_app.funnel_metrics LEFT JOIN cisco_stage_app.linearity_metrics ON cisco_stage_app.funnel_metrics.metric_id = cisco_stage_app.linearity_metrics.metric_id LEFT JOIN cisco_stage_app.metrics ON cisco_stage_app.funnel_metrics.metric_id = cisco_stage_app.metrics.metric_id LEFT JOIN cisco_stage_app.qtd_commit_upside ON cisco_stage_app.funnel_metrics.metric_id = cisco_stage_app.qtd_commit_upside.metric_id. (UNKNOWN_IDENTIFIER) (version 25.8.1.8909 (official build))\n",
+    "row_count": null,
+    "execution_time": 1.4193880558013916,
+    "sample_rows": null
+  },
+  "query_plan_source": "query_plan_query_8.json"
+}

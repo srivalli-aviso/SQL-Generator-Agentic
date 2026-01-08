@@ -1,0 +1,19 @@
+{
+  "query": "What are the conversion rates and close rates?",
+  "sql": "SELECT\n    lm.conversion_rate, fm.close_rate\nFROM cisco_stage_app.linearity_metrics AS lm\n    INNER\n    JOIN cisco_stage_app.funnel_metrics AS fm\n    ON lm.metric_id = fm.metric_id",
+  "sql_formatted": "SELECT\n    lm.conversion_rate, fm.close_rate\nFROM cisco_stage_app.linearity_metrics AS lm\n    INNER\n    JOIN cisco_stage_app.funnel_metrics AS fm\n    ON lm.metric_id = fm.metric_id",
+  "generation_method": "llm",
+  "validation": {
+    "enabled": false,
+    "is_valid": null,
+    "error": null
+  },
+  "execution": {
+    "success": false,
+    "error": "Orig exception: Code: 47. DB::Exception: There's no column 'lm.conversion_rate' in table 'lm': While processing lm.conversion_rate. (UNKNOWN_IDENTIFIER) (version 25.8.1.8909 (official build))\n",
+    "row_count": null,
+    "execution_time": 1.7386109828948975,
+    "sample_rows": null
+  },
+  "query_plan_source": "query_plan_query_2.json"
+}

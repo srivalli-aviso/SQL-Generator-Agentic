@@ -1,0 +1,163 @@
+{
+  "execution_steps": [
+    {
+      "step_number": 1,
+      "operation": "identify_base_table",
+      "table": "cisco_stage_app.metrics",
+      "columns": [
+        "metric_id",
+        "metric_value",
+        "metric_date"
+      ]
+    },
+    {
+      "step_number": 2,
+      "operation": "join_table",
+      "join_type": "LEFT JOIN",
+      "table": "cisco_stage_app.qtd_commit_upside",
+      "join_condition": {
+        "left_column": "cisco_stage_app.metrics.metric_id",
+        "right_column": "cisco_stage_app.qtd_commit_upside.metric_id",
+        "operator": "="
+      },
+      "columns": [
+        "commit_upside"
+      ]
+    },
+    {
+      "step_number": 3,
+      "operation": "join_table",
+      "join_type": "LEFT JOIN",
+      "table": "cisco_stage_app.funnel_metrics",
+      "join_condition": {
+        "left_column": "cisco_stage_app.metrics.metric_id",
+        "right_column": "cisco_stage_app.funnel_metrics.metric_id",
+        "operator": "="
+      },
+      "columns": [
+        "funnel_value"
+      ]
+    },
+    {
+      "step_number": 4,
+      "operation": "join_table",
+      "join_type": "LEFT JOIN",
+      "table": "cisco_stage_app.linearity_metrics",
+      "join_condition": {
+        "left_column": "cisco_stage_app.metrics.metric_id",
+        "right_column": "cisco_stage_app.linearity_metrics.metric_id",
+        "operator": "="
+      },
+      "columns": [
+        "linearity_score"
+      ]
+    },
+    {
+      "step_number": 5,
+      "operation": "aggregate",
+      "aggregation_function": "SUM",
+      "aggregated_columns": [
+        {
+          "column": "metric_value",
+          "alias": "total_metric"
+        },
+        {
+          "column": "commit_upside",
+          "alias": "total_upside"
+        },
+        {
+          "column": "funnel_value",
+          "alias": "total_funnel"
+        },
+        {
+          "column": "linearity_score",
+          "alias": "total_linearity"
+        }
+      ],
+      "group_by_columns": [
+        "month",
+        "week"
+      ]
+    }
+  ],
+  "select_columns": [
+    {
+      "column": "month",
+      "alias": null,
+      "source_table": "cisco_stage_app.metrics"
+    },
+    {
+      "column": "week",
+      "alias": null,
+      "source_table": "cisco_stage_app.metrics"
+    },
+    {
+      "column": "SUM(metric_value)",
+      "alias": "total_metric",
+      "source_table": "cisco_stage_app.metrics"
+    },
+    {
+      "column": "SUM(commit_upside)",
+      "alias": "total_upside",
+      "source_table": "cisco_stage_app.qtd_commit_upside"
+    },
+    {
+      "column": "SUM(funnel_value)",
+      "alias": "total_funnel",
+      "source_table": "cisco_stage_app.funnel_metrics"
+    },
+    {
+      "column": "SUM(linearity_score)",
+      "alias": "total_linearity",
+      "source_table": "cisco_stage_app.linearity_metrics"
+    }
+  ],
+  "from_table": "cisco_stage_app.metrics",
+  "joins": [
+    {
+      "step": 2,
+      "type": "LEFT JOIN",
+      "table": "cisco_stage_app.qtd_commit_upside",
+      "condition": {
+        "left": "cisco_stage_app.metrics.metric_id",
+        "operator": "=",
+        "right": "cisco_stage_app.qtd_commit_upside.metric_id"
+      }
+    },
+    {
+      "step": 3,
+      "type": "LEFT JOIN",
+      "table": "cisco_stage_app.funnel_metrics",
+      "condition": {
+        "left": "cisco_stage_app.metrics.metric_id",
+        "operator": "=",
+        "right": "cisco_stage_app.funnel_metrics.metric_id"
+      }
+    },
+    {
+      "step": 4,
+      "type": "LEFT JOIN",
+      "table": "cisco_stage_app.linearity_metrics",
+      "condition": {
+        "left": "cisco_stage_app.metrics.metric_id",
+        "operator": "=",
+        "right": "cisco_stage_app.linearity_metrics.metric_id"
+      }
+    }
+  ],
+  "where_conditions": null,
+  "group_by": [
+    "month",
+    "week"
+  ],
+  "having_conditions": null,
+  "order_by": null,
+  "subqueries": [],
+  "complexity_indicators": {
+    "requires_join": true,
+    "requires_aggregation": true,
+    "join_count": 3,
+    "aggregation_count": 1
+  },
+  "query": "Find metrics broken down by month and week"
+}

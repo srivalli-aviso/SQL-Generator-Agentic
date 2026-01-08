@@ -6,6 +6,7 @@ Script to remove all 'comment' fields from columns and tables in M-Schema JSON f
 import json
 import sys
 from pathlib import Path
+from config import MSchemaConfig
 
 
 def remove_comments_from_json(json_file_path: str, output_file_path: str = None):
@@ -54,14 +55,11 @@ def remove_comments_from_json(json_file_path: str, output_file_path: str = None)
 
 def main():
     """Main function to run the script."""
-    # Default JSON file path
-    default_json_path = './cisco_stage_app_clickhouse.json'
-    
-    # Get JSON file path from command line argument or use default
+    # Get JSON file path from command line argument or use default from config
     if len(sys.argv) > 1:
         json_file_path = sys.argv[1]
     else:
-        json_file_path = default_json_path
+        json_file_path = MSchemaConfig.get_input_schema_file()
     
     # Check if file exists
     if not Path(json_file_path).exists():

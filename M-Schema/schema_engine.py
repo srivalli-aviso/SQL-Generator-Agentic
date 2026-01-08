@@ -5,6 +5,7 @@ from sqlalchemy.engine import Engine
 from llama_index.core import SQLDatabase
 from utils import read_json, write_json, save_raw_text, examples_to_str
 from m_schema import MSchema
+from config import MSchemaConfig
 
 
 class SchemaEngine(SQLDatabase):
@@ -108,8 +109,9 @@ class SchemaEngine(SQLDatabase):
                 full_table_name = table_name
             
             # Escape column and table names for safety
-            # Use SAMPLE 0.1 for faster query execution on large tables
-            query = text(f"SELECT DISTINCT `{column_name}` FROM `{full_table_name}` SAMPLE 0.1 LIMIT {max_num}")
+            # Use SAMPLE coefficient from config for faster query execution on large tables
+            sample_coeff = MSchemaConfig.SAMPLE_COEFFICIENT
+            query = text(f"SELECT DISTINCT `{column_name}` FROM `{full_table_name}` SAMPLE {sample_coeff} LIMIT {max_num}")
             
             with self._engine.connect() as connection:
                 result = connection.execute(query)
@@ -151,9 +153,9 @@ class SchemaEngine(SQLDatabase):
         if not column_names or (hasattr(self, '_skip_examples') and self._skip_examples):
             return results
         
-        # Check table size - skip examples for huge tables (> 10 million rows)
+        # Check table size - skip examples for huge tables (threshold from config)
         table_rows = self.get_table_row_count(table_name)
-        if table_rows > 10_000_000:
+        if table_rows > MSchemaConfig.MAX_TABLE_ROWS_FOR_EXAMPLES:
             print(f"  Skipping examples for {table_name} (too large: {table_rows:,} rows)")
             return results
             
@@ -172,7 +174,8 @@ class SchemaEngine(SQLDatabase):
             
             # Try with SAMPLE first (faster for large tables)
             # If SAMPLE is not supported (e.g., views), fall back to query without SAMPLE
-            query_str_with_sample = f"SELECT {', '.join(select_parts)} FROM `{full_table_name}` SAMPLE 0.1"
+            sample_coeff = MSchemaConfig.SAMPLE_COEFFICIENT
+            query_str_with_sample = f"SELECT {', '.join(select_parts)} FROM `{full_table_name}` SAMPLE {sample_coeff}"
             query_str_without_sample = f"SELECT {', '.join(select_parts)} FROM `{full_table_name}`"
             
             def extract_values_from_row(row):
@@ -304,13 +307,13 @@ class SchemaEngine(SQLDatabase):
             if not (hasattr(self, '_skip_examples') and self._skip_examples):
                 # Check table row count before fetching examples
                 table_rows = self.get_table_row_count(table_name)
-                if table_rows > 10_000_000:
-                    print(f"  Skipping examples for table '{table_name}' (too large: {table_rows:,} rows > 10M threshold)")
+                if table_rows > MSchemaConfig.MAX_TABLE_ROWS_FOR_EXAMPLES:
+                    print(f"  Skipping examples for table '{table_name}' (too large: {table_rows:,} rows > {MSchemaConfig.MAX_TABLE_ROWS_FOR_EXAMPLES:,} threshold)")
                     examples_dict = {}
                 else:
                     try:
                         print(f"  Fetching examples for table '{table_name}' ({len(column_names)} columns)...")
-                        examples_dict = self.fectch_distinct_values_batch(table_name, column_names, 5)
+                        examples_dict = self.fectch_distinct_values_batch(table_name, column_names, MSchemaConfig.MAX_EXAMPLES_PER_COLUMN)
                         # Count how many columns got examples
                         cols_with_examples = sum(1 for v in examples_dict.values() if len(v) > 0)
                         if cols_with_examples > 0:

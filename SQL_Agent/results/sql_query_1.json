@@ -1,0 +1,19 @@
+{
+  "query": "Show me revenue by region and segment",
+  "sql": "SELECT\n    SUM(m.won_amount) AS total_revenue, f.region, m.segment\nFROM cisco_stage_app.metrics AS m\n    INNER\n    JOIN cisco_stage_app.linearity_metrics AS l\n    ON m.segment = l.segment\n    INNER\n    JOIN cisco_stage_app.funnel_metrics AS f\n    ON m.segment = f.segment\n    LEFT\n    JOIN cisco_stage_app.qtd_commit_upside AS q\n    ON m.segment = q.segment\nGROUP BY f.region, m.segment",
+  "sql_formatted": "SELECT\n    SUM(m.won_amount) AS total_revenue, f.region, m.segment\nFROM cisco_stage_app.metrics AS m\n    INNER\n    JOIN cisco_stage_app.linearity_metrics AS l\n    ON m.segment = l.segment\n    INNER\n    JOIN cisco_stage_app.funnel_metrics AS f\n    ON m.segment = f.segment\n    LEFT\n    JOIN cisco_stage_app.qtd_commit_upside AS q\n    ON m.segment = q.segment\nGROUP BY f.region, m.segment",
+  "generation_method": "llm",
+  "validation": {
+    "enabled": false,
+    "is_valid": null,
+    "error": null
+  },
+  "execution": {
+    "success": false,
+    "error": null,
+    "row_count": 0,
+    "execution_time": 1.7693641185760498,
+    "sample_rows": []
+  },
+  "query_plan_source": "query_plan_query_1.json"
+}

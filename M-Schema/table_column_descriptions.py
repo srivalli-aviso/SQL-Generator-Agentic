@@ -1,23 +1,25 @@
-import os
 import json
 from groq import Groq
+from config import MSchemaConfig
 
-def load_m_schema(json_file_path="./cisco_stage_app_clickhouse.json"):
+def load_m_schema(json_file_path=None):
     """
     Read the M-Schema JSON file and return it as a dictionary.
     
     Args:
-        json_file_path: Path to the JSON file (default: "./cisco_stage_app_clickhouse.json")
+        json_file_path: Path to the JSON file (default: from config)
     
     Returns:
         dict: The M-Schema JSON object as a Python dictionary
     """
+    if json_file_path is None:
+        json_file_path = MSchemaConfig.get_input_schema_file()
     with open(json_file_path, 'r', encoding='utf-8') as f:
         m_schema = json.load(f)
     return m_schema
 
 # Load the M-Schema
-m_schema = load_m_schema("./cisco_stage_app_clickhouse.json")
+m_schema = load_m_schema()
 
 system_prompt = f"""
 # ROLE #
@@ -69,10 +71,10 @@ STRICTLY the output has to be a valid JSON object matching the exact structure o
 
 Output structure:
 {{
-  "db_id": "cisco_stage_app",
-  "schema": "cisco_stage_app",
+  "db_id": "{MSchemaConfig.DB_NAME}",
+  "schema": "{MSchemaConfig.DB_NAME}",
   "tables": {{
-    "cisco_stage_app.qtd_commit_upside": {{
+    "{MSchemaConfig.DB_NAME}.qtd_commit_upside": {{
       "fields": {{
         "year": {{
           "type": "String",
@@ -96,17 +98,17 @@ Output structure:
       "examples": [],
       "table_description": "Your description for the qtd_commit_upside table here"
     }},
-    "cisco_stage_app.funnel_metrics": {{
+    "{MSchemaConfig.DB_NAME}.funnel_metrics": {{
       "fields": {{...}},
       "examples": [],
       "table_description": "Your description for the funnel_metrics table here"
     }},
-    "cisco_stage_app.metrics": {{
+    "{MSchemaConfig.DB_NAME}.metrics": {{
       "fields": {{...}},
       "examples": [],
       "table_description": "Your description for the metrics table here"
     }},
-    "cisco_stage_app.linearity_metrics": {{
+    "{MSchemaConfig.DB_NAME}.linearity_metrics": {{
       "fields": {{...}},
       "examples": [],
       "table_description": "Your description for the linearity_metrics table here"
@@ -124,15 +126,15 @@ Output structure:
 6. Ensure valid JSON syntax (proper commas, brackets, quotes)
 """
 
-# Initialize Groq client - API key must be set in environment variable
-if "GROQ_API_KEY" not in os.environ:
+# Initialize Groq client - API key from config
+if not MSchemaConfig.GROQ_API_KEY:
     raise ValueError(
         "GROQ_API_KEY environment variable is not set. "
         "Please set it using: export GROQ_API_KEY='your-api-key'"
     )
-client = Groq()
+client = Groq(api_key=MSchemaConfig.GROQ_API_KEY)
 
-def get_response(system_prompt, client, m_schema, model="openai/gpt-oss-120b", temperature=0):
+def get_response(system_prompt, client, m_schema, model=None, temperature=None):
     """
     Generate a modified M-Schema using Groq API.
     
@@ -140,12 +142,16 @@ def get_response(system_prompt, client, m_schema, model="openai/gpt-oss-120b", t
         system_prompt: System prompt that includes instructions and will receive m_schema
         client: Groq client instance
         m_schema: Original M-Schema dictionary to be modified (will be added to system_prompt)
-        model: Model name (default: "openai/gpt-oss-120b")
-        temperature: Temperature for generation (default: 0)
+        model: Model name (default: from config)
+        temperature: Temperature for generation (default: from config)
     
     Returns:
         dict: Modified M-Schema dictionary
     """
+    if model is None:
+        model = MSchemaConfig.DESCRIPTION_MODEL
+    if temperature is None:
+        temperature = MSchemaConfig.DESCRIPTION_TEMPERATURE
     # Convert m_schema to JSON string
     m_schema_json = json.dumps(m_schema, indent=2, ensure_ascii=False)
     
@@ -178,8 +184,8 @@ M-Schema JSON:
         # Parse the JSON response
         modified_m_schema = json.loads(response_content)
         
-        # Save to JSON file
-        output_file = "cisco_stage_app_modified_m_schema.json"
+        # Save to JSON file using config
+        output_file = MSchemaConfig.get_output_schema_file()
         with open(output_file, 'w', encoding='utf-8') as f:
             json.dump(modified_m_schema, f, ensure_ascii=False, indent=2)
         print(f"✓ Modified M-Schema saved to: {output_file}")
@@ -268,8 +274,8 @@ def main():
     print("\nLoading M-Schema...")
     
     try:
-        # Load the original schema
-        input_file = "./cisco_stage_app_clickhouse.json"
+        # Load the original schema using config
+        input_file = MSchemaConfig.get_input_schema_file()
         m_schema = load_m_schema(input_file)
         print(f"✓ Loaded schema from: {input_file}")
         print(f"  - Tables: {len(m_schema.get('tables', {}))}")

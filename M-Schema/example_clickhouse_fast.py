@@ -1,8 +1,7 @@
-import os
 import warnings
-from urllib.parse import quote_plus
 from schema_engine import SchemaEngine
 from sqlalchemy import create_engine
+from config import MSchemaConfig
 import urllib3
 import time
 
@@ -10,35 +9,24 @@ import time
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 warnings.filterwarnings('ignore', message='Unverified HTTPS request')
 
-# ClickHouse Database Configuration
-# All database credentials must be set as environment variables for security
-CH_DB_HOST = os.getenv('CH_DB_HOST')
-CH_DB_USER = os.getenv('CH_DB_USER')
-CH_DB_PORT = os.getenv('CH_DB_PORT', '8443')  # Default port for ClickHouse Cloud HTTPS
-CH_DB_PASSWORD = os.getenv('CH_DB_PASSWORD')
-CH_DB_NAME = os.getenv('CH_DB_NAME')
+# Validate required configuration
+MSchemaConfig.validate_required()
 
-# Validate required environment variables
-if not CH_DB_HOST:
-    raise ValueError("CH_DB_HOST environment variable is not set. Please set it using: export CH_DB_HOST='your-host'")
-if not CH_DB_USER:
-    raise ValueError("CH_DB_USER environment variable is not set. Please set it using: export CH_DB_USER='your-username'")
-if not CH_DB_PASSWORD:
-    raise ValueError("CH_DB_PASSWORD environment variable is not set. Please set it using: export CH_DB_PASSWORD='your-password'")
-if not CH_DB_NAME:
-    raise ValueError("CH_DB_NAME environment variable is not set. Please set it using: export CH_DB_NAME='your-database-name'")
+# Get configuration values
+CH_DB_NAME = MSchemaConfig.CH_DB_NAME
+SKIP_EXAMPLES = MSchemaConfig.SKIP_EXAMPLES
+INCLUDE_TABLES = MSchemaConfig.get_include_tables()
 
-# Set to False to fetch example values using groupUniqArray (faster than before but still takes time)
-# Set to True to skip fetching example values (execution completes in minutes instead of hours)
-SKIP_EXAMPLES = os.getenv('SKIP_EXAMPLES', 'false').lower() == 'true'  # Change to 'true' to skip examples
-
-# URL encode the password
-encoded_password = quote_plus(CH_DB_PASSWORD)
-
-# Connect to ClickHouse
-clickhouse_url = f'clickhouse+http://{CH_DB_USER}:{encoded_password}@{CH_DB_HOST}:{CH_DB_PORT}/{CH_DB_NAME}?protocol=https&verify=false'
-print(f"Connecting to ClickHouse: {CH_DB_HOST}:{CH_DB_PORT}/{CH_DB_NAME}")
+# Get ClickHouse connection URL from config
+clickhouse_url = MSchemaConfig.get_clickhouse_url()
+print(f"Connecting to ClickHouse: {MSchemaConfig.CH_DB_HOST}:{MSchemaConfig.CH_DB_PORT}/{CH_DB_NAME}")
 print(f"Fast Mode: {'ON (skipping examples)' if SKIP_EXAMPLES else 'OFF (fetching examples)'}")
+
+# Display table filtering information
+if INCLUDE_TABLES:
+    print(f"Table Filtering: ON - Including only: {', '.join(INCLUDE_TABLES)}")
+else:
+    print(f"Table Filtering: OFF - Including all tables in database")
 
 db_engine = create_engine(clickhouse_url)
 
@@ -47,8 +35,13 @@ print("Generating M-Schema...")
 start_time = time.time()
 
 try:
-    # Pass skip_examples=True to skip fetching example values (much faster!)
-    schema_engine = SchemaEngine(engine=db_engine, db_name=CH_DB_NAME, skip_examples=SKIP_EXAMPLES)
+    # Pass include_tables if filtering is enabled, skip_examples for performance
+    schema_engine = SchemaEngine(
+        engine=db_engine, 
+        db_name=CH_DB_NAME, 
+        skip_examples=SKIP_EXAMPLES,
+        include_tables=INCLUDE_TABLES
+    )
     elapsed = time.time() - start_time
     print(f"✓ Schema extraction completed in {elapsed:.2f} seconds")
     
@@ -63,8 +56,8 @@ try:
     if len(mschema_str) > 2000:
         print(f"\n... (truncated, total length: {len(mschema_str)} characters)")
     
-    # Save to JSON
-    output_file = f'./{CH_DB_NAME}_clickhouse.json'
+    # Save to JSON using config file path
+    output_file = MSchemaConfig.get_input_schema_file()
     mschema.save(output_file)
     print(f"\n✓ M-Schema saved to: {output_file}")
     print(f"✓ Total execution time: {time.time() - start_time:.2f} seconds")

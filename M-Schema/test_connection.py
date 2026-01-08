@@ -2,22 +2,19 @@
 """
 Diagnostic script to test ClickHouse connection and DNS resolution
 """
-import os
 import socket
 import sys
 from urllib.parse import quote_plus
+from config import MSchemaConfig
 
-# ClickHouse Database Configuration
-# All database credentials must be set as environment variables for security
-CH_DB_HOST = os.getenv('CH_DB_HOST')
-CH_DB_PORT = int(os.getenv('CH_DB_PORT', '8443'))  # Default port for ClickHouse Cloud HTTPS
-CH_DB_USER = os.getenv('CH_DB_USER')
+# Validate required configuration
+if not MSchemaConfig.CH_DB_HOST:
+    MSchemaConfig.validate_required()
 
-# Validate required environment variables
-if not CH_DB_HOST:
-    raise ValueError("CH_DB_HOST environment variable is not set. Please set it using: export CH_DB_HOST='your-host'")
-if not CH_DB_USER:
-    raise ValueError("CH_DB_USER environment variable is not set. Please set it using: export CH_DB_USER='your-username'")
+# Get configuration values
+CH_DB_HOST = MSchemaConfig.CH_DB_HOST
+CH_DB_PORT = int(MSchemaConfig.CH_DB_PORT)
+CH_DB_USER = MSchemaConfig.CH_DB_USER
 
 print("="*80)
 print("ClickHouse Connection Diagnostic")
@@ -104,14 +101,13 @@ try:
     urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
     warnings.filterwarnings('ignore', message='Unverified HTTPS request')
     
-    CH_DB_PASSWORD = os.getenv('CH_DB_PASSWORD')
-    if not CH_DB_PASSWORD:
+    if not MSchemaConfig.CH_DB_PASSWORD:
         raise ValueError("CH_DB_PASSWORD environment variable is not set. Please set it using: export CH_DB_PASSWORD='your-password'")
-    encoded_password = quote_plus(CH_DB_PASSWORD)
-    clickhouse_url = f'clickhouse+http://{CH_DB_USER}:{encoded_password}@{CH_DB_HOST}:{CH_DB_PORT}/default?protocol=https&verify=false'
+    encoded_password = quote_plus(MSchemaConfig.CH_DB_PASSWORD)
+    clickhouse_url = f'clickhouse+http://{CH_DB_USER}:{encoded_password}@{CH_DB_HOST}:{CH_DB_PORT}/default?protocol={MSchemaConfig.CLICKHOUSE_DEFAULT_PROTOCOL}&verify={str(MSchemaConfig.SSL_VERIFY).lower()}'
     
     print(f"Attempting connection...")
-    db_engine = create_engine(clickhouse_url, connect_args={'connect_timeout': 10})
+    db_engine = create_engine(clickhouse_url, connect_args={'connect_timeout': MSchemaConfig.CONNECTION_TIMEOUT})
     
     with db_engine.connect() as connection:
         result = connection.execute(text("SELECT 1"))

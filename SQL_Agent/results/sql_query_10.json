@@ -1,0 +1,19 @@
+{
+  "query": "Find metrics broken down by month and week",
+  "sql": "SELECT\n    metrics.month, metrics.week, SUM(metrics.metric_value) AS total_metric, SUM(qtd_commit_upside.commit_upside) AS total_upside, SUM(funnel_metrics.funnel_value) AS total_funnel, SUM(linearity_metrics.linearity_score) AS total_linearity\nFROM cisco_stage_app.metrics AS metrics\n    LEFT\n    JOIN cisco_stage_app.qtd_commit_upside AS qtd_commit_upside\n    ON metrics.metric_id = qtd_commit_upside.metric_id\n    LEFT\n    JOIN cisco_stage_app.funnel_metrics AS funnel_metrics\n    ON metrics.metric_id = funnel_metrics.metric_id\n    LEFT\n    JOIN cisco_stage_app.linearity_metrics AS linearity_metrics\n    ON metrics.metric_id = linearity_metrics.metric_id\nGROUP BY metrics.month, metrics.week",
+  "sql_formatted": "SELECT\n    metrics.month, metrics.week, SUM(metrics.metric_value) AS total_metric, SUM(qtd_commit_upside.commit_upside) AS total_upside, SUM(funnel_metrics.funnel_value) AS total_funnel, SUM(linearity_metrics.linearity_score) AS total_linearity\nFROM cisco_stage_app.metrics AS metrics\n    LEFT\n    JOIN cisco_stage_app.qtd_commit_upside AS qtd_commit_upside\n    ON metrics.metric_id = qtd_commit_upside.metric_id\n    LEFT\n    JOIN cisco_stage_app.funnel_metrics AS funnel_metrics\n    ON metrics.metric_id = funnel_metrics.metric_id\n    LEFT\n    JOIN cisco_stage_app.linearity_metrics AS linearity_metrics\n    ON metrics.metric_id = linearity_metrics.metric_id\nGROUP BY metrics.month, metrics.week",
+  "generation_method": "llm",
+  "validation": {
+    "enabled": false,
+    "is_valid": null,
+    "error": null
+  },
+  "execution": {
+    "success": false,
+    "error": "Orig exception: Code: 47. DB::Exception: There's no column 'metrics.metric_value' in table 'metrics': While processing SELECT `_--metrics.month` AS `metrics.month`, `_--metrics.week` AS `metrics.week`, SUM(metrics.metric_value) AS total_metric, SUM(qtd_commit_upside.commit_upside) AS total_upside, SUM(funnel_metrics.funnel_value) AS total_funnel, SUM(linearity_metrics.linearity_score) AS total_linearity FROM cisco_stage_app.metrics AS metrics LEFT JOIN cisco_stage_app.qtd_commit_upside AS qtd_commit_upside ON metrics.metric_id = qtd_commit_upside.metric_id LEFT JOIN cisco_stage_app.funnel_metrics AS funnel_metrics ON metrics.metric_id = funnel_metrics.metric_id LEFT JOIN cisco_stage_app.linearity_metrics AS linearity_metrics ON metrics.metric_id = linearity_metrics.metric_id GROUP BY metrics.month, metrics.week. (UNKNOWN_IDENTIFIER) (version 25.8.1.8909 (official build))\n",
+    "row_count": null,
+    "execution_time": 1.698573112487793,
+    "sample_rows": null
+  },
+  "query_plan_source": "query_plan_query_10.json"
+}

@@ -1,0 +1,19 @@
+{
+  "query": "Display quarterly financial metrics",
+  "sql": "SELECT\n    q.quarter, q.commit_upside, m.metric_value, l.linearity_score, f.funnel_stage\nFROM cisco_stage_app.qtd_commit_upside AS q\n    INNER\n    JOIN cisco_stage_app.metrics AS m\n    ON q.quarter = m.quarter\n    INNER\n    JOIN cisco_stage_app.linearity_metrics AS l\n    ON q.quarter = l.quarter\n    INNER\n    JOIN cisco_stage_app.funnel_metrics AS f\n    ON q.quarter = f.quarter",
+  "sql_formatted": "SELECT\n    q.quarter, q.commit_upside, m.metric_value, l.linearity_score, f.funnel_stage\nFROM cisco_stage_app.qtd_commit_upside AS q\n    INNER\n    JOIN cisco_stage_app.metrics AS m\n    ON q.quarter = m.quarter\n    INNER\n    JOIN cisco_stage_app.linearity_metrics AS l\n    ON q.quarter = l.quarter\n    INNER\n    JOIN cisco_stage_app.funnel_metrics AS f\n    ON q.quarter = f.quarter",
+  "generation_method": "llm",
+  "validation": {
+    "enabled": false,
+    "is_valid": null,
+    "error": null
+  },
+  "execution": {
+    "success": false,
+    "error": "Orig exception: Code: 47. DB::Exception: There's no column 'q.commit_upside' in table 'q': While processing SELECT `_--q.quarter` AS `q.quarter`, q.commit_upside, m.metric_value, l.linearity_score, f.funnel_stage FROM cisco_stage_app.qtd_commit_upside AS q INNER JOIN cisco_stage_app.metrics AS m ON q.quarter = m.quarter INNER JOIN cisco_stage_app.linearity_metrics AS l ON q.quarter = l.quarter INNER JOIN cisco_stage_app.funnel_metrics AS f ON q.quarter = f.quarter. (UNKNOWN_IDENTIFIER) (version 25.8.1.8909 (official build))\n",
+    "row_count": null,
+    "execution_time": 1.4766929149627686,
+    "sample_rows": null
+  },
+  "query_plan_source": "query_plan_query_3.json"
+}

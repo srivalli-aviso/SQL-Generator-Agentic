@@ -1,0 +1,125 @@
+{
+  "execution_steps": [
+    {
+      "step_number": 1,
+      "operation": "identify_base_table",
+      "table": "cisco_stage_app.metrics",
+      "columns": [
+        "revenue_amount",
+        "region",
+        "segment"
+      ]
+    },
+    {
+      "step_number": 2,
+      "operation": "join_table",
+      "join_type": "INNER JOIN",
+      "table": "cisco_stage_app.linearity_metrics",
+      "join_condition": {
+        "left_column": "cisco_stage_app.metrics.metric_id",
+        "right_column": "cisco_stage_app.linearity_metrics.metric_id",
+        "operator": "="
+      },
+      "columns": []
+    },
+    {
+      "step_number": 3,
+      "operation": "join_table",
+      "join_type": "INNER JOIN",
+      "table": "cisco_stage_app.funnel_metrics",
+      "join_condition": {
+        "left_column": "cisco_stage_app.metrics.metric_id",
+        "right_column": "cisco_stage_app.funnel_metrics.metric_id",
+        "operator": "="
+      },
+      "columns": []
+    },
+    {
+      "step_number": 4,
+      "operation": "join_table",
+      "join_type": "LEFT JOIN",
+      "table": "cisco_stage_app.qtd_commit_upside",
+      "join_condition": {
+        "left_column": "cisco_stage_app.metrics.metric_id",
+        "right_column": "cisco_stage_app.qtd_commit_upside.metric_id",
+        "operator": "="
+      },
+      "columns": []
+    },
+    {
+      "step_number": 5,
+      "operation": "aggregate",
+      "aggregation_function": "SUM",
+      "aggregated_column": "cisco_stage_app.metrics.revenue_amount",
+      "group_by_columns": [
+        "cisco_stage_app.metrics.region",
+        "cisco_stage_app.metrics.segment"
+      ]
+    }
+  ],
+  "select_columns": [
+    {
+      "column": "SUM(cisco_stage_app.metrics.revenue_amount)",
+      "alias": "total_revenue",
+      "source_table": "cisco_stage_app.metrics"
+    },
+    {
+      "column": "cisco_stage_app.metrics.region",
+      "alias": null,
+      "source_table": "cisco_stage_app.metrics"
+    },
+    {
+      "column": "cisco_stage_app.metrics.segment",
+      "alias": null,
+      "source_table": "cisco_stage_app.metrics"
+    }
+  ],
+  "from_table": "cisco_stage_app.metrics",
+  "joins": [
+    {
+      "step": 2,
+      "type": "INNER JOIN",
+      "table": "cisco_stage_app.linearity_metrics",
+      "condition": {
+        "left": "cisco_stage_app.metrics.metric_id",
+        "operator": "=",
+        "right": "cisco_stage_app.linearity_metrics.metric_id"
+      }
+    },
+    {
+      "step": 3,
+      "type": "INNER JOIN",
+      "table": "cisco_stage_app.funnel_metrics",
+      "condition": {
+        "left": "cisco_stage_app.metrics.metric_id",
+        "operator": "=",
+        "right": "cisco_stage_app.funnel_metrics.metric_id"
+      }
+    },
+    {
+      "step": 4,
+      "type": "LEFT JOIN",
+      "table": "cisco_stage_app.qtd_commit_upside",
+      "condition": {
+        "left": "cisco_stage_app.metrics.metric_id",
+        "operator": "=",
+        "right": "cisco_stage_app.qtd_commit_upside.metric_id"
+      }
+    }
+  ],
+  "where_conditions": null,
+  "group_by": [
+    "cisco_stage_app.metrics.region",
+    "cisco_stage_app.metrics.segment"
+  ],
+  "having_conditions": null,
+  "order_by": null,
+  "subqueries": [],
+  "complexity_indicators": {
+    "requires_join": true,
+    "requires_aggregation": true,
+    "join_count": 3,
+    "aggregation_count": 1
+  },
+  "query": "Show me revenue by region and segment"
+}

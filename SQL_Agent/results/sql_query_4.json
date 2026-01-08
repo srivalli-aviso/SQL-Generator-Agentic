@@ -1,0 +1,19 @@
+{
+  "query": "Show me data about business units and segments",
+  "sql": "SELECT\n    cisco_stage_app.metrics.business_unit_id, cisco_stage_app.metrics.segment_id, cisco_stage_app.metrics.metric_value, cisco_stage_app.linearity_metrics.linearity_score, cisco_stage_app.qtd_commit_upside.qtd_commit, cisco_stage_app.funnel_metrics.funnel_stage\nFROM cisco_stage_app.metrics\n    INNER\n    JOIN cisco_stage_app.linearity_metrics\n    ON cisco_stage_app.metrics.business_unit_id = cisco_stage_app.linearity_metrics.business_unit_id\n    INNER\n    JOIN cisco_stage_app.qtd_commit_upside\n    ON cisco_stage_app.metrics.segment_id = cisco_stage_app.qtd_commit_upside.segment_id\n    INNER\n    JOIN cisco_stage_app.funnel_metrics\n    ON cisco_stage_app.metrics.business_unit_id = cisco_stage_app.funnel_metrics.business_unit_id",
+  "sql_formatted": "SELECT\n    cisco_stage_app.metrics.business_unit_id, cisco_stage_app.metrics.segment_id, cisco_stage_app.metrics.metric_value, cisco_stage_app.linearity_metrics.linearity_score, cisco_stage_app.qtd_commit_upside.qtd_commit, cisco_stage_app.funnel_metrics.funnel_stage\nFROM cisco_stage_app.metrics\n    INNER\n    JOIN cisco_stage_app.linearity_metrics\n    ON cisco_stage_app.metrics.business_unit_id = cisco_stage_app.linearity_metrics.business_unit_id\n    INNER\n    JOIN cisco_stage_app.qtd_commit_upside\n    ON cisco_stage_app.metrics.segment_id = cisco_stage_app.qtd_commit_upside.segment_id\n    INNER\n    JOIN cisco_stage_app.funnel_metrics\n    ON cisco_stage_app.metrics.business_unit_id = cisco_stage_app.funnel_metrics.business_unit_id",
+  "generation_method": "llm",
+  "validation": {
+    "enabled": false,
+    "is_valid": null,
+    "error": null
+  },
+  "execution": {
+    "success": false,
+    "error": "Orig exception: Code: 47. DB::Exception: There's no column 'cisco_stage_app.metrics.business_unit_id' in table 'metrics': While processing SELECT cisco_stage_app.metrics.business_unit_id, cisco_stage_app.metrics.segment_id, cisco_stage_app.metrics.metric_value, cisco_stage_app.linearity_metrics.linearity_score, cisco_stage_app.qtd_commit_upside.qtd_commit, cisco_stage_app.funnel_metrics.funnel_stage FROM cisco_stage_app.metrics INNER JOIN cisco_stage_app.linearity_metrics ON cisco_stage_app.metrics.business_unit_id = cisco_stage_app.linearity_metrics.business_unit_id INNER JOIN cisco_stage_app.qtd_commit_upside ON cisco_stage_app.metrics.segment_id = cisco_stage_app.qtd_commit_upside.segment_id INNER JOIN cisco_stage_app.funnel_metrics ON cisco_stage_app.metrics.business_unit_id = cisco_stage_app.funnel_metrics.business_unit_id. (UNKNOWN_IDENTIFIER) (version 25.8.1.8909 (official build))\n",
+    "row_count": null,
+    "execution_time": 1.7215468883514404,
+    "sample_rows": null
+  },
+  "query_plan_source": "query_plan_query_4.json"
+}

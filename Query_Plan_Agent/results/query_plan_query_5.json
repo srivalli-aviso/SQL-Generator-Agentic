@@ -1,0 +1,112 @@
+{
+  "execution_steps": [
+    {
+      "step_number": 1,
+      "operation": "identify_base_table",
+      "table": "cisco_stage_app.metrics",
+      "columns": [
+        "won_amount",
+        "year",
+        "quarter"
+      ]
+    },
+    {
+      "step_number": 2,
+      "operation": "join_table",
+      "join_type": "INNER JOIN",
+      "table": "cisco_stage_app.qtd_commit_upside",
+      "join_condition": {
+        "left_column": "cisco_stage_app.metrics.year",
+        "right_column": "cisco_stage_app.qtd_commit_upside.year",
+        "operator": "="
+      },
+      "additional_join_conditions": [
+        {
+          "left_column": "cisco_stage_app.metrics.quarter",
+          "right_column": "cisco_stage_app.qtd_commit_upside.quarter",
+          "operator": "="
+        }
+      ],
+      "columns": [
+        "qtd_amount"
+      ]
+    },
+    {
+      "step_number": 3,
+      "operation": "aggregate",
+      "aggregation_functions": [
+        {
+          "function": "SUM",
+          "source_column": "cisco_stage_app.metrics.won_amount",
+          "alias": "won_amount_total"
+        },
+        {
+          "function": "SUM",
+          "source_column": "cisco_stage_app.qtd_commit_upside.qtd_amount",
+          "alias": "qtd_total"
+        }
+      ],
+      "group_by_columns": [
+        "cisco_stage_app.metrics.year",
+        "cisco_stage_app.metrics.quarter"
+      ]
+    }
+  ],
+  "select_columns": [
+    {
+      "column": "SUM(cisco_stage_app.metrics.won_amount)",
+      "alias": "won_amount",
+      "source_table": "cisco_stage_app.metrics"
+    },
+    {
+      "column": "SUM(cisco_stage_app.qtd_commit_upside.qtd_amount)",
+      "alias": "qtd",
+      "source_table": "cisco_stage_app.qtd_commit_upside"
+    },
+    {
+      "column": "cisco_stage_app.metrics.year",
+      "alias": null,
+      "source_table": "cisco_stage_app.metrics"
+    },
+    {
+      "column": "cisco_stage_app.metrics.quarter",
+      "alias": null,
+      "source_table": "cisco_stage_app.metrics"
+    }
+  ],
+  "from_table": "cisco_stage_app.metrics",
+  "joins": [
+    {
+      "step": 2,
+      "type": "INNER JOIN",
+      "table": "cisco_stage_app.qtd_commit_upside",
+      "condition": {
+        "left": "cisco_stage_app.metrics.year",
+        "operator": "=",
+        "right": "cisco_stage_app.qtd_commit_upside.year"
+      },
+      "additional_conditions": [
+        {
+          "left": "cisco_stage_app.metrics.quarter",
+          "operator": "=",
+          "right": "cisco_stage_app.qtd_commit_upside.quarter"
+        }
+      ]
+    }
+  ],
+  "where_conditions": null,
+  "group_by": [
+    "cisco_stage_app.metrics.year",
+    "cisco_stage_app.metrics.quarter"
+  ],
+  "having_conditions": null,
+  "order_by": null,
+  "subqueries": [],
+  "complexity_indicators": {
+    "requires_join": true,
+    "requires_aggregation": true,
+    "join_count": 1,
+    "aggregation_count": 1
+  },
+  "query": "Find won amount and QTD by year and quarter"
+}

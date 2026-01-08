@@ -1,0 +1,19 @@
+{
+  "query": "Show me upside potential and committed revenue by region",
+  "sql": "SELECT\n    SUM(q.upside_potential) AS total_upside_potential, SUM(q.committed_revenue) AS total_committed_revenue, q.region\nFROM cisco_stage_app.qtd_commit_upside AS q\n    LEFT\n    JOIN cisco_stage_app.linearity_metrics AS lm\n    ON q.region = lm.region\n    LEFT\n    JOIN cisco_stage_app.metrics AS m\n    ON q.region = m.region\n    LEFT\n    JOIN cisco_stage_app.funnel_metrics AS fm\n    ON q.region = fm.region\nGROUP BY q.region",
+  "sql_formatted": "SELECT\n    SUM(q.upside_potential) AS total_upside_potential, SUM(q.committed_revenue) AS total_committed_revenue, q.region\nFROM cisco_stage_app.qtd_commit_upside AS q\n    LEFT\n    JOIN cisco_stage_app.linearity_metrics AS lm\n    ON q.region = lm.region\n    LEFT\n    JOIN cisco_stage_app.metrics AS m\n    ON q.region = m.region\n    LEFT\n    JOIN cisco_stage_app.funnel_metrics AS fm\n    ON q.region = fm.region\nGROUP BY q.region",
+  "generation_method": "llm",
+  "validation": {
+    "enabled": false,
+    "is_valid": null,
+    "error": null
+  },
+  "execution": {
+    "success": false,
+    "error": "Orig exception: Code: 47. DB::Exception: There's no column 'q.upside_potential' in table 'q': While processing SELECT SUM(q.upside_potential) AS total_upside_potential, SUM(q.committed_revenue) AS total_committed_revenue, q.region FROM cisco_stage_app.qtd_commit_upside AS q LEFT JOIN cisco_stage_app.linearity_metrics AS lm ON q.region = lm.region LEFT JOIN cisco_stage_app.metrics AS m ON q.region = m.region LEFT JOIN cisco_stage_app.funnel_metrics AS fm ON q.region = fm.region GROUP BY q.region. (UNKNOWN_IDENTIFIER) (version 25.8.1.8909 (official build))\n",
+    "row_count": null,
+    "execution_time": 1.4946401119232178,
+    "sample_rows": null
+  },
+  "query_plan_source": "query_plan_query_6.json"
+}

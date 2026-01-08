@@ -1,37 +1,21 @@
-import os
 import warnings
-from urllib.parse import quote_plus
 from sqlalchemy import create_engine, text
+from config import MSchemaConfig
 import urllib3
 
 # Suppress SSL warnings for unverified HTTPS requests
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 warnings.filterwarnings('ignore', message='Unverified HTTPS request')
 
-# ClickHouse Database Configuration
-# All database credentials must be set as environment variables for security
-CH_DB_HOST = os.getenv('CH_DB_HOST')
-CH_DB_USER = os.getenv('CH_DB_USER')
-CH_DB_PORT = os.getenv('CH_DB_PORT', '8443')  # Default port for ClickHouse Cloud HTTPS
-CH_DB_PASSWORD = os.getenv('CH_DB_PASSWORD')
-CH_DB_NAME = os.getenv('CH_DB_NAME')
+# Validate required configuration
+MSchemaConfig.validate_required()
 
-# Validate required environment variables
-if not CH_DB_HOST:
-    raise ValueError("CH_DB_HOST environment variable is not set. Please set it using: export CH_DB_HOST='your-host'")
-if not CH_DB_USER:
-    raise ValueError("CH_DB_USER environment variable is not set. Please set it using: export CH_DB_USER='your-username'")
-if not CH_DB_PASSWORD:
-    raise ValueError("CH_DB_PASSWORD environment variable is not set. Please set it using: export CH_DB_PASSWORD='your-password'")
-if not CH_DB_NAME:
-    raise ValueError("CH_DB_NAME environment variable is not set. Please set it using: export CH_DB_NAME='your-database-name'")
+# Get configuration values
+CH_DB_NAME = MSchemaConfig.CH_DB_NAME
 
-# URL encode the password
-encoded_password = quote_plus(CH_DB_PASSWORD)
-
-# Connect to ClickHouse
-clickhouse_url = f'clickhouse+http://{CH_DB_USER}:{encoded_password}@{CH_DB_HOST}:{CH_DB_PORT}/{CH_DB_NAME}?protocol=https&verify=false'
-print(f"Connecting to ClickHouse: {CH_DB_HOST}:{CH_DB_PORT}")
+# Get ClickHouse connection URL from config
+clickhouse_url = MSchemaConfig.get_clickhouse_url()
+print(f"Connecting to ClickHouse: {MSchemaConfig.CH_DB_HOST}:{MSchemaConfig.CH_DB_PORT}")
 print(f"Database: {CH_DB_NAME}")
 print(f"\nFetching granule information...\n")
 

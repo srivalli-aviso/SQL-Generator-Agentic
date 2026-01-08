@@ -1,0 +1,526 @@
+{
+  "db_id": "cisco_stage_app",
+  "schema": "cisco_stage_app",
+  "tables": {
+    "cisco_stage_app.linearity_metrics": {
+      "fields": {
+        "year": {
+          "type": "String",
+          "primary_key": true,
+          "nullable": false,
+          "default": "' '",
+          "autoincrement": false,
+          "comment": "",
+          "examples": [
+            "['2023','2021','2019','2020','2022']"
+          ]
+        },
+        "quarter": {
+          "type": "String",
+          "primary_key": false,
+          "nullable": false,
+          "default": "' '",
+          "autoincrement": false,
+          "comment": "",
+          "examples": [
+            "['Q2','Q1','Q3','Q4']"
+          ]
+        },
+        "month": {
+          "type": "String",
+          "primary_key": true,
+          "nullable": false,
+          "default": "' '",
+          "autoincrement": false,
+          "comment": "",
+          "examples": [
+            "['August','April','December','February','January']"
+          ]
+        },
+        "week": {
+          "type": "Decimal(32, 21)",
+          "primary_key": false,
+          "nullable": false,
+          "default": "0.",
+          "autoincrement": false,
+          "comment": "",
+          "examples": [
+            "[14,13,29,15,16]"
+          ]
+        },
+        "segment": {
+          "type": "String",
+          "primary_key": false,
+          "nullable": false,
+          "default": "' '",
+          "autoincrement": false,
+          "comment": "",
+          "examples": [
+            "['SMB','PUBLIC SECTOR','IRELAND_SCOTLAND','COMMERCIAL','ENTERPRISE']"
+          ]
+        },
+        "region": {
+          "type": "String",
+          "primary_key": false,
+          "nullable": false,
+          "default": "' '",
+          "autoincrement": false,
+          "comment": "",
+          "examples": [
+            "['APJC','Americas','EMEA']"
+          ]
+        },
+        "won_amount": {
+          "type": "Decimal(32, 21)",
+          "primary_key": false,
+          "nullable": false,
+          "default": "0.",
+          "autoincrement": false,
+          "comment": "",
+          "examples": [
+            "[98849,88032,53145,98910,69456]"
+          ]
+        },
+        "qtd": {
+          "type": "Decimal(32, 21)",
+          "primary_key": false,
+          "nullable": false,
+          "default": "0.",
+          "autoincrement": false,
+          "comment": "",
+          "examples": [
+            "[1815,1848,1816,1660,1061]"
+          ]
+        },
+        "commit": {
+          "type": "Decimal(32, 21)",
+          "primary_key": false,
+          "nullable": false,
+          "default": "0.",
+          "autoincrement": false,
+          "comment": "",
+          "examples": [
+            "[3020,2586,3616,3239,2683]"
+          ]
+        },
+        "upside": {
+          "type": "Decimal(32, 21)",
+          "primary_key": false,
+          "nullable": false,
+          "default": "0.",
+          "autoincrement": false,
+          "comment": "",
+          "examples": [
+            "[5519,5741,4444,5889,5375]"
+          ]
+        },
+        "cc_percent": {
+          "type": "Decimal(32, 21)",
+          "primary_key": false,
+          "nullable": false,
+          "default": "0.",
+          "autoincrement": false,
+          "comment": "",
+          "examples": [
+            "[66,82,76,89,74]"
+          ]
+        },
+        "cr_percent": {
+          "type": "Decimal(32, 21)",
+          "primary_key": false,
+          "nullable": false,
+          "default": "0.",
+          "autoincrement": false,
+          "comment": "",
+          "examples": [
+            "[67,63,80,66,78]"
+          ]
+        },
+        "bu": {
+          "type": "String",
+          "primary_key": false,
+          "nullable": false,
+          "default": "' '",
+          "autoincrement": false,
+          "comment": "",
+          "examples": [
+            "['SC','Splunk','Cisco']"
+          ]
+        },
+        "tech_bu": {
+          "type": "String",
+          "primary_key": false,
+          "nullable": false,
+          "default": "' '",
+          "autoincrement": false,
+          "comment": "",
+          "examples": [
+            "['Cloud & AI Infra','Security& Observability','Collab & Customer Eng','Networking','Internet Infra']"
+          ]
+        }
+      },
+      "examples": [],
+      "comment": ""
+    },
+    "cisco_stage_app.funnel_metrics": {
+      "fields": {
+        "year": {
+          "type": "String",
+          "primary_key": false,
+          "nullable": false,
+          "default": "' '",
+          "autoincrement": false,
+          "comment": "",
+          "examples": [
+            "['2023','2021','2024','2020','2022']"
+          ]
+        },
+        "quarter": {
+          "type": "String",
+          "primary_key": false,
+          "nullable": false,
+          "default": "' '",
+          "autoincrement": false,
+          "comment": "",
+          "examples": [
+            "['Q2','Q1','Q3','Q4']"
+          ]
+        },
+        "month": {
+          "type": "String",
+          "primary_key": false,
+          "nullable": false,
+          "default": "' '",
+          "autoincrement": false,
+          "comment": "",
+          "examples": [
+            "['March','February','April','January','May']"
+          ]
+        },
+        "week": {
+          "type": "String",
+          "primary_key": false,
+          "nullable": false,
+          "default": "' '",
+          "autoincrement": false,
+          "comment": "",
+          "examples": [
+            "['5','3','1','2','4']"
+          ]
+        },
+        "region": {
+          "type": "String",
+          "primary_key": true,
+          "nullable": false,
+          "default": "' '",
+          "autoincrement": false,
+          "comment": "",
+          "examples": [
+            "['APJC','Americas','EMEA']"
+          ]
+        },
+        "segment": {
+          "type": "String",
+          "primary_key": false,
+          "nullable": false,
+          "default": "' '",
+          "autoincrement": false,
+          "comment": "",
+          "examples": [
+            "['Cloud & AI Infra','Security& Observability','Collab & Customer Eng','Networking','Internet Infra']"
+          ]
+        },
+        "cc_percent": {
+          "type": "Decimal(32, 21)",
+          "primary_key": false,
+          "nullable": false,
+          "default": "0.",
+          "autoincrement": false,
+          "comment": "",
+          "examples": [
+            "[61,80,64,88,74]"
+          ]
+        },
+        "cr_percent": {
+          "type": "Decimal(32, 21)",
+          "primary_key": false,
+          "nullable": false,
+          "default": "0.",
+          "autoincrement": false,
+          "comment": "",
+          "examples": [
+            "[62,70,86,80,78]"
+          ]
+        }
+      },
+      "examples": [],
+      "comment": ""
+    },
+    "cisco_stage_app.metrics": {
+      "fields": {
+        "year": {
+          "type": "String",
+          "primary_key": true,
+          "nullable": false,
+          "default": "' '",
+          "autoincrement": false,
+          "comment": "",
+          "examples": [
+            "['2020']"
+          ]
+        },
+        "quarter": {
+          "type": "String",
+          "primary_key": false,
+          "nullable": false,
+          "default": "' '",
+          "autoincrement": false,
+          "comment": "",
+          "examples": [
+            "['Q4']"
+          ]
+        },
+        "month": {
+          "type": "String",
+          "primary_key": true,
+          "nullable": false,
+          "default": "' '",
+          "autoincrement": false,
+          "comment": "",
+          "examples": [
+            "['December']"
+          ]
+        },
+        "week": {
+          "type": "Decimal(32, 21)",
+          "primary_key": false,
+          "nullable": false,
+          "default": "0.",
+          "autoincrement": false,
+          "comment": "",
+          "examples": [
+            "[47]"
+          ]
+        },
+        "region": {
+          "type": "String",
+          "primary_key": false,
+          "nullable": false,
+          "default": "' '",
+          "autoincrement": false,
+          "comment": "",
+          "examples": [
+            "['EMEA']"
+          ]
+        },
+        "segment": {
+          "type": "String",
+          "primary_key": false,
+          "nullable": false,
+          "default": "' '",
+          "autoincrement": false,
+          "comment": "",
+          "examples": [
+            "['IRELAND_SCOTLAND','COMMERCIAL','SMB']"
+          ]
+        },
+        "bu": {
+          "type": "String",
+          "primary_key": false,
+          "nullable": false,
+          "default": "' '",
+          "autoincrement": false,
+          "comment": "",
+          "examples": [
+            "['SC']"
+          ]
+        },
+        "tech_bu": {
+          "type": "String",
+          "primary_key": false,
+          "nullable": false,
+          "default": "' '",
+          "autoincrement": false,
+          "comment": "",
+          "examples": [
+            "['Cloud & AI Infra','Svcs & SW Buying Programs','Security& Observability','Internet Infra','Networking']"
+          ]
+        },
+        "won_amount": {
+          "type": "Decimal(32, 21)",
+          "primary_key": false,
+          "nullable": false,
+          "default": "0.",
+          "autoincrement": false,
+          "comment": "",
+          "examples": [
+            "[74575,55270,62256,54193,61035]"
+          ]
+        },
+        "qtd": {
+          "type": "Decimal(32, 21)",
+          "primary_key": false,
+          "nullable": false,
+          "default": "0.",
+          "autoincrement": false,
+          "comment": "",
+          "examples": [
+            "[12402,12126,10882,13068,15650]"
+          ]
+        },
+        "commit": {
+          "type": "Decimal(32, 21)",
+          "primary_key": false,
+          "nullable": false,
+          "default": "0.",
+          "autoincrement": false,
+          "comment": "",
+          "examples": [
+            "[20769,24742,18391,24888,15393]"
+          ]
+        },
+        "upside": {
+          "type": "Decimal(32, 21)",
+          "primary_key": false,
+          "nullable": false,
+          "default": "0.",
+          "autoincrement": false,
+          "comment": "",
+          "examples": [
+            "[35523,33527,37381,21385,23602]"
+          ]
+        },
+        "cc_percent": {
+          "type": "Decimal(32, 21)",
+          "primary_key": false,
+          "nullable": false,
+          "default": "0.",
+          "autoincrement": false,
+          "comment": "",
+          "examples": [
+            "[78,75,76,89,72]"
+          ]
+        },
+        "cr_percent": {
+          "type": "Decimal(32, 21)",
+          "primary_key": false,
+          "nullable": false,
+          "default": "0.",
+          "autoincrement": false,
+          "comment": "",
+          "examples": [
+            "[70,82,90,88,79]"
+          ]
+        }
+      },
+      "examples": [],
+      "comment": ""
+    },
+    "cisco_stage_app.qtd_commit_upside": {
+      "fields": {
+        "year": {
+          "type": "String",
+          "primary_key": true,
+          "nullable": false,
+          "default": "' '",
+          "autoincrement": false,
+          "comment": "",
+          "examples": [
+            "['2023','2021','2019','2020','2022']"
+          ]
+        },
+        "quarter": {
+          "type": "String",
+          "primary_key": false,
+          "nullable": false,
+          "default": "' '",
+          "autoincrement": false,
+          "comment": "",
+          "examples": [
+            "['Q2','Q1','Q3','Q4']"
+          ]
+        },
+        "month": {
+          "type": "String",
+          "primary_key": true,
+          "nullable": false,
+          "default": "' '",
+          "autoincrement": false,
+          "comment": "",
+          "examples": [
+            "['August','April','December','February','January']"
+          ]
+        },
+        "week": {
+          "type": "String",
+          "primary_key": false,
+          "nullable": false,
+          "default": "' '",
+          "autoincrement": false,
+          "comment": "",
+          "examples": [
+            "['15','13','29','14','16']"
+          ]
+        },
+        "region": {
+          "type": "String",
+          "primary_key": false,
+          "nullable": false,
+          "default": "' '",
+          "autoincrement": false,
+          "comment": "",
+          "examples": [
+            "['APJC','Americas','EMEA']"
+          ]
+        },
+        "segment": {
+          "type": "String",
+          "primary_key": false,
+          "nullable": false,
+          "default": "' '",
+          "autoincrement": false,
+          "comment": "",
+          "examples": [
+            "['Cloud & AI Infra','Security& Observability','Collab & Customer Eng','Networking','Internet Infra']"
+          ]
+        },
+        "qtd": {
+          "type": "Decimal(32, 21)",
+          "primary_key": false,
+          "nullable": false,
+          "default": "0.",
+          "autoincrement": false,
+          "comment": "",
+          "examples": [
+            "[1030,1869,1276,1613,1342]"
+          ]
+        },
+        "commit": {
+          "type": "Decimal(32, 21)",
+          "primary_key": false,
+          "nullable": false,
+          "default": "0.",
+          "autoincrement": false,
+          "comment": "",
+          "examples": [
+            "[3464,2727,4279,3967,4232]"
+          ]
+        },
+        "upside": {
+          "type": "Decimal(32, 21)",
+          "primary_key": false,
+          "nullable": false,
+          "default": "0.",
+          "autoincrement": false,
+          "comment": "",
+          "examples": [
+            "[5416,5647,4163,4418,4706]"
+          ]
+        }
+      },
+      "examples": [],
+      "comment": ""
+    }
+  },
+  "foreign_keys": []
+}

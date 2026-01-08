@@ -1,0 +1,18 @@
+{
+  "query": "Find won amount and QTD by year and quarter",
+  "subproblems": {
+    "SELECT": "Extract relevant data from: Find won amount and QTD by year and quarter",
+    "FROM": "Use tables: cisco_stage_app.metrics, cisco_stage_app.qtd_commit_upside",
+    "WHERE": null,
+    "GROUP BY": null,
+    "HAVING": null,
+    "ORDER BY": null,
+    "complexity": "moderate",
+    "requires_join": true,
+    "requires_aggregation": true
+  },
+  "filtered_schema_stats": {
+    "num_tables": 2,
+    "num_columns": 11
+  }
+}

@@ -205,3 +205,14 @@ cython_debug/
 marimo/_static/
 marimo/_lsp/
 __marimo__/
+
+
+M-Schema/bin/
+
+Schema_Linking_Agent/venv
+venv
+
+Schema_Linking_Agent/vector_db/
+Schema_Linking_Agent/embeddings_cache.json
+Schema_Linking_Agent/compression_stats.json
+

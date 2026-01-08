@@ -4,28 +4,30 @@ Script to identify foreign keys in M-Schema based on table/column descriptions a
 Uses Groq API to analyze the schema and identify relationships.
 """
 
-import os
 import json
 from groq import Groq
+from config import MSchemaConfig
 
 
-def load_m_schema(json_file_path="./cisco_stage_app_modified_m_schema.json"):
+def load_m_schema(json_file_path=None):
     """
     Read the modified M-Schema JSON file and return it as a dictionary.
     
     Args:
-        json_file_path: Path to the JSON file
+        json_file_path: Path to the JSON file (default: from config)
     
     Returns:
         dict: The M-Schema JSON object as a Python dictionary
     """
+    if json_file_path is None:
+        json_file_path = MSchemaConfig.get_output_schema_file()
     with open(json_file_path, 'r', encoding='utf-8') as f:
         m_schema = json.load(f)
     return m_schema
 
 
 # Load the modified M-Schema
-m_schema = load_m_schema("./cisco_stage_app_modified_m_schema.json")
+m_schema = load_m_schema()
 
 system_prompt = f"""
 # ROLE #
@@ -89,17 +91,17 @@ Output format:
 }}
 
 Each foreign key is an array with 5 elements:
-1. source_table_name: Full table name (e.g., "cisco_stage_app.orders")
+1. source_table_name: Full table name (e.g., "{MSchemaConfig.DB_NAME}.orders")
 2. source_column_name: Column name in the source table (e.g., "customer_id")
-3. ref_schema: Schema name of referenced table (usually same as source schema, e.g., "cisco_stage_app")
-4. ref_table_name: Full table name being referenced (e.g., "cisco_stage_app.customers")
+3. ref_schema: Schema name of referenced table (usually same as source schema, e.g., "{MSchemaConfig.DB_NAME}")
+4. ref_table_name: Full table name being referenced (e.g., "{MSchemaConfig.DB_NAME}.customers")
 5. ref_column_name: Primary key column name in the referenced table (e.g., "id")
 
 # IMPORTANT NOTES #:
 1. Return ONLY the "foreign_keys" array structure, NOT the full schema
 2. Use the exact table names and column names as they appear in the input schema
 3. Each foreign key entry must be an array of exactly 5 strings
-4. The ref_schema should match the schema name from the input (e.g., "cisco_stage_app")
+4. The ref_schema should match the schema name from the input (e.g., "{MSchemaConfig.DB_NAME}")
 5. Only include relationships you are confident about based on evidence
 6. If no foreign keys are found, return: {{"foreign_keys": []}}
 7. Ensure valid JSON syntax
@@ -108,16 +110,16 @@ Modified M-Schema JSON:
 {json.dumps(m_schema, indent=2, ensure_ascii=False)}
 """
 
-# Initialize Groq client - API key must be set in environment variable
-if "GROQ_API_KEY" not in os.environ:
+# Initialize Groq client - API key from config
+if not MSchemaConfig.GROQ_API_KEY:
     raise ValueError(
         "GROQ_API_KEY environment variable is not set. "
         "Please set it using: export GROQ_API_KEY='your-api-key'"
     )
-client = Groq()
+client = Groq(api_key=MSchemaConfig.GROQ_API_KEY)
 
 
-def identify_foreign_keys(system_prompt, client, m_schema, model="openai/gpt-oss-120b", temperature=0):
+def identify_foreign_keys(system_prompt, client, m_schema, model=None, temperature=None):
     """
     Identify foreign keys in the M-Schema using Groq API.
     
@@ -125,12 +127,16 @@ def identify_foreign_keys(system_prompt, client, m_schema, model="openai/gpt-oss
         system_prompt: System prompt with instructions
         client: Groq client instance
         m_schema: Modified M-Schema dictionary
-        model: Model name (default: "openai/gpt-oss-120b")
-        temperature: Temperature for generation (default: 0)
+        model: Model name (default: from config)
+        temperature: Temperature for generation (default: from config)
     
     Returns:
         list: Foreign keys array
     """
+    if model is None:
+        model = MSchemaConfig.FK_IDENTIFICATION_MODEL
+    if temperature is None:
+        temperature = MSchemaConfig.FK_IDENTIFICATION_TEMPERATURE
     # Get response from Groq API
     response = client.chat.completions.create(
         model=model,
@@ -205,8 +211,8 @@ def main():
         else:
             print("  No foreign keys identified (returning empty array)")
         
-        # Update the schema file
-        output_file = "./cisco_stage_app_modified_m_schema.json"
+        # Update the schema file using config
+        output_file = MSchemaConfig.get_output_schema_file()
         update_foreign_keys_in_schema(m_schema, foreign_keys, output_file)
         
         print("\n" + "="*80)

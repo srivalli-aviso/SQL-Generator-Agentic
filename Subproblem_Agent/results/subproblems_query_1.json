@@ -1,0 +1,18 @@
+{
+  "query": "Show me revenue by region and segment",
+  "subproblems": {
+    "SELECT": "Extract relevant data from: Show me revenue by region and segment",
+    "FROM": "Use tables: cisco_stage_app.linearity_metrics, cisco_stage_app.metrics, cisco_stage_app.funnel_metrics, cisco_stage_app.qtd_commit_upside",
+    "WHERE": null,
+    "GROUP BY": null,
+    "HAVING": null,
+    "ORDER BY": null,
+    "complexity": "moderate",
+    "requires_join": true,
+    "requires_aggregation": true
+  },
+  "filtered_schema_stats": {
+    "num_tables": 4,
+    "num_columns": 20
+  }
+}
